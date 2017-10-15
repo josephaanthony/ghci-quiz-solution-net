@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import _ from 'lodash';
+import { ToasterService } from 'angular2-toaster'
 
 import { UserQuizService } from '../../services/user-quiz.service';
 import { LocalStorageService } from '../../services/local-storage.service';
@@ -13,9 +14,12 @@ import { User } from '../../models/user';
 })
 export class UserRegistrationComponent {
 	private user: User;
-	constructor(private router: Router, private quizService: UserQuizService, private localStorageService: LocalStorageService) {
+	private toasterconfig  = {timeout: 0};
+
+	constructor(private router: Router, private quizService: UserQuizService, 
+		private toasterService: ToasterService, private localStorageService: LocalStorageService) {
 		this.user = this.localStorageService.getItem('user');
-		if(this.user) {
+		if (this.user) {
 			alert('Error occured. Please contact the administrator');
 		}
 		else {
@@ -24,15 +28,19 @@ export class UserRegistrationComponent {
 	}
 
 	private registerUser() {
-		this.quizService.setNextQuizForUser(this.user).then(user => {
+		this.quizService.registerUser(this.user).then(user => {
 			this.user = user;
 			this.localStorageService.setItem('user', this.user);
 			this.router.navigateByUrl('/users/quiz');
-		})
+		});
 
-		// this.quizService.getQuizs().then(quizs => {
-		// 	this.startNextQuiz(quizs);
-		// });
+		/*
+			this.quizService.setNextQuizForUser(this.user).then(user => {
+				this.user = user;
+				this.localStorageService.setItem('user', this.user);
+				this.router.navigateByUrl('/users/quiz');
+			})
+		*/
 	}
 
 	startNextQuiz(quizs) {

@@ -1,3 +1,14 @@
+delete from QuizUser;
+delete from UserQuestion;
+delete from UserQuiz;
+
+
+select * from QuizUser;
+select * from UserQuiz;
+select * from UserQuestion;
+
+
+
 EXEC sp_rename 'Quiz.id', 'Id', 'COLUMN'
 
 insert into Quiz values ('5a122b17-a3a5-403a-8a9c-79b84095d515', 'Quiz No 1', 1, 3600);

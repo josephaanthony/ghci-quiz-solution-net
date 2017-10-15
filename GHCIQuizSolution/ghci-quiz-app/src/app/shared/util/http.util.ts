@@ -17,13 +17,14 @@ export class HttpUtil {
 	}
 
 	public static handleError(error: any, toasterService?): Promise<any> {
-		let errMsg = (error.message) ? error.message :
-			error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-		console.error(errMsg); // log to console
+		let errorJson = error.json();
+		// let errMsg = (error.message) ? error.message :
+		// 	error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+		// console.error(errMsg); // log to console
 		if(toasterService) {
-			toasterService.pop(errMsg);
+			toasterService.pop("error", errorJson.Message, errorJson.ExceptionMessage);
 		}
-		return Promise.reject(errMsg);
+		return Promise.reject(errorJson.Message);
 	}
 
 	public static mapJsonAndStatus<T>(checkUpdate, res) {

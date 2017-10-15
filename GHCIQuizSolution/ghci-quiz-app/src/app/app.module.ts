@@ -52,7 +52,7 @@ const appRoutes: Routes = [
           { enableTracing: true } // <-- debugging purposes only
       )
   ],
-  providers: [QuizService, UserQuizService, LocalStorageService],
+  providers: [QuizService, UserQuizService, LocalStorageService, ToasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
