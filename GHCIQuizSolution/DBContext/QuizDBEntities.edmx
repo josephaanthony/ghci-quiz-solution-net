@@ -62,6 +62,8 @@
           <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
           <Property Name="quizId" Type="varchar" MaxLength="36" />
           <Property Name="timeTakenInterval" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="userId" Type="varchar" MaxLength="36" />
         </EntityType>
         <Association Name="FK_Question_Quiz">
           <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
@@ -147,6 +149,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserQuiz_QuizUser">
+          <End Role="QuizUser" Type="Self.QuizUser" Multiplicity="0..1" />
+          <End Role="UserQuiz" Type="Self.UserQuiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuizUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserQuiz">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="GHCIQuizModelStoreContainer">
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Quiz" EntityType="Self.Quiz" Schema="dbo" store:Type="Tables" />
@@ -182,6 +196,10 @@
             <End Role="Quiz" EntitySet="Quiz" />
             <End Role="UserQuiz" EntitySet="UserQuiz" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserQuiz_QuizUser" Association="Self.FK_UserQuiz_QuizUser">
+            <End Role="QuizUser" EntitySet="QuizUser" />
+            <End Role="UserQuiz" EntitySet="UserQuiz" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -201,9 +219,9 @@
         </EntityType>
         <EntityType Name="Quiz">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="36" Unicode="false" FixedLength="false" />
+          <Property Name="id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="36" Unicode="false" FixedLength="false" />
           <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="level" Type="Int32" />
           <Property Name="timeoutInterval" Type="Int32" />
@@ -233,6 +251,7 @@
           <NavigationProperty Name="CurrentUserQuiz" Relationship="Self.FK_QuizUser_UserQuiz" FromRole="QuizUser" ToRole="UserQuiz" />
           <Property Name="isLastQuiz" Type="Boolean" />
           <Property Name="isLastQuestionForCurrentQuiz" Type="Boolean" />
+          <NavigationProperty Name="UserQuizs" Relationship="GHCIQuizModel.FK_UserQuiz_QuizUser" FromRole="QuizUser" ToRole="UserQuiz" />
         </EntityType>
         <EntityType Name="UserQuestion">
           <Key>
@@ -258,13 +277,16 @@
           <NavigationProperty Name="Quiz" Relationship="Self.FK_UserQuiz_Quiz" FromRole="UserQuiz" ToRole="Quiz" />
           <NavigationProperty Name="QuizUsers" Relationship="Self.FK_QuizUser_UserQuiz" FromRole="UserQuiz" ToRole="QuizUser" />
           <NavigationProperty Name="UserQuestions" Relationship="Self.FK_UserQuestion_UserQuiz" FromRole="UserQuiz" ToRole="UserQuestion" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="userId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="QuizUser" Relationship="GHCIQuizModel.FK_UserQuiz_QuizUser" FromRole="UserQuiz" ToRole="QuizUser" />
         </EntityType>
         <Association Name="FK_Question_Quiz">
           <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
           <End Role="Question" Type="Self.Question" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Quiz">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Question">
               <PropertyRef Name="quizId" />
@@ -300,7 +322,7 @@
           <End Role="UserQuiz" Type="Self.UserQuiz" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Quiz">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="UserQuiz">
               <PropertyRef Name="quizId" />
@@ -378,7 +400,23 @@
             <End Role="UserQuiz" EntitySet="UserQuizs" />
             <End Role="UserQuestion" EntitySet="UserQuestions" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserQuiz_QuizUser" Association="GHCIQuizModel.FK_UserQuiz_QuizUser">
+            <End Role="QuizUser" EntitySet="QuizUsers" />
+            <End Role="UserQuiz" EntitySet="UserQuizs" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_UserQuiz_QuizUser">
+          <End Type="GHCIQuizModel.QuizUser" Role="QuizUser" Multiplicity="0..1" />
+          <End Type="GHCIQuizModel.UserQuiz" Role="UserQuiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuizUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserQuiz">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -398,7 +436,7 @@
           <EntitySetMapping Name="Quizs">
             <EntityTypeMapping TypeName="GHCIQuizModel.Quiz">
               <MappingFragment StoreEntitySet="Quiz">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="id" ColumnName="Id" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="level" ColumnName="level" />
                 <ScalarProperty Name="timeoutInterval" ColumnName="timeoutInterval" />
@@ -443,6 +481,8 @@
           <EntitySetMapping Name="UserQuizs">
             <EntityTypeMapping TypeName="GHCIQuizModel.UserQuiz">
               <MappingFragment StoreEntitySet="UserQuiz">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="quizId" ColumnName="quizId" />
                 <ScalarProperty Name="timeTakenInterval" ColumnName="timeTakenInterval" />

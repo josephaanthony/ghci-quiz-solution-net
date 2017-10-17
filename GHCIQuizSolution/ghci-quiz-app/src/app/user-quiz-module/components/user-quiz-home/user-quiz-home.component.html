@@ -1,0 +1,24 @@
+<div class="container-fluid">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Welcome {{ user?.name }}</h3>			
+		</div>
+
+		<toaster-container [toasterconfig]="toasterConfig"></toaster-container>
+
+		<div *ngIf="quizs" class="panel-body">
+			<form>
+				<ul class="slides" style="list-style: none">
+					<li *ngFor="let quiz of quizs">						
+						<button class="btn btn-default" (click)="startQuiz(quiz)">
+							{{ quiz.description }} - {{ quiz.level }}
+						</button>
+						<div *ngIf="quiz.UserQuizs && quiz.UserQuizs.length > 0">
+							Status: {{ quiz.UserQuizs[0].status }}
+						</div>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
+</div>

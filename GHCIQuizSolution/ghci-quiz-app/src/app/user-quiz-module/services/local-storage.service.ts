@@ -23,6 +23,11 @@ export class LocalStorageService {
 		localStorage.setItem(this.storageCategory, JSON.stringify(initialValue));
 	}
 
+	unSetItem(key) {
+		delete this.localStorageData[this.storageCategory][key];
+		localStorage.setItem(this.storageCategory, JSON.stringify(this.localStorageData[this.storageCategory]));		
+	}
+
 	setItem(key, value) {
 		this.localStorageData[this.storageCategory][key] = value;
 		localStorage.setItem(this.storageCategory, JSON.stringify(this.localStorageData[this.storageCategory]));

@@ -24,11 +24,14 @@ namespace GHCIQuizSolution.DBContext
         public string id { get; set; }
         public string quizId { get; set; }
         public Nullable<int> timeTakenInterval { get; set; }
+        public string status { get; set; }
+        public string userId { get; set; }
     
         public virtual Quiz Quiz { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuizUser> QuizUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserQuestion> UserQuestions { get; set; }
+        public virtual QuizUser QuizUser { get; set; }
     }
 }

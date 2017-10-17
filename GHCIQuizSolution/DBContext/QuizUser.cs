@@ -14,6 +14,12 @@ namespace GHCIQuizSolution.DBContext
     
     public partial class QuizUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public QuizUser()
+        {
+            this.UserQuizs = new HashSet<UserQuiz>();
+        }
+    
         public string id { get; set; }
         public string name { get; set; }
         public string email { get; set; }
@@ -24,5 +30,7 @@ namespace GHCIQuizSolution.DBContext
     
         public virtual UserQuestion CurrentUserQuestion { get; set; }
         public virtual UserQuiz CurrentUserQuiz { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserQuiz> UserQuizs { get; set; }
     }
 }

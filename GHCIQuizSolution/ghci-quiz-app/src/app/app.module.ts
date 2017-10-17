@@ -12,11 +12,13 @@ import { QuizComponent } from './quiz-module/quiz/quiz.component';
 import { QuestionComponent } from './quiz-module/question/question.component';
 
 import { UserQuizComponent } from './user-quiz-module/components/user-quiz.component';
+import { UserQuizHomeComponent } from './user-quiz-module/components/user-quiz-home/user-quiz-home.component';
 import { UserQuizService } from './user-quiz-module/services/user-quiz.service';
 import { UserRegistrationComponent } from './user-quiz-module/components/user-registration/user-registration.component';
 import { LocalStorageService } from './user-quiz-module/services/local-storage.service';
 
 const appRoutes: Routes = [
+    { path: 'users/quizhome', component: UserQuizHomeComponent },
     { path: 'users/quiz', component: UserQuizComponent },
     { path: 'users/registration', component: UserRegistrationComponent },
     { path: 'questions/:quizId', component: QuestionComponent },
@@ -26,10 +28,13 @@ const appRoutes: Routes = [
     },
     {
         path: '',
-        redirectTo: '/users/quiz',
+        redirectTo: '/users/quizhome',
         pathMatch: 'full'
     },
-    { path: '**', component: UserQuizComponent }
+    { 
+        path: '**', 
+        redirectTo: '/users/quizhome',
+        pathMatch: 'full' }
 ];
 
 
@@ -39,7 +44,8 @@ const appRoutes: Routes = [
       QuizComponent,
       QuestionComponent,
       UserQuizComponent,
-      UserRegistrationComponent
+      UserRegistrationComponent,
+      UserQuizHomeComponent
   ],
   imports: [
       BrowserModule,

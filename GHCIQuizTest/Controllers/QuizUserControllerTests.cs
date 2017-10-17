@@ -15,13 +15,13 @@ namespace GHCIQuizSolution.Controllers.Tests
     [TestMethod()]
     public void PostTest()
     {
-      //var quizUserController = new QuizUserController();
-      //var quizUser = quizUserController.Post(new QuizUser()
-      //{
-      //  name = "Joe",
-      //  email = "test@test.com"
-      //});
-      //Assert.IsNotNull(quizUser);
+      var quizUserController = new QuizUserController();
+      var quizUser = quizUserController.Post(new QuizUser()
+      {
+        name = "Joe",
+        email = "test@test.com"
+      });
+      Assert.IsNotNull(quizUser);
     }
 
     [TestMethod()]
@@ -34,17 +34,30 @@ namespace GHCIQuizSolution.Controllers.Tests
 
     [TestMethod()]
     public void PutTest() {
-      var quizUserController = new QuizUserController();
-      var quizUser = quizUserController.Put(new QuizUser()
+      var quizUserController = new UserQuestionController();
+      var quizUser = quizUserController.Post(new QuizUser()
       {
-        id = "d4bd51c4-bcdf-4075-9798-6c472f9b00e2",
+        id = "e4e8c1f4-c03d-4b9f-99d2-f190b0dc26af",
         CurrentUserQuestion = new UserQuestion()
         {
-          id = "33056190-682c-4e7a-b375-ed91322c5d2f",
-          selectedOptionIds = "5a122b17-a3a5-403a-8a9c-79b84095d525, 5a122b17-a3a5-403a-8a9c-79b84095d523"
+          id = "b013f839-58b0-465b-ad2d-45b14de2e375",
+          selectedOptionIds = "5a122b17-a3a5-403a-8a9c-79b84095c525"
         }
       });
       Assert.IsNotNull(quizUser);
+    }
+
+
+    [TestMethod()]
+    public void StartQuizTest() {
+      var userQuizController = new UserQuizController();
+      var quizs = userQuizController.Post(new QuizUser()
+      {
+        id = "7ccf32b0-7e34-4c94-a054-b6809cc0c92c",
+        CurrentUserQuiz = new UserQuiz() {
+          
+        }
+      });
     }
 
   }

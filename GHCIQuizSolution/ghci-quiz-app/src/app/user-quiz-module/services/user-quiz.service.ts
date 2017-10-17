@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router'; 
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/observable';
 import 'rxjs/add/operator/map';
@@ -9,14 +10,18 @@ import _ from 'lodash'
 import { HttpUtil } from '../../shared/util/http.util';
 import { UserQuiz } from '../models/user-quiz';
 import { UserQuestion } from '../models/user-question';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class UserQuizService {
-	private userQuizUrl = 'http://localhost:63855/api/quizuser';
+	private quizUserUrl = 'http://localhost:63855/api/quizuser';
+	private userQuestionUrl = 'http://localhost:63855/api/userquestion';
+	private userQuizUrl = 'http://localhost:63855/api/userquiz'
 
 	private quizErrorHandler = HttpUtil.handleErrorWithMessage(this.toasterService);
 
-	constructor(private http: Http, private toasterService: ToasterService) {
+	constructor(private http: Http, private router: Router, private toasterService: ToasterService,
+		private localStorageService: LocalStorageService) {
 
 	}
 
@@ -355,25 +360,62 @@ export class UserQuizService {
 		// 		.catch(HttpUtil.handleError);
 	}
 
-	public getUser(user) {
+	public getUserQuizs(user) {
 		return this.http.get(this.userQuizUrl + '/' + user.id)
+			.toPromise()
+			.then(response => response.json())
+			.catch(this.quizErrorHandler);	
+
+	}
+
+	public getUser(user) {
+		return this.http.get(this.quizUserUrl + '/' + user.id)
 			.toPromise()
 			.then(response => response.json())
 			.catch(this.quizErrorHandler);	
 	}
 
+	public getLocalUserOrRedirect() {
+		var localUser = this.localStorageService.getItem('user');
+		if(localUser) {
+			return this.getUser(localUser)
+			.then(user => {
+				if(!user) {
+					this.localStorageService.unSetItem('user');
+					localUser = null;
+					this.router.navigateByUrl('/users/registration');
+				}
+
+				return user;
+			})
+		}
+		
+		if(!localUser) {
+			this.router.navigateByUrl('/users/registration');
+		}
+		
+		Promise.resolve(null);
+	}
+
 	public submitAndGetNextQuestion(user) {
-		return this.http.put(this.userQuizUrl, user)
+		return this.http.post(this.userQuestionUrl, user)
 			.toPromise()
 			.then(response => response.json())
 			.catch(this.quizErrorHandler);	
 	}
 
 	public registerUser(user) {
-		return this.http.post(this.userQuizUrl, user)
+		return this.http.post(this.quizUserUrl, user)
 			.toPromise()
 			.then(response => response.json())
 			.catch(this.quizErrorHandler);
+	}
+
+	public startQuiz(user) {
+		return this.http.post(this.userQuizUrl, user)
+			.toPromise()
+			.then(response => response.json())
+			.catch(this.quizErrorHandler);		
 	}
 
 	public setNextQuizForUser(user) {

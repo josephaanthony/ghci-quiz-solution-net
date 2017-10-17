@@ -21,7 +21,7 @@ namespace GHCIQuizSolution.DBContext
             this.UserQuizs = new HashSet<UserQuiz>();
         }
     
-        public string Id { get; set; }
+        public string id { get; set; }
         public string description { get; set; }
         public Nullable<int> level { get; set; }
         public Nullable<int> timeoutInterval { get; set; }

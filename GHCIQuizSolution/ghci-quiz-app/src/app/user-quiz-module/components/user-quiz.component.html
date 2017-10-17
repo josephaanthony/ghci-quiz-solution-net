@@ -6,31 +6,38 @@
 
 		<toaster-container [toasterconfig]="toasterConfig"></toaster-container>
 
-		<div *ngIf="user?.CurrentUserQuestion" class="panel-body">
+		<div *ngIf="user?.CurrentUserQuestion?.id" class="panel-body">
 			<div class="carousel">
 				<h1> {{ user.CurrentUserQuestion.description }} </h1>
-
 				<hr/>
-				<ul *ngIf="user.CurrentUserQuestion.Question.QuizOptions" class="slides">
-					<li *ngFor="let option of user.CurrentUserQuestion.Question.QuizOptions">						
-						<input *ngIf="user.CurrentUserQuestion.Question.optionType === 'Checkbox'" type="checkbox" (change)="onOptionSelected(user.CurrentUserQuestion, option)">
-						<input *ngIf="user.CurrentUserQuestion.Question.optionType != 'Checkbox'" type="radio" name="optionRadio" (change)="onOptionSelected(user.CurrentUserQuestion, option)">						
-						<label>{{option.description}}</label>											
-					</li>
-				</ul>
-				
+				<form>
+					<ul *ngIf="user.CurrentUserQuestion.Question.QuizOptions" class="slides">
+						<li *ngFor="let option of user.CurrentUserQuestion.Question.QuizOptions">						
+							<!--  -->
+							<input *ngIf="user.CurrentUserQuestion.Question.optionType === 'Checkbox'" type="checkbox" 
+								name="optionSelection"
+								value="{{option.id}}"
+								(change)="onOptionSelected(user.CurrentUserQuestion, option)">
+							<input *ngIf="user.CurrentUserQuestion.Question.optionType != 'Checkbox'" type="radio" 
+								name="optionSelection" 
+								value="{{option.id}}"
+								(change)="onOptionSelected(user.CurrentUserQuestion, option)">						
+							<label>{{option.description}}</label>											
+						</li>
+					</ul>
+				</form>
 				<button class="btn btn-default" (click)="getNextQuestion()">Get Next Question</button>
 			</div>		  
 		</div>
 
-		<div *ngIf="user && !user.CurrentUserQuestion">
-			<div *ngIf="user.isLastQuestionForCurrentQuiz && !user.isLastQuiz" style="text-align:center">
+		<div *ngIf="user && !user?.CurrentUserQuestion?.id">
+			<div *ngIf="user.CurrentUserQuiz" style="text-align:center">
 				<h3>You have completed the current quiz. Press Next to go to the next level.</h3>
 				<br/>
 				<button class="btn btn-primary" (click)="startNextQuiz()" style="margin-bottom: 10px">Next</button>
 			</div>
 			
-			<div *ngIf="user.isLastQuestionForCurrentQuiz && user.isLastQuiz" style="text-align:center">
+			<div *ngIf="!user.CurrentUserQuiz" style="text-align:center">
 				<h3>You have completed all the levels. Hurray!</h3>
 				<br/>
 			</div>

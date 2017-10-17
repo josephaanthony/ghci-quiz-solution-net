@@ -31,7 +31,7 @@ export class UserRegistrationComponent {
 		this.quizService.registerUser(this.user).then(user => {
 			this.user = user;
 			this.localStorageService.setItem('user', this.user);
-			this.router.navigateByUrl('/users/quiz');
+			this.router.navigateByUrl('/users/quizhome');
 		});
 
 		/*

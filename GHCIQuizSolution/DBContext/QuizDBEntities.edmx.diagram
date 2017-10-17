@@ -18,6 +18,7 @@
         <AssociationConnector Association="GHCIQuizModel.FK_QuizUser_UserQuestion" ManuallyRouted="false" />
         <AssociationConnector Association="GHCIQuizModel.FK_QuizUser_UserQuiz" ManuallyRouted="false" />
         <AssociationConnector Association="GHCIQuizModel.FK_UserQuestion_UserQuiz" ManuallyRouted="false" />
+        <AssociationConnector Association="GHCIQuizModel.FK_UserQuiz_QuizUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

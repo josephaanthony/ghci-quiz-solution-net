@@ -133,7 +133,9 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
+    <Compile Include="Controllers\BaseQuizController.cs" />
     <Compile Include="Controllers\QuizUserController.cs" />
+    <Compile Include="Controllers\UserQuestionController.cs" />
     <Compile Include="Controllers\UserQuizController.cs" />
     <Compile Include="DBContext\Question.cs">
       <DependentUpon>QuizDBEntities.tt</DependentUpon>
