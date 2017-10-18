@@ -55,7 +55,7 @@ const appRoutes: Routes = [
       ToasterModule,
       RouterModule.forRoot(
           appRoutes,
-          { enableTracing: true } // <-- debugging purposes only
+          { enableTracing: false } // <-- debugging purposes only
       )
   ],
   providers: [QuizService, UserQuizService, LocalStorageService, ToasterService],

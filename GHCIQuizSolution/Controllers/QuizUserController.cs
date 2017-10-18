@@ -61,6 +61,7 @@ namespace GHCIQuizSolution.Controllers
               user.CurrentUserQuiz.id,
               user.CurrentUserQuiz.quizId,
               user.CurrentUserQuiz.timeTakenInterval,
+              user.CurrentUserQuiz.status,
               Quiz = new
               {
                 user.CurrentUserQuiz.Quiz.description,

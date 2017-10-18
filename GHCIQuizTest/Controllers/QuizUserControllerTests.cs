@@ -49,13 +49,21 @@ namespace GHCIQuizSolution.Controllers.Tests
 
 
     [TestMethod()]
+    public void GetQuizTest() {
+      var userQuizController = new UserQuizController();
+      var quizs = userQuizController.Get("2ae21727-09c0-488e-9505-f4dbfd8ba1c1");
+      Assert.IsNotNull(quizs);
+    }
+
+
+    [TestMethod()]
     public void StartQuizTest() {
       var userQuizController = new UserQuizController();
       var quizs = userQuizController.Post(new QuizUser()
       {
-        id = "7ccf32b0-7e34-4c94-a054-b6809cc0c92c",
+        id = "2ae21727-09c0-488e-9505-f4dbfd8ba1c1",
         CurrentUserQuiz = new UserQuiz() {
-          
+          quizId = "5a122b17-a3a5-403a-8a9c-79b84095d515"
         }
       });
     }

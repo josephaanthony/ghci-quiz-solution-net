@@ -394,7 +394,7 @@ export class UserQuizService {
 			this.router.navigateByUrl('/users/registration');
 		}
 		
-		Promise.resolve(null);
+		return Promise.resolve(null);
 	}
 
 	public submitAndGetNextQuestion(user) {

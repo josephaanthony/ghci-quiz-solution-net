@@ -10,12 +10,12 @@ delete from Quiz;
 */
 
 
+select * from Quiz;
 select * from QuizUser;
 select * from UserQuiz;
 select * from UserQuestion order by userQuizId, [index];
-select * from QuizOption where questionId = '5a122b17-a3a5-403a-8a9c-79b84095d522'
+select * from QuizOption where questionId = '5a122b17-a3a5-403a-8a9c-79b84095d520'
 
-select * from Quiz;
 select * from Question;
 select * from QuizOption;
 

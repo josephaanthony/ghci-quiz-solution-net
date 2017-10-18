@@ -12,15 +12,17 @@ namespace GHCIQuizSolution.Controllers
   {
     public Object Get(String id)
     {
-      return QuizDB.Quizs
+      var quizs = QuizDB.Quizs
         .Select(quiz => new
         {
           quiz.description,
           quiz.id,
           quiz.level,
           quiz.timeoutInterval,
-          UserQuizs = quiz.UserQuizs
-          .Where(userQuiz => userQuiz.QuizUsers.Any(user => user.id == id))
+          UserQuizs =
+            quiz.UserQuizs
+            .Where(userQuiz => userQuiz.userId == id)
+          //.Where(userQuiz => userQuiz.QuizUsers.Select(user => user.id == id))
           .Select(userQuiz => new
           {
             userQuiz.id,
@@ -37,6 +39,10 @@ namespace GHCIQuizSolution.Controllers
 
           })
         });
+
+      Console.WriteLine(quizs.First().UserQuizs.First());
+
+      return quizs;
 
       //return QuizDB.QuizUsers
       //  .Where(u => u.id == userId)
@@ -92,7 +98,7 @@ namespace GHCIQuizSolution.Controllers
 
       // ensure that the request quizId is indeed the users next or inprogress quiz.
       if (dbQuizUser.CurrentUserQuiz != null && dbQuizUser.CurrentUserQuiz.status == QUIZ_STATUS.IN_PROGRESS
-        && dbQuizUser.CurrentUserQuiz.quizId == quizUser.CurrentUserQuiz.quizId)
+        && dbQuizUser.CurrentUserQuiz.Quiz !=null && dbQuizUser.CurrentUserQuiz.Quiz.id == quizUser.CurrentUserQuiz.quizId)
       {
         this.SaveQuizDBChanges();
         // return current user

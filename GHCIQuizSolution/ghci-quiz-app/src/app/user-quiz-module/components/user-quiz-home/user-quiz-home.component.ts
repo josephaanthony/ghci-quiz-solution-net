@@ -38,8 +38,28 @@ export class UserQuizHomeComponent implements OnInit {
 				this.quizService.getUserQuizs(user)
 					.then(quizs => {
 						this.quizs = quizs;
+						this.setQuizActive(this.quizs, this.user);
 					});
 			})
+	}
+
+	private setQuizActive(quizs, user) {
+		var currentQuiz = { id: null, status: null, Quiz: { id: null} }; 
+		if(user && user.CurrentUserQuiz) {
+			currentQuiz = user.CurrentUserQuiz;
+		}
+
+		
+		_.each(quizs, quiz => {
+			if(quiz.id === currentQuiz.Quiz.id && currentQuiz.status === "IN_PROGRESS") {
+				quiz.isActive = true;
+				return false;
+			}
+			else if(!quiz.UserQuizs || quiz.UserQuizs.length == 0) {
+				quiz.isActive = true;
+				return false;
+			}
+		});
 	}
 
 	private startQuiz(quiz) {

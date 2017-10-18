@@ -10,7 +10,7 @@
 			<form>
 				<ul class="slides" style="list-style: none">
 					<li *ngFor="let quiz of quizs">						
-						<button class="btn btn-default" (click)="startQuiz(quiz)">
+						<button class="btn btn-default" (click)="startQuiz(quiz)" [disabled]="!quiz.isActive">
 							{{ quiz.description }} - {{ quiz.level }}
 						</button>
 						<div *ngIf="quiz.UserQuizs && quiz.UserQuizs.length > 0">

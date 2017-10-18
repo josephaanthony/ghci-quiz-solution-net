@@ -20,7 +20,7 @@ export class UserRegistrationComponent {
 		private toasterService: ToasterService, private localStorageService: LocalStorageService) {
 		this.user = this.localStorageService.getItem('user');
 		if (this.user) {
-			alert('Error occured. Please contact the administrator');
+			this.router.navigateByUrl('/users/quizhome');
 		}
 		else {
 			this.user = new User();
