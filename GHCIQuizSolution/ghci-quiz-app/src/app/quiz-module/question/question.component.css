@@ -1,7 +1,0 @@
-.container-fluid > :nth-child(odd){
-  background-color:#3d3d3d;
-}
-
-.container-fluid > :nth-child(even){
-  background-color:#3498db;
-}

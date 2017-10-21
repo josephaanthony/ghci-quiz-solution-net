@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="text-align: center">
 	<div class="panel panel-info">
 		<div class="panel-heading">
 			<h3 class="panel-title">Welcome {{ user?.name }}</h3>			
@@ -8,14 +8,20 @@
 
 		<div *ngIf="quizs" class="panel-body">
 			<form>
-				<ul class="slides" style="list-style: none">
-					<li *ngFor="let quiz of quizs">						
-						<button class="btn btn-default" (click)="startQuiz(quiz)" [disabled]="!quiz.isActive">
+				<ul class="slides" style="list-style: none; padding-left:0px">
+					<li *ngFor="let quiz of quizs">
+						<div style="width: 100%;margin-bottom: 10px;" class="btn btn-warning" [ngClass]="{disabled: !quiz.isActive}" (click)="startQuiz(quiz)">
+							{{ quiz.description }} - {{ quiz.level }}
+							<span *ngIf="quiz.UserQuizs.length > 0" style="margin-left:10px" class="glyphicon" [ngClass]="{'glyphicon-ok': quiz.UserQuizs[0].status === 'COMPLETED_SUCCESS', 
+											  'glyphicon-remove': quiz.UserQuizs[0].status === 'COMPLETED_FAIL',
+											  'glyphicon-pencil': quiz.UserQuizs[0].status === 'IN_PROGRESS'}"></span>
+						</div>						
+						<!-- <button class="btn btn-default" (click)="startQuiz(quiz)" [disabled]="!quiz.isActive">
 							{{ quiz.description }} - {{ quiz.level }}
 						</button>
 						<div *ngIf="quiz.UserQuizs && quiz.UserQuizs.length > 0">
 							Status: {{ quiz.UserQuizs[0].status }}
-						</div>
+						</div> -->
 					</li>
 				</ul>
 			</form>

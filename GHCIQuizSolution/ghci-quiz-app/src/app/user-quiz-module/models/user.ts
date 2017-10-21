@@ -3,7 +3,7 @@ import { UserQuestion } from './user-question';
 
 export class User
 {
-	public _id: String;
+	public id: String;
 	public registrationId: String;
 	public name: String;
 	public email: String;

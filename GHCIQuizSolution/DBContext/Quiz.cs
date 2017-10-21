@@ -23,8 +23,9 @@ namespace GHCIQuizSolution.DBContext
     
         public string id { get; set; }
         public string description { get; set; }
-        public Nullable<int> level { get; set; }
+        public int level { get; set; }
         public Nullable<int> timeoutInterval { get; set; }
+        public string complexityComposition { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Question> Questions { get; set; }

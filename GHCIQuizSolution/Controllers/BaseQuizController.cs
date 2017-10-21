@@ -21,6 +21,10 @@ namespace GHCIQuizSolution.Controllers
     {
       UserQuestion userQuestion;
 
+      if(quizUser.CurrentUserQuiz == null) {
+        return;
+      }
+
       if (quizUser.CurrentUserQuestion == null)
       {
         userQuestion = quizUser.CurrentUserQuiz.UserQuestions

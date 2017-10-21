@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace GHCIQuizSolution.Controllers
+namespace GHCIQuizSolution.Controllers.UserControllers
 {
   public class UserQuestionController : BaseQuizController
   {
@@ -15,7 +15,7 @@ namespace GHCIQuizSolution.Controllers
       var dbQuizUser = QuizDB.QuizUsers.First(u => u.id == quizUser.id);
 
       var selectedOptions = quizUser.CurrentUserQuestion.selectedOptionIds?.Split(',').OrderBy(s => s);
-      var correctOptions = dbQuizUser.CurrentUserQuestion.Question.QuizOptions.Where(o => o.isCorrect ?? true).Select(o => o.id).OrderBy(s => s);
+      var correctOptions = dbQuizUser.CurrentUserQuestion.Question.QuizOptions.Where(o => o.isCorrect).Select(o => o.id).OrderBy(s => s);
 
       // first set the isCorrect
       dbQuizUser.CurrentUserQuestion.selectedOptionIds = quizUser.CurrentUserQuestion.selectedOptionIds;

@@ -17,7 +17,8 @@ namespace GHCIQuizSolution.DBContext
         public string id { get; set; }
         public string questionId { get; set; }
         public string description { get; set; }
-        public Nullable<bool> isCorrect { get; set; }
+        public bool isCorrect { get; set; }
+        public int index { get; set; }
     
         public virtual Question Question { get; set; }
     }

@@ -11,17 +11,20 @@
           </Key>
           <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
           <Property Name="quizId" Type="varchar" MaxLength="36" />
-          <Property Name="description" Type="varchar" MaxLength="500" />
-          <Property Name="optionType" Type="varchar" MaxLength="10" />
+          <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="optionType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="complexity" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="index" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Quiz">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="varchar" MaxLength="36" Nullable="false" />
-          <Property Name="description" Type="varchar" MaxLength="500" />
-          <Property Name="level" Type="int" />
+          <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="level" Type="int" Nullable="false" />
           <Property Name="timeoutInterval" Type="int" />
+          <Property Name="complexityComposition" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="QuizOption">
           <Key>
@@ -29,8 +32,9 @@
           </Key>
           <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
           <Property Name="questionId" Type="varchar" MaxLength="36" />
-          <Property Name="description" Type="varchar" MaxLength="500" />
-          <Property Name="isCorrect" Type="bit" />
+          <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="isCorrect" Type="bit" Nullable="false" />
+          <Property Name="index" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="QuizUser">
           <Key>
@@ -211,22 +215,25 @@
           </Key>
           <Property Name="id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="36" Unicode="false" FixedLength="false" />
           <Property Name="quizId" Type="String" MaxLength="36" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="optionType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="optionType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Quiz" Relationship="Self.FK_Question_Quiz" FromRole="Question" ToRole="Quiz" />
           <NavigationProperty Name="QuizOptions" Relationship="Self.FK_QuizOption_Question" FromRole="Question" ToRole="QuizOption" />
           <NavigationProperty Name="UserQuestions" Relationship="Self.FK_UserQuestion_Question" FromRole="Question" ToRole="UserQuestion" />
+          <Property Name="complexity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="index" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Quiz">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="36" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="level" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="level" Type="Int32" Nullable="false" />
           <Property Name="timeoutInterval" Type="Int32" />
           <NavigationProperty Name="Questions" Relationship="Self.FK_Question_Quiz" FromRole="Quiz" ToRole="Question" />
           <NavigationProperty Name="UserQuizs" Relationship="Self.FK_UserQuiz_Quiz" FromRole="Quiz" ToRole="UserQuiz" />
+          <Property Name="complexityComposition" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="QuizOption">
           <Key>
@@ -234,9 +241,10 @@
           </Key>
           <Property Name="id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="36" Unicode="false" FixedLength="false" />
           <Property Name="questionId" Type="String" MaxLength="36" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="isCorrect" Type="Boolean" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isCorrect" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Question" Relationship="Self.FK_QuizOption_Question" FromRole="QuizOption" ToRole="Question" />
+          <Property Name="index" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="QuizUser">
           <Key>
@@ -426,6 +434,8 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="GHCIQuizModel.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="index" ColumnName="index" />
+                <ScalarProperty Name="complexity" ColumnName="complexity" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="quizId" ColumnName="quizId" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -436,6 +446,7 @@
           <EntitySetMapping Name="Quizs">
             <EntityTypeMapping TypeName="GHCIQuizModel.Quiz">
               <MappingFragment StoreEntitySet="Quiz">
+                <ScalarProperty Name="complexityComposition" ColumnName="complexityComposition" />
                 <ScalarProperty Name="id" ColumnName="Id" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="level" ColumnName="level" />
@@ -446,6 +457,7 @@
           <EntitySetMapping Name="QuizOptions">
             <EntityTypeMapping TypeName="GHCIQuizModel.QuizOption">
               <MappingFragment StoreEntitySet="QuizOption">
+                <ScalarProperty Name="index" ColumnName="index" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="questionId" ColumnName="questionId" />
                 <ScalarProperty Name="description" ColumnName="description" />

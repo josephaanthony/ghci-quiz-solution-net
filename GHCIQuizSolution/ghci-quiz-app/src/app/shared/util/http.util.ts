@@ -16,8 +16,21 @@ export class HttpUtil {
 		}
 	}
 
+	public static handleSuccessWithMessag(toasterService: any): (res: any) => void {
+		return (res) : void => HttpUtil.handleSuccess(res, toasterService);
+	}
+
+	public static handleSuccess(res, toasterService) {
+		toasterService.pop('success', "Update", "Updated data successfully");
+	}
+
 	public static handleError(error: any, toasterService?): Promise<any> {
-		let errorJson = error.json();
+		let errorJson;
+		try {
+			errorJson = error.json();			
+		} catch (error) {
+			errorJson = { Message: error }
+		}
 		// let errMsg = (error.message) ? error.message :
 		// 	error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 		// console.error(errMsg); // log to console

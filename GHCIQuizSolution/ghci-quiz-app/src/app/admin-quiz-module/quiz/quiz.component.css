@@ -1,0 +1,11 @@
+.row {
+	margin-bottom: 10px;
+}
+
+.quiz-row input {
+	width: 100%
+}
+
+select {
+	height: 27px;
+}

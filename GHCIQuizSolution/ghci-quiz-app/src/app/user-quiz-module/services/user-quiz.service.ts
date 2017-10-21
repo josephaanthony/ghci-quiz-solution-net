@@ -7,6 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import { ToasterService } from 'angular2-toaster';
 import _ from 'lodash'
 
+import { environment } from '../../../environments/environment'
 import { HttpUtil } from '../../shared/util/http.util';
 import { UserQuiz } from '../models/user-quiz';
 import { UserQuestion } from '../models/user-question';
@@ -14,9 +15,9 @@ import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class UserQuizService {
-	private quizUserUrl = 'http://localhost:63855/api/quizuser';
-	private userQuestionUrl = 'http://localhost:63855/api/userquestion';
-	private userQuizUrl = 'http://localhost:63855/api/userquiz'
+	private quizUserUrl = environment.apiContextUrl +  '/api/quizuser';
+	private userQuestionUrl = environment.apiContextUrl +  '/api/userquestion';
+	private userQuizUrl = environment.apiContextUrl +  '/api/userquiz'
 
 	private quizErrorHandler = HttpUtil.handleErrorWithMessage(this.toasterService);
 
@@ -402,6 +403,13 @@ export class UserQuizService {
 			.toPromise()
 			.then(response => response.json())
 			.catch(this.quizErrorHandler);	
+	}
+
+	public getUserByEmail(user) {
+		return this.http.get(this.quizUserUrl + '/getbyemail?emailId=' + user.email)
+			.toPromise()
+			.then(response => response.json())
+			.catch(this.quizErrorHandler);		
 	}
 
 	public registerUser(user) {

@@ -6,11 +6,21 @@ delete from UserQuiz;
 /*
 delete from QuizOption
 delete from Question;
-delete from Quiz;
+delete from Quiz where id = '8adc4ae2-f2e5-42af-85de-735f09bab58d';
 */
+
+select * from Question where quizId = '5a122b17-a3a5-403a-8a9c-79b84095d515'
+select * from QuizOption where questionId  in (select id from Question where quizId = '5a122b17-a3a5-403a-8a9c-79b84095d515');
+select count(*) from Question;
+select count(*) from QuizOption;
 
 
 select * from Quiz;
+select * from Question;
+select * from QuizOption;
+select count(*) from Question;
+select count(*) from QuizOption;
+
 select * from QuizUser;
 select * from UserQuiz;
 select * from UserQuestion order by userQuizId, [index];

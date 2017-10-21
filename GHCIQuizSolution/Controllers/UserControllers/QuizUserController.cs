@@ -8,11 +8,14 @@ using System.Web.Http;
 using System.Data.Entity;
 using System.Web.Http.Results;
 using Newtonsoft.Json;
+using NLog;
 
-namespace GHCIQuizSolution.Controllers
+namespace GHCIQuizSolution.Controllers.UserControllers
 {
   public class QuizUserController : BaseQuizController
   {
+    private static Logger logger = LogManager.GetCurrentClassLogger();
+
     public Object Get()
     {
       return Json((QuizDB.QuizUsers.AsEnumerable()), new JsonSerializerSettings()
@@ -22,11 +25,14 @@ namespace GHCIQuizSolution.Controllers
       });
     }
 
-    public Object Get(String id)
+    public Object Get(String id, String emailId = null)
     {
+      logger.Info("The Id is:" + id + " The emailId is: " + emailId);
+
+
       return ToJson(
           QuizDB.QuizUsers
-          .Where(user => user.id == id)
+          .Where(user => (user.id == id && id != null) || (user.email == emailId && emailId != null ))
           .Select(user => new
           {
             user.email,
@@ -74,11 +80,13 @@ namespace GHCIQuizSolution.Controllers
           .FirstOrDefault());
     }
 
+    [Route("getbyemail/{emailId}")]
+    public Object GetByEmail(String emailId) {
+      return this.Get(null, emailId);
+    }
+
     public Object Post([FromBody]QuizUser quizUser)
     {
-      //this.SetNextQuiz(quizUser);
-      //this.SetNextQuestion(quizUser);
-
       QuizDB.QuizUsers.Add(quizUser);
       var savedValue = this.SaveQuizDBChanges(); // QuizDB.SaveChanges();
 

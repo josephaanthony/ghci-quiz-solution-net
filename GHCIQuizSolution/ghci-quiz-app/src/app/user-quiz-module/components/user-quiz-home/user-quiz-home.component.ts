@@ -34,12 +34,14 @@ export class UserQuizHomeComponent implements OnInit {
 	ngOnInit() {
 		this.quizService.getLocalUserOrRedirect()
 			.then(user => {
-				this.user = user;
-				this.quizService.getUserQuizs(user)
-					.then(quizs => {
-						this.quizs = quizs;
-						this.setQuizActive(this.quizs, this.user);
-					});
+				if(user) {
+					this.user = user;
+					this.quizService.getUserQuizs(user)
+						.then(quizs => {
+							this.quizs = quizs.map(q => { _.remove(q.UserQuizs, u => u === null); return q  });
+							this.setQuizActive(this.quizs, this.user);
+						});
+				}
 			})
 	}
 
@@ -63,14 +65,16 @@ export class UserQuizHomeComponent implements OnInit {
 	}
 
 	private startQuiz(quiz) {
-		this.quizService.startQuiz({
-			id: this.user.id,
-			CurrentUserQuiz: {
-				quizId: quiz.id
-			}
-		})
-		.then(user => {
-			this.router.navigateByUrl('/users/quiz')
-		})
+		if(quiz.isActive) {
+			this.quizService.startQuiz({
+				id: this.user.id,
+				CurrentUserQuiz: {
+					quizId: quiz.id
+				}
+			})
+			.then(user => {
+				this.router.navigateByUrl('/users/quiz')
+			})
+		}
 	}
 }

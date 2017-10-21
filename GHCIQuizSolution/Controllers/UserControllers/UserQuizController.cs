@@ -1,4 +1,5 @@
 using GHCIQuizSolution.DBContext;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,12 +7,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace GHCIQuizSolution.Controllers
+namespace GHCIQuizSolution.Controllers.UserControllers
 {
   public class UserQuizController : BaseQuizController
   {
+    private static Logger logger = LogManager.GetCurrentClassLogger();
+
     public Object Get(String id)
     {
+      logger.Info("The Id is:" + id);
+
       var quizs = QuizDB.Quizs
         .Select(quiz => new
         {
@@ -38,51 +43,12 @@ namespace GHCIQuizSolution.Controllers
             }
 
           })
+          .DefaultIfEmpty()
         });
 
       Console.WriteLine(quizs.First().UserQuizs.First());
 
       return quizs;
-
-      //return QuizDB.QuizUsers
-      //  .Where(u => u.id == userId)
-      //  .Select(user => new
-      //  {
-      //    user.email,
-      //    user.id,
-      //    user.name,
-      //    user.currentUserQuizId,
-      //    UserQuizs = user.UserQuizs
-      //      .OrderBy(quiz => quiz.Quiz.level)
-      //      .Select(quiz => new {
-      //      quiz.id,
-      //      quiz.quizId,
-      //      Quiz = new
-      //      {
-      //        quiz.Quiz.description,
-      //        quiz.Quiz.Id,
-      //        quiz.Quiz.level,
-      //        quiz.Quiz.timeoutInterval
-      //      },
-      //      quiz.status,
-      //      quiz.timeTakenInterval
-      //    })
-      //  });
-
-      //return QuizDB.UserQuizs
-      //  .Where(q => q.QuizUsers.Any(u => u.id == userId))
-      //  .Select(quiz => new {
-      //    quiz.id,
-      //    quiz.quizId,
-      //    Quiz = new {
-      //      quiz.Quiz.description,
-      //      quiz.Quiz.Id,
-      //      quiz.Quiz.level,
-      //      quiz.Quiz.timeoutInterval
-      //    },
-      //    quiz.status,
-      //    quiz.timeTakenInterval
-      //  });
     }
 
     public Object Post([FromBody]QuizUser quizUser)

@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --deploy-url=/Views/ghci-quiz-ui --base-href=/Views/ghci-quiz-ui",
+    "build": "ng build --env=prod --deploy-url=/Views/ghci-quiz-ui --base-href=/Views/ghci-quiz-ui",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

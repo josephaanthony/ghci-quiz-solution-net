@@ -27,20 +27,27 @@ export class UserRegistrationComponent {
 		}
 	}
 
+	private signInSuccess(user) {
+		this.user = user;
+		this.localStorageService.setItem('user', { id: this.user.id, email: this.user.email, name: this.user.name })
+		this.router.navigateByUrl('/users/quizhome');
+	}
+
 	private registerUser() {
 		this.quizService.registerUser(this.user).then(user => {
-			this.user = user;
-			this.localStorageService.setItem('user', this.user);
-			this.router.navigateByUrl('/users/quizhome');
+			this.signInSuccess(user);
 		});
+	}
 
-		/*
-			this.quizService.setNextQuizForUser(this.user).then(user => {
-				this.user = user;
-				this.localStorageService.setItem('user', this.user);
-				this.router.navigateByUrl('/users/quiz');
-			})
-		*/
+	private singInUser() {
+		this.quizService.getUserByEmail(this.user).then(user => {
+			if(user && user.id) {
+				this.signInSuccess(user);
+			}
+			else {
+				this.toasterService.pop("error", "Registration", "You have entered an invalid email id");
+			}
+		})
 	}
 
 	startNextQuiz(quizs) {

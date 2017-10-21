@@ -2,6 +2,7 @@ using GHCIQuizSolution.DBContext;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -20,7 +21,9 @@ namespace GHCIQuizSolution.Controllers
 
     public BaseAPIController()
     {
-      QuizDB.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+      if("true".Equals(ConfigurationManager.AppSettings["WriteQueryTrace"])) {
+        QuizDB.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+      }
     }
 
     protected HttpResponseMessage ToJson(dynamic obj)

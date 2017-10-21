@@ -1,0 +1,66 @@
+<div class="container-fluid">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Quiz</h3>			
+		</div>
+
+		<toaster-container></toaster-container>
+
+		<div class="panel-body">
+			<div class="row">
+				<div>
+					<div class="col-md-2">Id</div>
+					<div class="col-md-2">Desc</div>
+					<div class="col-md-1">Level</div>
+					<div class="col-md-1">TimeOut</div>
+					<div class="col-md-2">Complexity</div>				
+					<div class="col-md-4"><button class="btn btn-primary btn-sm" (click)="addNewQuiz()">Add New Quiz</button></div>
+				</div>
+			</div>
+			<div class="quiz-row">
+				<div class="row" *ngFor="let quiz of quizs">
+					<div class="col-md-2" style="padding-right: 0px">
+						<label>{{quiz.id}}</label>
+					</div>
+					<div class="col-md-2">
+						<input type="text" [(ngModel)]="quiz.description"/>
+					</div>
+					<div class="col-md-1">
+						<input type="text" [(ngModel)]="quiz.level"/>
+					</div>				
+					<div class="col-md-1">
+						<input type="text" [(ngModel)]="quiz.timeoutInterval"/>
+					</div>
+					<div class="col-md-2">
+						<div class="row1">
+							<div style="padding-left:0px; color:#2f3133" class="row" 
+								*ngFor="let comp of quiz.ComplexityComposition; let i = index" [attr.data-index]="i">
+
+								<div class="col-md-6">
+									<!-- <input type="text" [(ngModel)]="comp.level"/> -->
+									<select [(ngModel)]="comp.level">
+										<option *ngFor="let compLevel of QUESTION_COMPLEXITITES">{{compLevel}}</option>
+									</select>
+								</div>
+								<div class="col-md-2" style="padding:0px">
+									<input type="text" [(ngModel)]="comp.nos"/>
+								</div>
+								<div class="col-md-4" style="color:#df691a">
+									<span style="cursor: pointer" class="glyphicon glyphicon-minus" 
+										(click)="removeCompositionLevel(quiz, i)"></span>
+									<span style="cursor: pointer" class="glyphicon glyphicon-plus" 
+										(click)="quiz.ComplexityComposition.push({})"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<button class="btn btn-default btn-sm" (click)="updateQuiz(quiz)">Update Quiz</button>
+						<button class="btn btn-default btn-sm" (click)="deleteQuiz(quiz)">Delete Quiz</button>
+						<a [routerLink]="['/admin/questionshome', quiz.id]" class="btn btn-default btn-sm">Show Questions ({{quiz.questions?.length}})</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

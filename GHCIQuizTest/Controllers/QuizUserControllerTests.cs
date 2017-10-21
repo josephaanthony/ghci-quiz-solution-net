@@ -1,11 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GHCIQuizSolution.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GHCIQuizSolution.DBContext;
+using GHCIQuizSolution.Controllers.UserControllers;
+using GHCIQuizSolution.Controllers.AdminControllers;
+using Newtonsoft.Json;
 
 namespace GHCIQuizSolution.Controllers.Tests
 {
@@ -68,5 +65,39 @@ namespace GHCIQuizSolution.Controllers.Tests
       });
     }
 
+    [TestMethod()]
+    public void QuestionPutTest() {
+      new AdminQuestionController().Put( JsonConvert.DeserializeObject<Question>(@"{
+          'complexity': 'COMPLEX',
+          'description': 'Question No 1 for Quiz 1 Update',
+          'id': '5a122b17-a3a5-403a-8a9c-79b84095d518',
+          'optionType': 'Checkbox',
+          'quizId': '5a122b17-a3a5-403a-8a9c-79b84095d515',
+          'QuizOptions': [
+            {
+                'description': 'Option 1 for Question 1 Quiz 1',
+              'id': '5a122b17-a3a5-403a-8a9c-79b84095a523',
+              'isCorrect': true,
+              'questionId': '5a122b17-a3a5-403a-8a9c-79b84095d518'
+            },
+            {
+                'description': 'Option 2 for Question 1 Quiz 1',
+              'id': '5a122b17-a3a5-403a-8a9c-79b84095a524',
+              'isCorrect': false,
+              'questionId': '5a122b17-a3a5-403a-8a9c-79b84095d518'
+            },
+            {
+                'description': 'Option 4 for Question 1 Quiz 1',
+              'id': '5a122b17-a3a5-403a-8a9c-79b84095a526',
+              'isCorrect': false,
+              'questionId': '5a122b17-a3a5-403a-8a9c-79b84095d518'
+            },
+            {
+                'isCorrect': 'true',
+              'description': 'Option 5 for Question 1  Quiz 1'
+            }
+          ]
+        }") );
+    }
   }
 }

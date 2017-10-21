@@ -56,6 +56,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -97,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DBScripts\QuestionOption.sql" />
     <Content Include="App_Data\DBScripts\QuizSchema.sql" />
     <Content Include="App_Data\DBScripts\SQLQuery.sql" />
     <Content Include="DBContext\QuizDBEntities.Context.tt">
@@ -109,34 +113,26 @@
       <DependentUpon>QuizDBEntities.edmx</DependentUpon>
       <LastGenOutput>QuizDBEntities.cs</LastGenOutput>
     </Content>
-    <Content Include="ghci-quiz-app\.gitignore" />
-    <Content Include="ghci-quiz-app\karma.conf.js" />
-    <Content Include="ghci-quiz-app\protractor.conf.js" />
-    <Content Include="ghci-quiz-app\src\app\app.component.css" />
-    <Content Include="ghci-quiz-app\src\app\app.component.html" />
-    <Content Include="ghci-quiz-app\src\app\quiz-module\question\question.component.css" />
-    <Content Include="ghci-quiz-app\src\app\quiz-module\question\question.component.html" />
-    <Content Include="ghci-quiz-app\src\app\quiz-module\quiz\quiz.component.css" />
-    <Content Include="ghci-quiz-app\src\app\quiz-module\quiz\quiz.component.html" />
-    <Content Include="ghci-quiz-app\src\app\quiz-module\user-quiz\user-quiz.component.css" />
-    <Content Include="ghci-quiz-app\src\app\quiz-module\user-quiz\user-quiz.component.html" />
-    <Content Include="ghci-quiz-app\src\app\shared\index.js" />
-    <Content Include="ghci-quiz-app\src\app\user-quiz-module\components\user-quiz.component.css" />
-    <Content Include="ghci-quiz-app\src\app\user-quiz-module\components\user-quiz.component.html" />
-    <Content Include="ghci-quiz-app\src\app\user-quiz-module\components\user-registration\user-registration.component.html" />
-    <Content Include="ghci-quiz-app\src\favicon.ico" />
-    <Content Include="ghci-quiz-app\src\index.html" />
-    <Content Include="ghci-quiz-app\src\styles.css" />
     <Content Include="Global.asax" />
+    <Content Include="Views\ghci-quiz-ui\favicon.ico" />
+    <Content Include="Views\ghci-quiz-ui\index.html" />
+    <Content Include="Views\ghci-quiz-ui\inline.bundle.js" />
+    <Content Include="Views\ghci-quiz-ui\main.bundle.js" />
+    <Content Include="Views\ghci-quiz-ui\polyfills.bundle.js" />
+    <Content Include="Views\ghci-quiz-ui\scripts.bundle.js" />
+    <Content Include="Views\ghci-quiz-ui\styles.bundle.js" />
+    <Content Include="Views\ghci-quiz-ui\vendor.bundle.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminControllers\AdminQuestionController.cs" />
+    <Compile Include="Controllers\AdminControllers\AdminQuizController.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\BaseQuizController.cs" />
-    <Compile Include="Controllers\QuizUserController.cs" />
-    <Compile Include="Controllers\UserQuestionController.cs" />
-    <Compile Include="Controllers\UserQuizController.cs" />
+    <Compile Include="Controllers\UserControllers\QuizUserController.cs" />
+    <Compile Include="Controllers\UserControllers\UserQuestionController.cs" />
+    <Compile Include="Controllers\UserControllers\UserQuizController.cs" />
     <Compile Include="DBContext\Question.cs">
       <DependentUpon>QuizDBEntities.tt</DependentUpon>
     </Compile>
@@ -176,15 +172,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ghci-quiz-app\.angular-cli.json" />
-    <Content Include="ghci-quiz-app\e2e\tsconfig.e2e.json" />
-    <Content Include="ghci-quiz-app\package.json" />
-    <Content Include="ghci-quiz-app\README.md" />
-    <Content Include="ghci-quiz-app\src\assets\.gitkeep" />
-    <Content Include="ghci-quiz-app\src\tsconfig.app.json" />
-    <Content Include="ghci-quiz-app\src\tsconfig.spec.json" />
-    <Content Include="ghci-quiz-app\tsconfig.json" />
-    <Content Include="ghci-quiz-app\tslint.json" />
     <Content Include="App_Data\DBScripts\DesignDoc.md" />
     <EntityDeploy Include="DBContext\QuizDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -193,7 +180,20 @@
     <Content Include="DBContext\QuizDBEntities.edmx.diagram">
       <DependentUpon>QuizDBEntities.edmx</DependentUpon>
     </Content>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FTPCodeGHCIProfile.pubxml" />
+    <Content Include="Views\ghci-quiz-ui\inline.bundle.js.map" />
+    <Content Include="Views\ghci-quiz-ui\main.bundle.js.map" />
+    <Content Include="Views\ghci-quiz-ui\polyfills.bundle.js.map" />
+    <Content Include="Views\ghci-quiz-ui\styles.bundle.js.map" />
+    <Content Include="Views\ghci-quiz-ui\vendor.bundle.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -203,38 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="ghci-quiz-app\e2e\app.e2e-spec.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\e2e\app.po.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\app.component.spec.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\app.component.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\app.module.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\quiz-module\models\option.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\quiz-module\models\question.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\quiz-module\models\quiz.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\quiz-module\question\question.component.spec.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\quiz-module\question\question.component.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\quiz-module\quiz\quiz.component.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\quiz-module\service\quiz.service.spec.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\quiz-module\service\quiz.service.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\quiz-module\user-quiz\user-quiz.component.spec.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\quiz-module\user-quiz\user-quiz.component.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\shared\index.d.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\shared\util\http.util.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\user-quiz-module\components\user-quiz.component.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\user-quiz-module\components\user-registration\user-registration.component.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\user-quiz-module\models\user-question.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\user-quiz-module\models\user-quiz.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\user-quiz-module\models\user.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\user-quiz-module\services\local-storage.service.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\app\user-quiz-module\services\user-quiz.service.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\environments\environment.prod.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\environments\environment.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\main.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\polyfills.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\test.ts" />
-    <TypeScriptCompile Include="ghci-quiz-app\src\typings.d.ts" />
+    <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

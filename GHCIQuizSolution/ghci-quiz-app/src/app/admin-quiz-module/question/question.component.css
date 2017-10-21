@@ -1,0 +1,17 @@
+.row {
+    margin-bottom: 10px;
+}
+
+.question-row input,textarea {
+	width: 100%
+}
+
+.option-row input {
+	width: 100%
+}
+
+
+select {
+    height: 27px;
+    color: black;
+}
