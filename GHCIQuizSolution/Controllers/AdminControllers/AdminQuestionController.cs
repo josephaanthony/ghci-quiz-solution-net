@@ -25,13 +25,17 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
             question.id,
             question.optionType,
             question.quizId,
+            question.index,
             QuizOptions = question.QuizOptions.Select(option => new {
               option.description,
               option.id,
               option.isCorrect,
-              option.questionId
+              option.questionId,
+              option.index
             })
-          }),
+            .OrderBy(option => option.index)
+          })
+          .OrderBy(question => question.index),
           quiz.timeoutInterval
         }).FirstOrDefault();
     }
@@ -48,6 +52,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       questionDb.complexity = question.complexity;
       questionDb.description = question.description;
       questionDb.optionType = question.optionType;
+      questionDb.index = question.index;
 
       var newlyAddedOptions = question.QuizOptions.Where(o => !questionDb.QuizOptions.Select(dbOp => dbOp.id).Contains(o.id)).ToList();
       var deletedOptions = questionDb.QuizOptions.Where(o => !question.QuizOptions.Select(op => op.id).Contains(o.id)).ToList();
@@ -89,14 +94,15 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
           option.description,
           option.id,
           option.isCorrect,
-          option.questionId
+          option.questionId,
+          option.index
         })
+        .OrderBy(option => option.index)
       };
     }
 
     public Object Post([FromBody] Question question) {
       question.id = null;
-      question.QuizOptions.Reverse();
       QuizDB.Questions.Add(question);
       this.SaveQuizDBChanges();
       return GetQuestion(question);

@@ -9,8 +9,12 @@ delete from Question;
 delete from Quiz where id = '8adc4ae2-f2e5-42af-85de-735f09bab58d';
 */
 
-select * from Question where quizId = '5a122b17-a3a5-403a-8a9c-79b84095d515'
-select * from QuizOption where questionId  in (select id from Question where quizId = '5a122b17-a3a5-403a-8a9c-79b84095d515');
+select count(*) from Question where quizId is null;
+select count(*) from QuizOption where questionId is null;
+
+select * from Quiz where id = '50b9e675-4a0a-4847-b657-b1407686ce0a'
+select * from Question where quizId = '50b9e675-4a0a-4847-b657-b1407686ce0a'
+select * from QuizOption where questionId  in (select id from Question where quizId = '50b9e675-4a0a-4847-b657-b1407686ce0a');
 select count(*) from Question;
 select count(*) from QuizOption;
 

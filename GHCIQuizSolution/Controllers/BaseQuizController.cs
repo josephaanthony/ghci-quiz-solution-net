@@ -108,7 +108,9 @@ namespace GHCIQuizSolution.Controllers
               quizOption.description,
               quizOption.id,
               quizOption.isCorrect,
+              quizOption.index
             })
+            .OrderBy(quizOption => quizOption.index)
           },
           user.CurrentUserQuestion.questionId,
           user.CurrentUserQuestion.selectedOptionIds
