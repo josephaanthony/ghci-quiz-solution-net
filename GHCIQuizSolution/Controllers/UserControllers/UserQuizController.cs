@@ -44,9 +44,8 @@ namespace GHCIQuizSolution.Controllers.UserControllers
 
           })
           .DefaultIfEmpty()
-        });
-
-      Console.WriteLine(quizs.First().UserQuizs.First());
+        })
+        .OrderBy(quiz => quiz.level);
 
       return quizs;
     }

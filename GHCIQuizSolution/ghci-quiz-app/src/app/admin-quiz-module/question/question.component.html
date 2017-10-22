@@ -11,16 +11,16 @@
 				<div class="col-md-2">{{quiz.level}}</div>
 				<div class="col-md-2">{{quiz.timeoutInterval}}</div>
 			</div>
-			<div class="panel-title">Questions
-				<a [routerLink]="['/quizs']" class="glyphicon glyphicon-home"></a>
+			<div class="panel-title">Quizs
+				<a [routerLink]="['/admin/quizhome']" class="glyphicon glyphicon-home"></a>
 			</div>
 			<h3></h3>
 		</div>
 		<div class="panel-body">
 			<div class="row">
 				<div>
-					<div class="col-md-2">Id</div>
-					<div class="col-md-2">Desc</div>
+					<div class="col-md-1">Id</div>
+					<div class="col-md-3">Desc</div>
 					<div class="col-md-1">OptionType</div>
 					<div class="col-md-1">Complexity</div>
 					<div class="col-md-3">Options</div>
@@ -30,11 +30,11 @@
 
 			<div class="question-row">
 				<div class="row" *ngFor="let question of quiz.Questions">
-					<div class="col-md-2" style="padding-right:0px">
-						<label>{{question.id}}</label>
+					<div class="col-md-1" style="padding-right:0px" title="{{question.id}}">
+						<label style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{question.id}}</label>
 					</div>
-					<div class="col-md-2">
-						<textarea type="text" [(ngModel)]="question.description"></textarea>
+					<div class="col-md-3">
+						<textarea style="height:200px" type="text" [(ngModel)]="question.description"></textarea>
 					</div>
 					<div class="col-md-1">
 						<select [(ngModel)]="question.optionType">
@@ -50,7 +50,7 @@
 						<div class="option-row">
 							<div style="padding-left:0px; color:#2f3133" class="row" 
 								*ngFor="let option of question.QuizOptions; let i = index" [attr.data-index]="i">
-								<div class="col-md-6">
+								<div class="col-md-8">
 									<input type="text" [(ngModel)]="option.description" />
 								</div>
 								<div class="col-md-2">
@@ -58,7 +58,7 @@
 										<option *ngFor="let op of OPTION_FLAG">{{op}}</option>
 									</select>
 								</div>
-								<div class="col-md-4" style="color:#df691a">
+								<div class="col-md-2" style="color:#df691a">
 									<span style="cursor: pointer" class="glyphicon glyphicon-minus" 
 										(click)="removeQuizOption(question, i)"></span>
 									<span style="cursor: pointer" class="glyphicon glyphicon-plus" 
