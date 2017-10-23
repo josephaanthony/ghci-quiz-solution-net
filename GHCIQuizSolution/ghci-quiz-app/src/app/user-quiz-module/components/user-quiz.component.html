@@ -8,7 +8,7 @@
 
 		<div *ngIf="user?.CurrentUserQuestion?.id" class="panel-body">
 			<div class="carousel">
-				<pre style="background:transparent; color: white; word-wrap: break-word; white-space: pre-wrap;">{{user.CurrentUserQuestion.Question.description}}</pre>
+				<code style="background:transparent; color: white; word-wrap: break-word; white-space: pre-wrap;">{{user.CurrentUserQuestion.Question.description}}</code>
 				<hr/>
 				<form>
 					<ul *ngIf="user.CurrentUserQuestion.Question.QuizOptions" class="slides">

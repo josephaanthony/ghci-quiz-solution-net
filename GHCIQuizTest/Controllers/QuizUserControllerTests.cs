@@ -25,7 +25,7 @@ namespace GHCIQuizSolution.Controllers.Tests
     public void GetTest()
     {
       var quizUserController = new QuizUserController();
-      var quizUser = quizUserController.Get("3f55e5df-60b7-4db5-a205-83dc4c7efaca");
+      var quizUser = quizUserController.Get("058cb7b3-466a-4e87-8ab8-4d82ccee8529");
       Assert.IsNotNull(quizUser);
     }
 

@@ -21,6 +21,10 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       }).OrderBy(quiz => quiz.level);
     }
 
+    private void ValidateQuiz(Quiz quiz) {
+
+    }
+
     public Object Put([FromBody] Quiz quiz) {
       var quizDb = QuizDB.Quizs
         .Where(q => q.id == quiz.id)

@@ -3,6 +3,13 @@ delete from QuizUser;
 delete from UserQuestion;
 delete from UserQuiz;
 
+select * from QuizUser;
+select * from UserQuiz;
+select * from UserQuestion uq, Question q where uq.questionId = q.id;
+
+select * from QuizOption where [index] = '';
+select * from 
+
 /*
 delete from QuizOption
 delete from Question;

@@ -49,6 +49,8 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         return NotFound();
       }
 
+      ValidateQuestion(question);
+
       questionDb.complexity = question.complexity;
       questionDb.description = question.description;
       questionDb.optionType = question.optionType;
@@ -101,8 +103,34 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       };
     }
 
+    private void ValidateQuestion(Question question) {
+      List<String> validationMessages = new List<string>();
+
+      CheckInArray(question.complexity, QUESTION_COMPLEXITITES, "Complexity value not valid", validationMessages);
+      CheckLength(question.description, 3, "Description value not valid", validationMessages);
+      CheckInArray(question.optionType, QUESTION_OPTION_TYPE, "Option Type value not valid", validationMessages);
+      CheckLength(question.quizId, 3, "QuizId value not valid", validationMessages);
+
+      if(question.QuizOptions.Count(op => op.isCorrect) == 0) {
+        validationMessages.Add("Atleast one quiz option should be correct");
+      }
+
+      if("Radio".Equals(question.optionType)) {
+        if(question.QuizOptions.Count(op => op.isCorrect) != 1) {
+          validationMessages.Add("Only one quiz option can be correct for radio type");
+        }
+      }
+
+      if (validationMessages.Count() > 0)
+      {
+        throw new InvalidOperationException(String.Join("\n", validationMessages));
+      }
+    }
+
     public Object Post([FromBody] Question question) {
       question.id = null;
+      ValidateQuestion(question);
+
       QuizDB.Questions.Add(question);
       this.SaveQuizDBChanges();
       return GetQuestion(question);

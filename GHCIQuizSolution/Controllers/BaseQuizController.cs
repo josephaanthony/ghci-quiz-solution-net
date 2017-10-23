@@ -16,6 +16,9 @@ namespace GHCIQuizSolution.Controllers
       public static String COMPLETED_FAIL = "COMPLETED_FAIL";
     }
 
+    protected String[] QUESTION_COMPLEXITITES = { "COMPLEX", "MEDIUM", "EASY" };
+    protected String[] QUESTION_OPTION_TYPE = { "Radio", "Checkbox" };
+
 
     protected void SetNextQuestion(QuizUser quizUser)
     {
@@ -120,6 +123,24 @@ namespace GHCIQuizSolution.Controllers
         return null;
       }
     }
+
+
+    protected void CheckLength(String value, int len, String message, List<String> messageList)
+    {
+      if (String.IsNullOrWhiteSpace(value) || value.Length < len)
+      {
+        messageList.Add(message);
+      }
+    }
+
+    protected void CheckInArray(String value, String[] arr, String message, List<String> messageList)
+    {
+      if (!arr.Contains(value))
+      {
+        messageList.Add(message);
+      }
+    }
+
 
   }
 }

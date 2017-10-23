@@ -22,7 +22,7 @@
           </Key>
           <Property Name="Id" Type="varchar" MaxLength="36" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="level" Type="int" Nullable="false" />
+          <Property Name="level" Type="int" />
           <Property Name="timeoutInterval" Type="int" />
           <Property Name="complexityComposition" Type="varchar" MaxLength="500" />
         </EntityType>
@@ -229,7 +229,7 @@
           </Key>
           <Property Name="id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="36" Unicode="false" FixedLength="false" />
           <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="level" Type="Int32" Nullable="false" />
+          <Property Name="level" Type="Int32" />
           <Property Name="timeoutInterval" Type="Int32" />
           <NavigationProperty Name="Questions" Relationship="Self.FK_Question_Quiz" FromRole="Quiz" ToRole="Question" />
           <NavigationProperty Name="UserQuizs" Relationship="Self.FK_UserQuiz_Quiz" FromRole="Quiz" ToRole="UserQuiz" />
