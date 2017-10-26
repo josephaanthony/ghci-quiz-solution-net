@@ -11,6 +11,7 @@ import { HttpUtil } from '../../shared/util/http.util';
 import { Quiz } from '../models/quiz';
 import { Question } from '../models/question';
 import { QuizOption } from '../models/option';
+import { LoaderService } from '../../shared/components/loader.service';
 
 @Injectable()
 export class QuizService {
@@ -21,12 +22,22 @@ export class QuizService {
 	private quizErrorHandler = HttpUtil.handleErrorWithMessage(this.toasterService);
 	private quizSuccessHandler = HttpUtil.handleSuccessWithMessag(this.toasterService);
 
-	constructor(private http: Http, private toasterService: ToasterService) {
+	private dispayLoaderFn;
+	private hideLoaderFn;
 
+	constructor(private http: Http, private toasterService: ToasterService, private loaderService: LoaderService) {
+		this.dispayLoaderFn = () => { 
+			this.loaderService.display(true);
+		}
+		this.hideLoaderFn = () => {
+			this.loaderService.display(false);
+		} 
 	}
 
 	public getQuizs() {
-		return this.http.get(this.quizUrl)
+		this.dispayLoaderFn();
+		return this.http.get(this.quizUrl)		
+				.do(this.hideLoaderFn)
 				.toPromise()
 				.then(response => response.json() as Quiz[])
 				.catch(HttpUtil.handleError);
@@ -47,7 +58,9 @@ export class QuizService {
 	// public updateOption = (putOption: Option): Promise<Option> => this.updateData<Option>(this.optionUrl, putOption);
 
 	public getQuestions(quizId) {
+		this.dispayLoaderFn();
 		return this.http.get(this.questionUrl + '/' + quizId)
+			.do(this.hideLoaderFn)
 			.toPromise()
 			.then(response => response.json() as Quiz)
 			.catch(HttpUtil.handleError);

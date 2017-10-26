@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import _ from 'lodash';
+import { ToasterService } from 'angular2-toaster';
 
 import { Question } from '../models/question';
 import { Quiz } from '../models/quiz';
@@ -14,12 +15,11 @@ const TEMP_QUIZid = '*temp*';
 	styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
-	private toasterConfig = {timeout: 0};
 	private quizs: Quiz[];
 	private idCounter = 1;
 	private QUESTION_COMPLEXITITES = [ "COMPLEX", "MEDIUM", "EASY" ];
 
-	constructor(private quizService: QuizService) {
+	constructor(private quizService: QuizService, private toasterService: ToasterService) {
 	}
 
 	ngOnInit() {
@@ -35,7 +35,12 @@ export class QuizComponent implements OnInit {
 		if(!quiz.complexityComposition) {
 			quiz.complexityComposition = "[ { \"level\": null, \"nos\": null }]";
 		}
-		quiz.ComplexityComposition = JSON.parse(quiz.complexityComposition);
+
+		try {
+			quiz.ComplexityComposition = JSON.parse(quiz.complexityComposition);			
+		} catch (error) {
+			this.toasterService.pop('error', 'Exception', 'Complexity value is not valid');
+		}
 		return quiz;
 	}
 

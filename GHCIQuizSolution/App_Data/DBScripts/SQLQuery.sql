@@ -8,7 +8,7 @@ select * from UserQuiz;
 select * from UserQuestion uq, Question q where uq.questionId = q.id;
 
 select * from QuizOption where [index] = '';
-select * from 
+delete from Quiz where description = 'Test'
 
 /*
 delete from QuizOption

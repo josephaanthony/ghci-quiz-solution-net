@@ -61,46 +61,19 @@
 								<div class="col-md-2" style="color:#df691a">
 									<span style="cursor: pointer" class="glyphicon glyphicon-minus" 
 										(click)="removeQuizOption(question, i)"></span>
-									<span style="cursor: pointer" class="glyphicon glyphicon-plus" 
+									<span *ngIf="i == question.QuizOptions.length-1" style="cursor: pointer" class="glyphicon glyphicon-plus" 
 										(click)="addQuizOption(question, i)"></span>
 								</div>
 							</div>
 						</div>
-						<!-- <button class="btn btn-primary btn-sm" style="width:120px" (click)="showOptions(question)">Show Options ({{question?.options?.length}})</button>
-						<button class="btn btn-primary btn-sm" (click)="addNewOption(question)">Add New Option</button>						 -->
 					</div>
 					<div class="col-md-3">
 						<button class="btn btn-default btn-sm" (click)="updateQuestion(question)">Update Question</button>
 						<button class="btn btn-default btn-sm" (click)="deleteQuestion(question)">Delete Question</button>
-						<!-- <a [routerLink]="['/questions', quiz._id]" class="btn btn-default btn-sm">Show Options ({{quiz.questions?.options?.length}})</a> -->
 					</div>
 
 				</div>
 			</div>
-
-			<!-- <div class="row">
-				<div class="panel-heading">
-					<div class="panel-title">Options</div>
-				</div>
-			</div>
-
-			<div *ngIf="selectedQuestion" class="row">
-				<div *ngFor="let option of selectedQuestion.QuizOptions">
-					<div class="col-md-2">
-						<label>{{option.id}}</label>
-					</div>
-					<div class="col-md-4">
-						<input type="text" [(ngModel)]="option.description"/>
-					</div>
-					<div class="col-md-2">
-						<input type="text" [(ngModel)]="option.isCorrect"/>
-					</div>
-					<div class="col-md-4">
-						<button class="btn btn-default btn-sm" (click)="updateOption(selectedQuestion, option)">Update Option</button>
-						<button class="btn btn-default btn-sm" (click)="deleteOption(selectedQuestion, option)">Delete Option</button>
-					</div>
-				</div>
-			</div>	 -->
 		</div>
 	</div>
 </div>

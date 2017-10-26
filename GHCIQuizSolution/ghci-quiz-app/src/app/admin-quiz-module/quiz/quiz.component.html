@@ -48,7 +48,7 @@
 								<div class="col-md-4" style="color:#df691a">
 									<span style="cursor: pointer" class="glyphicon glyphicon-minus" 
 										(click)="removeCompositionLevel(quiz, i)"></span>
-									<span style="cursor: pointer" class="glyphicon glyphicon-plus" 
+									<span *ngIf="i == quiz.ComplexityComposition.length-1" style="cursor: pointer" class="glyphicon glyphicon-plus" 
 										(click)="quiz.ComplexityComposition.push({})"></span>
 								</div>
 							</div>

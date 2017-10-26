@@ -100,8 +100,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DBScripts\QuestionOption.sql" />
-    <Content Include="App_Data\DBScripts\QuizSchema.sql" />
     <Content Include="App_Data\DBScripts\SQLQuery.sql" />
     <Content Include="DBContext\QuizDBEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -183,6 +181,7 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App_Data\DBScripts\SchemaCompare.scmp" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
