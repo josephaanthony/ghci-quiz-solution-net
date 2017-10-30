@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import _ from 'lodash';
 import { ToasterService } from 'angular2-toaster'
 
@@ -14,13 +14,23 @@ import { User } from '../../models/user';
 })
 export class UserRegistrationComponent {
 	private user: User;
-	private toasterconfig  = {timeout: 0};
 
-	constructor(private router: Router, private quizService: UserQuizService, 
+	constructor(private route: ActivatedRoute, private router: Router, private quizService: UserQuizService, 
 		private toasterService: ToasterService, private localStorageService: LocalStorageService) {
-		this.user = this.localStorageService.getItem('user');
-		if (this.user) {
-			this.router.navigateByUrl('/users/quizhome');
+		this.user = this.localStorageService.getItem('user');		
+		var userParam = new User();
+
+		if(this.route.snapshot.queryParams["emailId"] && 
+			this.route.snapshot.queryParams["fName"]) {
+			userParam.email = this.route.snapshot.queryParams["emailId"],
+			userParam.name = this.route.snapshot.queryParams["fName"] + " " + this.route.snapshot.queryParams["lName"]
+		}
+
+		if(this.user && this.user.email === userParam.email) {
+			this.router.navigateByUrl('/users/quizhome');				
+		}
+		else if(userParam.email) {
+			this.registerUser(userParam);
 		}
 		else {
 			this.user = new User();
@@ -33,9 +43,9 @@ export class UserRegistrationComponent {
 		this.router.navigateByUrl('/users/quizhome');
 	}
 
-	private registerUser() {
-		this.quizService.registerUser(this.user).then(user => {
-			this.signInSuccess(user);
+	private registerUser(user) {
+		this.quizService.registerUser(user).then(userResult => {
+			this.signInSuccess(userResult);
 		});
 	}
 
@@ -48,18 +58,5 @@ export class UserRegistrationComponent {
 				this.toasterService.pop("error", "Registration", "You have entered an invalid email id");
 			}
 		})
-	}
-
-	startNextQuiz(quizs) {
-		this.quizService.setNextQuizForUser(this.user);
-
-		// if(quizs && quizs.length) {
-		// 	this.user.currentQuestionIndex = -1;
-		// 	this.user.currentUserQuiz = _.orderBy(quizs, ['level'], ['asc'])[0];
-		// 	this.user.currentUserQuizLevel = this.user.currentUserQuiz.level;
-
-		// 	this.localStorageService.setItem('user', this.user);
-		// 	this.router.navigateByUrl('/users/quiz');
-		// }
 	}
 }

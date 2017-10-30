@@ -25,6 +25,7 @@
           <Property Name="level" Type="int" />
           <Property Name="timeoutInterval" Type="int" />
           <Property Name="complexityComposition" Type="varchar" MaxLength="500" />
+          <Property Name="passpoint" Type="int" />
         </EntityType>
         <EntityType Name="QuizOption">
           <Key>
@@ -68,6 +69,7 @@
           <Property Name="timeTakenInterval" Type="int" />
           <Property Name="status" Type="varchar" MaxLength="20" />
           <Property Name="userId" Type="varchar" MaxLength="36" />
+          <Property Name="attempt" Type="int" />
         </EntityType>
         <Association Name="FK_Question_Quiz">
           <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
@@ -234,6 +236,7 @@
           <NavigationProperty Name="Questions" Relationship="Self.FK_Question_Quiz" FromRole="Quiz" ToRole="Question" />
           <NavigationProperty Name="UserQuizs" Relationship="Self.FK_UserQuiz_Quiz" FromRole="Quiz" ToRole="UserQuiz" />
           <Property Name="complexityComposition" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="passpoint" Type="Int32" />
         </EntityType>
         <EntityType Name="QuizOption">
           <Key>
@@ -288,6 +291,7 @@
           <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="userId" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="QuizUser" Relationship="GHCIQuizModel.FK_UserQuiz_QuizUser" FromRole="UserQuiz" ToRole="QuizUser" />
+          <Property Name="attempt" Type="Int32" />
         </EntityType>
         <Association Name="FK_Question_Quiz">
           <End Role="Quiz" Type="Self.Quiz" Multiplicity="0..1" />
@@ -446,6 +450,7 @@
           <EntitySetMapping Name="Quizs">
             <EntityTypeMapping TypeName="GHCIQuizModel.Quiz">
               <MappingFragment StoreEntitySet="Quiz">
+                <ScalarProperty Name="passpoint" ColumnName="passpoint" />
                 <ScalarProperty Name="complexityComposition" ColumnName="complexityComposition" />
                 <ScalarProperty Name="id" ColumnName="Id" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -493,6 +498,7 @@
           <EntitySetMapping Name="UserQuizs">
             <EntityTypeMapping TypeName="GHCIQuizModel.UserQuiz">
               <MappingFragment StoreEntitySet="UserQuiz">
+                <ScalarProperty Name="attempt" ColumnName="attempt" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="id" ColumnName="id" />

@@ -36,7 +36,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
             .OrderBy(option => option.index)
           })
           .OrderBy(question => question.index),
-          quiz.timeoutInterval
+          quiz.passpoint
         }).FirstOrDefault();
     }
 

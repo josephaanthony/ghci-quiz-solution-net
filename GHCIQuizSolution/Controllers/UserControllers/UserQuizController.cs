@@ -23,26 +23,28 @@ namespace GHCIQuizSolution.Controllers.UserControllers
           quiz.description,
           quiz.id,
           quiz.level,
-          quiz.timeoutInterval,
+          quiz.passpoint,
           UserQuizs =
             quiz.UserQuizs
             .Where(userQuiz => userQuiz.userId == id)
-          //.Where(userQuiz => userQuiz.QuizUsers.Select(user => user.id == id))
-          .Select(userQuiz => new
-          {
-            userQuiz.id,
-            userQuiz.quizId,
-            userQuiz.status,
-            userQuiz.timeTakenInterval,
-            QuizUser = new
+            //.OrderBy(u => u.attempt)
+            .Select(userQuiz => new
             {
-              userQuiz.QuizUser.currentUserQuizId,
-              userQuiz.QuizUser.email,
-              userQuiz.QuizUser.id,
-              userQuiz.QuizUser.name
-            }
-
-          })
+              userQuiz.id,
+              userQuiz.quizId,
+              userQuiz.status,
+              userQuiz.timeTakenInterval,
+              userQuiz.attempt
+              //,
+              //QuizUser = new
+              //{
+              //  userQuiz.QuizUser.currentUserQuizId,
+              //  userQuiz.QuizUser.email,
+              //  userQuiz.QuizUser.id,
+              //  userQuiz.QuizUser.name
+              //}
+            })
+          //.OrderBy(u => u.attempt)
           .DefaultIfEmpty()
         })
         .OrderBy(quiz => quiz.level);

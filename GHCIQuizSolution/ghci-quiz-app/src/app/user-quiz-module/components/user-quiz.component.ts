@@ -23,7 +23,6 @@ const TEMP_QUIZ_ID = '*temp*';
 export class UserQuizComponent implements OnInit {
 	private user: any;
 	private quizs: any;
-	private toasterconfig  = {timeout: 0};
 	
 	constructor(private elementRef: ElementRef, private router: Router, private quizService: UserQuizService, private toasterService: ToasterService) {
 		// var localUser = this.localStorageService.getItem('user');
@@ -75,8 +74,4 @@ export class UserQuizComponent implements OnInit {
 			this.router.navigateByUrl('/users/quizhome');
 		}
 	}
-
-	// startNextQuiz(question: UserQuestion) {
-	// 	return question === this.user.currentUserQuiz.questions[0];
-	// }
 }

@@ -26,6 +26,7 @@ namespace GHCIQuizSolution.DBContext
         public Nullable<int> timeTakenInterval { get; set; }
         public string status { get; set; }
         public string userId { get; set; }
+        public Nullable<int> attempt { get; set; }
     
         public virtual Quiz Quiz { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

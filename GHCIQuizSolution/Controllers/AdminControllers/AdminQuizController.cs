@@ -1,4 +1,5 @@
 using GHCIQuizSolution.DBContext;
+using GHCIQuizSolution.Filters.Security;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ using System.Web.Http;
 
 namespace GHCIQuizSolution.Controllers.AdminControllers
 {
+  //[IdentityBasicAuthentication]
+  //[Authorize ( Roles = "basic")]
   public class AdminQuizController : BaseQuizController
   {
     public Object Get()
@@ -18,7 +21,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         quiz.description,
         quiz.id,
         quiz.level,
-        quiz.timeoutInterval
+        quiz.passpoint
       }).OrderBy(quiz => quiz.level);
     }
 
@@ -29,7 +32,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
 
       try
       {
-        var complexityComp = JsonConvert.DeserializeAnonymousType(quiz.complexityComposition, new[] { new { level = String.Empty, nos = 0 } });
+        var complexityComp = JsonConvert.DeserializeObject<ComplexityComposition[]>(quiz.complexityComposition);
         var compGroup = complexityComp.GroupBy(c => c.level);
 
         var notInArray = compGroup.Where(grp => !QUESTION_COMPLEXITITES.Contains(grp.Key));
@@ -56,6 +59,11 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         validationMessages.Add("Level value not valid");
       }
 
+      if (quiz.passpoint.GetValueOrDefault() <= 0)
+      {
+        validationMessages.Add("Level value not valid");
+      }
+
       if (validationMessages.Count() > 0)
       {
         throw new InvalidOperationException(String.Join("\n", validationMessages));
@@ -76,7 +84,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       quizDb.complexityComposition = quiz.complexityComposition;
       quizDb.description = quiz.description;
       quizDb.level = quiz.level;
-      quizDb.timeoutInterval = quiz.timeoutInterval;
+      quizDb.passpoint = quiz.passpoint;
 
       this.SaveQuizDBChanges();
 
@@ -97,7 +105,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         quiz.description,
         quiz.id,
         quiz.level,
-        quiz.timeoutInterval
+        quiz.passpoint
       };
     }
 

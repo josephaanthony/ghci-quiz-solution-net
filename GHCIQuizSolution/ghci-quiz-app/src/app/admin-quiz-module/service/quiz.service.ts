@@ -6,7 +6,9 @@ import 'rxjs/add/operator/toPromise';
 import { ToasterService } from 'angular2-toaster';
 import _ from 'lodash';
 
+
 import { environment } from '../../../environments/environment'
+import { BaseService } from '../../shared/service/base.service';
 import { HttpUtil } from '../../shared/util/http.util';
 import { Quiz } from '../models/quiz';
 import { Question } from '../models/question';
@@ -14,33 +16,17 @@ import { QuizOption } from '../models/option';
 import { LoaderService } from '../../shared/components/loader.service';
 
 @Injectable()
-export class QuizService {
+export class QuizService extends BaseService {
 	private quizUrl = environment.apiContextUrl +  '/api/adminquiz';
 	private questionUrl = environment.apiContextUrl +  '/api/adminquestion';
 	private optionUrl = environment.apiContextUrl +  '/api/adminoption';
 
-	private quizErrorHandler = HttpUtil.handleErrorWithMessage(this.toasterService);
-	private quizSuccessHandler = HttpUtil.handleSuccessWithMessag(this.toasterService);
-
-	private dispayLoaderFn;
-	private hideLoaderFn;
-
-	constructor(private http: Http, private toasterService: ToasterService, private loaderService: LoaderService) {
-		this.dispayLoaderFn = () => { 
-			this.loaderService.display(true);
-		}
-		this.hideLoaderFn = () => {
-			this.loaderService.display(false);
-		} 
+	constructor(http: Http, toasterService: ToasterService, loaderService: LoaderService) {
+		super(http, toasterService, loaderService);
 	}
 
 	public getQuizs() {
-		this.dispayLoaderFn();
-		return this.http.get(this.quizUrl)		
-				.do(this.hideLoaderFn)
-				.toPromise()
-				.then(response => response.json() as Quiz[])
-				.catch(HttpUtil.handleError);
+		return this.getHttp<Quiz[]>(this.quizUrl);
 	}
 
 	public createQuiz = (newQuiz: Quiz): Promise<Quiz> => this.createData<Quiz>(this.quizUrl, newQuiz);
@@ -52,49 +38,24 @@ export class QuizService {
 	public deleteQuestion = (delQuestionId: String): Promise<String> => this.deleteData(this.questionUrl, delQuestionId);
 	public updateQuestion = (putQuestion: Question): Promise<Question> => this.updateData<Question>(this.questionUrl, putQuestion);
 
-	// public createOption = (questionId, newOption: Option): Promise<Option> => 
-	// 	this.createData<Option>(this.optionUrl + '/' + questionId, newOption);
-	// public deleteOption = (delOptionId: String): Promise<String> => this.deleteData(this.optionUrl, delOptionId);
-	// public updateOption = (putOption: Option): Promise<Option> => this.updateData<Option>(this.optionUrl, putOption);
-
 	public getQuestions(quizId) {
-		this.dispayLoaderFn();
-		return this.http.get(this.questionUrl + '/' + quizId)
-			.do(this.hideLoaderFn)
-			.toPromise()
-			.then(response => response.json() as Quiz)
-			.catch(HttpUtil.handleError);
+		return this.getHttp<Quiz>(this.questionUrl + '/' + quizId);
 	}
-
 
 
 
 	// post("/api/quizs")
 	public createData<T>(url, newData: T): Promise<T> {
-		return this.http.post(url, newData)
-			.do(this.quizSuccessHandler)
-			.toPromise()
-			.then(response => response.json() as T)
-			.catch(this.quizErrorHandler);
+		return this.postHttp<T>(url, newData);
 	}
 
 	// delete("/api/quizs/:id")
 	public deleteData(url, delDataId: String): Promise<String> {
-		return this.http.delete(url + '/' + delDataId)
-			.do(this.quizSuccessHandler)
-			.toPromise()
-			.then(response => response.json() as String)
-			.catch(this.quizErrorHandler);
+		return this.deleteHttp<String>(url + '/' + delDataId);
 	}
-
 
 	// put("/api/quizs/:id")
 	public updateData<T>(url, putData: T): Promise<T> {
-		var putUrl = url;
-		return this.http.put(putUrl, putData)
-			.do(this.quizSuccessHandler)
-			.toPromise()
-			.then(response => response.json() as T)
-			.catch(this.quizErrorHandler);
+		return this.putHttp<T>(url, putData);
 	}
 }

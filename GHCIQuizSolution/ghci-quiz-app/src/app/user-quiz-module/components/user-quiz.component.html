@@ -4,8 +4,6 @@
 			<h3 class="panel-title">UserQuiz {{ user?.CurrentUserQuiz?.Quiz?.description}}</h3>			
 		</div>
 
-		<toaster-container [toasterconfig]="toasterConfig"></toaster-container>
-
 		<div *ngIf="user?.CurrentUserQuestion?.id" class="panel-body">
 			<div class="carousel">
 				<code style="background:transparent; color: white; word-wrap: break-word; white-space: pre-wrap;">{{user.CurrentUserQuestion.Question.description}}</code>
@@ -28,19 +26,6 @@
 				</form>
 				<button class="btn btn-default" (click)="getNextQuestion()">Get Next Question</button>
 			</div>		  
-		</div>
-
-		<div *ngIf="user && !user?.CurrentUserQuestion?.id">
-			<div *ngIf="user.CurrentUserQuiz" style="text-align:center">
-				<h3>You have completed the current quiz. Press Next to go to the next level.</h3>
-				<br/>
-				<button class="btn btn-primary" (click)="startNextQuiz()" style="margin-bottom: 10px">Next</button>
-			</div>
-			
-			<div *ngIf="!user.CurrentUserQuiz" style="text-align:center">
-				<h3>You have completed all the levels. Hurray!</h3>
-				<br/>
-			</div>
 		</div>
 	</div>
 </div>

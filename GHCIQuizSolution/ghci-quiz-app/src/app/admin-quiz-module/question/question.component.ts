@@ -19,7 +19,6 @@ export class QuestionComponent implements OnInit {
 	private quiz: Quiz;
 	private idCounter = 1;
 	private questionIndexCounter = 0;
-	private toasterconfig  = {timeout: 0};
 	private OPTION_FLAG =  [ "true", "false" ]
 	private OPTION_TYPE =  [ "Radio", "Checkbox" ] 
 	private QUESTION_COMPLEXITITES = [ "COMPLEX", "MEDIUM", "EASY" ];

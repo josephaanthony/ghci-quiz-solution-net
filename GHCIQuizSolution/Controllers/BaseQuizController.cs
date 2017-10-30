@@ -1,4 +1,5 @@
 using GHCIQuizSolution.DBContext;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,11 @@ namespace GHCIQuizSolution.Controllers
       public static String COMPLETED_FAIL = "COMPLETED_FAIL";
     }
 
+    private Dictionary<String, int> COMPLEXITY_POINT = new  Dictionary<string, int> {
+      { "EASY", 1 },
+      { "MEDIUM", 2 },
+      { "COMPLEX", 3 }
+    };
     protected String[] QUESTION_COMPLEXITITES = { "COMPLEX", "MEDIUM", "EASY" };
     protected String[] QUESTION_OPTION_TYPE = { "Radio", "Checkbox" };
 
@@ -46,24 +52,49 @@ namespace GHCIQuizSolution.Controllers
       quizUser.CurrentUserQuestion = userQuestion;
 
       if(quizUser.CurrentUserQuestion == null) {
-        quizUser.CurrentUserQuiz.status = QUIZ_STATUS.COMPLETED_SUCCESS.ToString();
+        this.SetQuizStatus(quizUser);
       }
+    }
+
+    private void SetQuizStatus(QuizUser quizUser) {
+      int passPoint = quizUser.CurrentUserQuiz.Quiz.passpoint.GetValueOrDefault();
+
+      int acquiredPoint = quizUser.CurrentUserQuiz.UserQuestions.Sum(q => {
+        if(q.isCorrect.GetValueOrDefault() && COMPLEXITY_POINT.ContainsKey(q.Question.complexity)) {
+          return COMPLEXITY_POINT[q.Question.complexity];
+        }
+        else {
+          return 0;
+        }
+      });
+
+      quizUser.CurrentUserQuiz.status = acquiredPoint >= passPoint ? QUIZ_STATUS.COMPLETED_SUCCESS.ToString() : QUIZ_STATUS.COMPLETED_FAIL.ToString();
     }
 
     protected void SetNextQuiz(QuizUser quizUser)
     {
       Quiz quiz;
+      int attemptNo = 0;
 
       if (quizUser.CurrentUserQuiz == null)
       {
         quiz = QuizDB.Quizs.OrderBy(q => q.level).FirstOrDefault();
       }
-      else
+      else if(quizUser.CurrentUserQuiz.status == QUIZ_STATUS.COMPLETED_SUCCESS)
       {
         quiz = QuizDB.Quizs
                 .OrderBy(q => q.level)
                 .Where(q => q.level > quizUser.CurrentUserQuiz.Quiz.level)
                 .FirstOrDefault();
+      }
+      else if (quizUser.CurrentUserQuiz.status == QUIZ_STATUS.COMPLETED_FAIL)
+      {
+        // Reset the CurrentQuiz;
+        quiz = quizUser.CurrentUserQuiz.Quiz;
+        attemptNo = quizUser.CurrentUserQuiz.attempt.GetValueOrDefault() + 1;
+      }
+      else {
+        throw new NotImplementedException();
       }
 
       if (quiz  ==  null)
@@ -78,14 +109,44 @@ namespace GHCIQuizSolution.Controllers
       quizUser.CurrentUserQuiz = new UserQuiz()
       {
         Quiz = quiz,
-        status = QUIZ_STATUS.IN_PROGRESS.ToString()
+        status = QUIZ_STATUS.IN_PROGRESS.ToString(),
+        attempt = attemptNo
       };
       quizUser.UserQuizs.Add(quizUser.CurrentUserQuiz);
 
-      int indexCounter = 0;
-      foreach (var item in quizUser.CurrentUserQuiz.Quiz.Questions)
+      this.GenerateQuizQuestions(quizUser.CurrentUserQuiz);
+    }
+
+    public class ComplexityComposition {
+      public String level;
+      public int nos;
+    }
+
+
+    private void GenerateQuizQuestions(UserQuiz userQuiz) {
+      var complexityCompArr = JsonConvert.DeserializeObject<ComplexityComposition[]>(userQuiz.Quiz.complexityComposition);
+      List<Question> questionList = new List<Question>();
+      List<Question> randomList = new List<Question>();
+
+      foreach (var comp in complexityCompArr)
       {
-        quizUser.CurrentUserQuiz.UserQuestions.Add(new UserQuestion()
+        questionList.AddRange(userQuiz.Quiz.Questions
+          .Where(q => q.complexity == comp.level)
+          .Take(comp.nos));
+      }
+
+      Random random = new Random();
+      while(questionList.Count != 0) {
+        var index = random.Next(0, questionList.Count);
+        randomList.Add(questionList[index]);
+        questionList.RemoveAt(index);
+      }
+
+
+      int indexCounter = 0;
+      foreach (var item in randomList)
+      {
+        userQuiz.UserQuestions.Add(new UserQuestion()
         {
           index = indexCounter++,
           Question = item,

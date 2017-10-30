@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { QuizService } from './admin-quiz-module/service/quiz.service'
 import { QuizComponent } from './admin-quiz-module/quiz/quiz.component';
 import { QuestionComponent } from './admin-quiz-module/question/question.component';
+import { UsersComponent } from './admin-quiz-module/users/users.component';
 
 import { UserQuizComponent } from './user-quiz-module/components/user-quiz.component';
 import { UserQuizHomeComponent } from './user-quiz-module/components/user-quiz-home/user-quiz-home.component';
@@ -18,6 +19,7 @@ import { UserRegistrationComponent } from './user-quiz-module/components/user-re
 import { LocalStorageService } from './user-quiz-module/services/local-storage.service';
 import { LoaderService } from './shared/components/loader.service'
 import { LoaderComponent } from './shared/components/loader.component'
+import { UsersService } from './admin-quiz-module/service/users.service'
 
 const appRoutes: Routes = [
     { path: 'users/quizhome', component: UserQuizHomeComponent },
@@ -26,6 +28,7 @@ const appRoutes: Routes = [
 
     { path: 'admin/quizhome', component: QuizComponent },
     { path: 'admin/questionshome/:quizId', component: QuestionComponent },
+    { path: 'admin/userhome', component: UsersComponent },
 
     //{ path: 'questions/:quizId', component: QuestionComponent },
     // {
@@ -52,7 +55,8 @@ const appRoutes: Routes = [
       UserQuizComponent,
       UserRegistrationComponent,
       UserQuizHomeComponent,
-      LoaderComponent
+      LoaderComponent,
+      UsersComponent
   ],
   imports: [
       BrowserModule,
@@ -65,7 +69,7 @@ const appRoutes: Routes = [
           { enableTracing: false } // <-- debugging purposes only
       )
   ],
-  providers: [QuizService, UserQuizService, LocalStorageService, ToasterService, LoaderService],
+  providers: [QuizService, UserQuizService, LocalStorageService, ToasterService, LoaderService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

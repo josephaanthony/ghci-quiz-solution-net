@@ -22,7 +22,6 @@ const TEMP_QUIZ_ID = '*temp*';
 export class UserQuizHomeComponent implements OnInit {
 	private user: any;
 	private quizs: any;
-	private toasterconfig  = {timeout: 0};
 	
 	constructor(private elementRef: ElementRef, private router: Router, private quizService: UserQuizService, private toasterService: ToasterService) {
 		// this.localUser = this.localStorageService.getItem('user');
@@ -38,7 +37,12 @@ export class UserQuizHomeComponent implements OnInit {
 					this.user = user;
 					this.quizService.getUserQuizs(user)
 						.then(quizs => {
-							this.quizs = quizs.map(q => { _.remove(q.UserQuizs, u => u === null); return q  });
+							this.quizs = quizs.map(q => 
+								{ 
+									_.remove(q.UserQuizs, u => u === null); 
+									q.UserQuizs = _.sortBy(q.UserQuizs, 'attempt')
+									return q  
+								});
 							this.setQuizActive(this.quizs, this.user);
 						});
 				}
@@ -53,7 +57,7 @@ export class UserQuizHomeComponent implements OnInit {
 
 		
 		_.each(quizs, quiz => {
-			if(quiz.id === currentQuiz.Quiz.id && currentQuiz.status === "IN_PROGRESS") {
+			if(quiz.id === currentQuiz.Quiz.id && (currentQuiz.status === "IN_PROGRESS" || currentQuiz.status === "COMPLETED_FAIL")) {
 				quiz.isActive = true;
 				return false;
 			}
