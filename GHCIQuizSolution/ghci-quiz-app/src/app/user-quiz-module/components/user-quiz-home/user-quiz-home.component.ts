@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 import _ from 'lodash';
 import * as $ from 'jquery';
@@ -17,13 +17,17 @@ const TEMP_QUIZ_ID = '*temp*';
 @Component({
 	selector: 'app-user-quiz-home',
 	templateUrl: './user-quiz-home.component.html',
-	//styleUrls: ['./user-quiz.component.css']
+	styleUrls: ['./user-quiz-home.component.css']
 })
 export class UserQuizHomeComponent implements OnInit {
 	private user: any;
 	private quizs: any;
+
+	private imageSrc = ["/assets/images/Business.jpg", 
+						"/assets/images/Logic.jpg", 
+						"/assets/images/Analytical.jpg"]
 	
-	constructor(private elementRef: ElementRef, private router: Router, private quizService: UserQuizService, private toasterService: ToasterService) {
+	constructor(private elementRef: ElementRef, private route: ActivatedRoute, private router: Router, private quizService: UserQuizService, private toasterService: ToasterService) {
 		// this.localUser = this.localStorageService.getItem('user');
 		// if(!this.localUser) {
 		// 	this.router.navigateByUrl('/users/registration');

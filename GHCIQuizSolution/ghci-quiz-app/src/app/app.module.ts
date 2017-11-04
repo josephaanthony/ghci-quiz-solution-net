@@ -24,7 +24,7 @@ import { UsersService } from './admin-quiz-module/service/users.service'
 const appRoutes: Routes = [
     { path: 'users/quizhome', component: UserQuizHomeComponent },
     { path: 'users/quiz', component: UserQuizComponent },
-    { path: 'users/registration', component: UserRegistrationComponent },
+    { path: 'users/registration/:email', component: UserRegistrationComponent },
 
     { path: 'admin/quizhome', component: QuizComponent },
     { path: 'admin/questionshome/:quizId', component: QuestionComponent },
@@ -37,12 +37,12 @@ const appRoutes: Routes = [
     // },
     {
         path: '',
-        redirectTo: '/users/quizhome',
+        redirectTo: '/users/registration',
         pathMatch: 'full'
     },
     { 
         path: '**', 
-        redirectTo: '/users/quizhome',
+        redirectTo: '/users/registration',
         pathMatch: 'full' }
 ];
 

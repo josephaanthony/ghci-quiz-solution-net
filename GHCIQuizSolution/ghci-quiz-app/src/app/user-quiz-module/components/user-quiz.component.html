@@ -1,31 +1,33 @@
-<div class="container-fluid">
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3 class="panel-title">UserQuiz {{ user?.CurrentUserQuiz?.Quiz?.description}}</h3>			
-		</div>
+<div class="container-wrapper" style="background:white">
+	<div style="height:50px; padding-left:20px; background:#3C4046; color: white; position:fixed; width: 100%; padding-top: 15px;">
+		<span style="font-size:20px">{{ user?.CurrentUserQuiz?.Quiz?.description}}</span>
+		<span style="float: right;
+						margin-right: 10px;
+						margin-top: -6px;">
+			<button class="btn" style="background:#FD6B35" (click)="getNextQuestion()">Submit</button>
+		</span>
+	</div>
 
-		<div *ngIf="user?.CurrentUserQuestion?.id" class="panel-body">
-			<div class="carousel">
-				<code style="background:transparent; color: white; word-wrap: break-word; white-space: pre-wrap;">{{user.CurrentUserQuestion.Question.description}}</code>
-				<hr/>
-				<form>
-					<ul *ngIf="user.CurrentUserQuestion.Question.QuizOptions" class="slides">
-						<li *ngFor="let option of user.CurrentUserQuestion.Question.QuizOptions">						
-							<!--  -->
-							<input *ngIf="user.CurrentUserQuestion.Question.optionType === 'Checkbox'" type="checkbox" 
-								name="optionSelection"
-								value="{{option.id}}"
-								(change)="onOptionSelected(user.CurrentUserQuestion, option)">
-							<input *ngIf="user.CurrentUserQuestion.Question.optionType != 'Checkbox'" type="radio" 
-								name="optionSelection" 
-								value="{{option.id}}"
-								(change)="onOptionSelected(user.CurrentUserQuestion, option)">						
-							<label>{{option.description}}</label>											
-						</li>
-					</ul>
-				</form>
-				<button class="btn btn-default" (click)="getNextQuestion()">Get Next Question</button>
-			</div>		  
+	<div *ngIf="user?.CurrentUserQuestion?.id" class="row-section" style="background:#ECEDF2; padding-top:60px;">
+		<div class="row-section" style="margin-bottom:10px; min-height:200px; padding-left:20px; padding-top:10px; padding-bottom: 10px; padding-right:10px">
+			<code style="background:transparent; color: black; word-wrap: break-word; white-space: pre-wrap; padding:0px;">{{user.CurrentUserQuestion.Question.description}}</code>
 		</div>
+		
+		<div class="row-section" style="padding-top:10px; background:white; padding-right:10px">
+			<ul *ngIf="user.CurrentUserQuestion.Question.QuizOptions" class="slides">
+				<li *ngFor="let option of user.CurrentUserQuestion.Question.QuizOptions">						
+					<!--  -->
+					<input *ngIf="user.CurrentUserQuestion.Question.optionType === 'Checkbox'" type="checkbox" 
+						name="optionSelection"
+						value="{{option.id}}"
+						(change)="onOptionSelected(user.CurrentUserQuestion, option)">
+					<input *ngIf="user.CurrentUserQuestion.Question.optionType != 'Checkbox'" type="radio" 
+						name="optionSelection" 
+						value="{{option.id}}"
+						(change)="onOptionSelected(user.CurrentUserQuestion, option)">						
+					<label>{{option.description}}</label>											
+				</li>
+			</ul>
+		</div>		  
 	</div>
 </div>
