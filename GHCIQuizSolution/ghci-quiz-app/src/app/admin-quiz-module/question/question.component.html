@@ -23,7 +23,7 @@
 					<div class="col-md-1">OptionType</div>
 					<div class="col-md-1">Complexity</div>
 					<div class="col-md-3">Options</div>
-					<div class="col-md-3"><button class="btn btn-primary btn-sm" (click)="addNewQuestion()">Add New Question</button></div>
+					<div class="col-md-3"><button style="position: fixed; bottom: 40px; right: 20px; z-index:9999" class="btn btn-primary btn-sm" (click)="addNewQuestion()">Add New Question</button></div>
 				</div>
 			</div>
 
@@ -33,7 +33,7 @@
 						<label style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">{{question.id}}</label>
 					</div>
 					<div class="col-md-3">
-						<textarea style="height:200px" type="text" [(ngModel)]="question.description"></textarea>
+						<textarea style="height:200px" type="text" [(ngModel)]="question.description" autofocus></textarea>
 					</div>
 					<div class="col-md-1">
 						<select [(ngModel)]="question.optionType">

@@ -52,7 +52,7 @@ export class QuestionComponent implements OnInit {
 			question.QuizOptions.splice(index, 1);
 		}
 	}
-
+	
 	private addNewQuestion() {
 		const newQuestion = new Question();
 		newQuestion.id = TEMP_QUESTION_ID + (this.idCounter++);
@@ -64,6 +64,8 @@ export class QuestionComponent implements OnInit {
 			this.quiz.Questions = [];
 		}
 		this.quiz.Questions.push(newQuestion);
+
+		window.scrollTo(0, (document.body.scrollHeight || document.documentElement.scrollHeight) + 100);
 	}
 
 	private updateQuestion(question: Question) {

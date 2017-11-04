@@ -1,0 +1,61 @@
+.row-section-cell.active {
+    cursor: pointer;
+}
+
+.section-0 {
+    background: #1C252C;
+    color: white;
+}
+
+.section-1 {
+    background: transparent;
+}
+
+.section-2 {
+    background: #ECEDF2;
+}
+
+.quiz-text {
+    font-size: 1em;
+    width: 165px;
+    display: inline-block;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.quiz-glyphicon {
+    width: 15px;
+    display: inline-block;
+    margin-left:15px;
+    margin-right: 10px;
+    top: 3px;
+    font-size: 20px;
+}
+
+.glyphicon-ok, .glyphicon-pencil {
+    color: #9cc35e;
+}
+
+.glyphicon-remove {
+    color: red;
+}
+
+.quiz-image {
+    border-radius: 50%;
+    height: 125px;
+    width: 125px;
+    margin-left: 10px;
+}
+
+.quiz-level {
+    position: relative;
+    /* top: -68px; */
+    left: -85px;
+     color: indianred; 
+    font-size: 18px;
+    display: block;
+}
+
+.quiz-active {
+    margin-left: 26px;
+}

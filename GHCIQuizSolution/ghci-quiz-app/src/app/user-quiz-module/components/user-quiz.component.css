@@ -1,3 +1,8 @@
 .slides {
 	list-style: none;
+	padding-left: 20px;
 }
+
+/* input[type=checkbox], input[type=radio] {
+	vertical-align: top;
+} */

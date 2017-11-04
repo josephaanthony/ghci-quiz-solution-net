@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHCIQuizProject", "GHCIQuiz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHCIQuizTest", "GHCIQuizTest\GHCIQuizTest.csproj", "{B39E56C0-972F-49B1-B030-9F3CEA149FD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizRunner", "QuizRunner\QuizRunner.csproj", "{A24E294F-2FDC-418C-B97F-F47EB73A3E4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B39E56C0-972F-49B1-B030-9F3CEA149FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B39E56C0-972F-49B1-B030-9F3CEA149FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B39E56C0-972F-49B1-B030-9F3CEA149FD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A24E294F-2FDC-418C-B97F-F47EB73A3E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24E294F-2FDC-418C-B97F-F47EB73A3E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A24E294F-2FDC-418C-B97F-F47EB73A3E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A24E294F-2FDC-418C-B97F-F47EB73A3E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

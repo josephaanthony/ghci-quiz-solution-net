@@ -20,9 +20,8 @@ export class UserRegistrationComponent {
 		this.user = this.localStorageService.getItem('user');		
 		var userParam = new User();
 
-		if(this.route.snapshot.queryParams["emailId"] && 
-			this.route.snapshot.queryParams["fName"]) {
-			userParam.email = this.route.snapshot.queryParams["emailId"],
+		if(this.route.snapshot.queryParams["email"]) {
+			userParam.email = this.route.snapshot.queryParams["email"],
 			userParam.name = this.route.snapshot.queryParams["fName"] + " " + this.route.snapshot.queryParams["lName"]
 		}
 
