@@ -27,7 +27,7 @@ import { fakeBackendProvider } from './shared/service/fakeBackend.service';
 const appRoutes: Routes = [
     { path: 'users/quizhome', component: UserQuizHomeComponent },
     { path: 'users/quiz', component: UserQuizComponent },
-    { path: 'users/registration/:email', component: UserRegistrationComponent },
+    { path: 'users/registration', component: UserRegistrationComponent },
 
     { path: 'admin/quizhome', component: QuizComponent },
     { path: 'admin/questionshome/:quizId', component: QuestionComponent },
