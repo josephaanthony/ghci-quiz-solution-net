@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { BaseRequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { QuizService } from './admin-quiz-module/service/quiz.service'
@@ -19,12 +21,13 @@ import { UserRegistrationComponent } from './user-quiz-module/components/user-re
 import { LocalStorageService } from './user-quiz-module/services/local-storage.service';
 import { LoaderService } from './shared/components/loader.service'
 import { LoaderComponent } from './shared/components/loader.component'
-import { UsersService } from './admin-quiz-module/service/users.service'
+import { UsersService } from './admin-quiz-module/service/users.service';
+import { fakeBackendProvider } from './shared/service/fakeBackend.service';
 
 const appRoutes: Routes = [
     { path: 'users/quizhome', component: UserQuizHomeComponent },
     { path: 'users/quiz', component: UserQuizComponent },
-    { path: 'users/registration/:email', component: UserRegistrationComponent },
+    { path: 'users/registration', component: UserRegistrationComponent },
 
     { path: 'admin/quizhome', component: QuizComponent },
     { path: 'admin/questionshome/:quizId', component: QuestionComponent },
@@ -69,7 +72,7 @@ const appRoutes: Routes = [
           { enableTracing: false } // <-- debugging purposes only
       )
   ],
-  providers: [QuizService, UserQuizService, LocalStorageService, ToasterService, LoaderService, UsersService],
+  providers: [QuizService, UserQuizService, LocalStorageService, ToasterService, LoaderService, UsersService, fakeBackendProvider, MockBackend, BaseRequestOptions],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

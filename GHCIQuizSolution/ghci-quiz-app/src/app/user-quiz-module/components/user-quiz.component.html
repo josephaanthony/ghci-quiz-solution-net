@@ -1,5 +1,5 @@
 <div class="container-wrapper" style="background:white">
-	<div style="height:50px; padding-left:20px; background:#3C4046; color: white; position:fixed; width: 100%; padding-top: 15px;">
+	<div style="z-index:10;height:50px; padding-left:20px; background:#3C4046; color: white; position:fixed; width: 100%; padding-top: 15px;">
 		<span style="font-size:20px">{{ user?.CurrentUserQuiz?.Quiz?.description}}</span>
 		<span style="float: right;
 						margin-right: 10px;
@@ -8,16 +8,16 @@
 		</span>
 	</div>
 
-	<div *ngIf="user?.CurrentUserQuestion?.id" class="row-section" style="background:#ECEDF2; padding-top:60px;">
-		<div class="row-section" style="margin-bottom:10px; min-height:200px; padding-left:20px; padding-top:10px; padding-bottom: 10px; padding-right:10px">
+	<div *ngIf="user?.CurrentUserQuestion?.id" class="row-section" style=" padding-top:60px;perspective: 1200px;">
+		<div class="row-section" id="question" style="background:#ECEDF2;margin-bottom:10px; min-height:200px; padding-left:20px; padding-top:10px; padding-bottom: 10px; padding-right:10px">
 			<code style="background:transparent; color: black; word-wrap: break-word; white-space: pre-wrap; padding:0px;">{{user.CurrentUserQuestion.Question.description}}</code>
 			<div>
 				<img src="{{getImage(user.CurrentUserQuestion.Question.imageUrl)}}">
 			</div>
 		</div>
 		
-		<div class="row-section" style="padding-top:10px; background:white; padding-right:10px">
-			<ul *ngIf="user.CurrentUserQuestion.Question.QuizOptions" class="slides">
+		<div class="row-section" id="answer" style="padding-top:10px; padding-right:10px">
+			<ul *ngIf="user.CurrentUserQuestion.Question.QuizOptions && !showingResult" class="slides">
 				<li *ngFor="let option of user.CurrentUserQuestion.Question.QuizOptions">						
 					<!--  -->
 					<input *ngIf="user.CurrentUserQuestion.Question.optionType === 'Checkbox'" type="checkbox" 
@@ -31,6 +31,10 @@
 					<label>{{option.description}}</label>											
 				</li>
 			</ul>
-		</div>		  
+			<div *ngIf="showingResult" class="scaleUp" style="margin-right:-10px;text-align: center;font-size: 20px;">
+				<div *ngIf="!result" style="min-height:200px;background: rgb(223, 30, 30);color:white;padding-top: 80px;">Oops! You got it wrong!</div>
+				<div *ngIf="result" style="min-height:200px;background: rgb(68, 175, 1);color:white;padding-top: 80px;">Correct!</div>				
+			</div>
+		</div>			  
 	</div>
 </div>

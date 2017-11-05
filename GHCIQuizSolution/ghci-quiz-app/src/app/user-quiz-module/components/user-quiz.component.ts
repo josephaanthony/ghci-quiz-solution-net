@@ -51,6 +51,27 @@ export class UserQuizComponent implements OnInit {
 				{ index: 0, val: "" }
 			).val
 	}
+	showingResult; result;
+	showResult(result:boolean) {
+		this.showingResult=true;
+		this.result = result;
+	}
+
+	animateAndLoadNextQuestion(user) {
+		$("#question").removeClass( "flipInLeft" )
+		$("#question").addClass( "flipOutRight" ).on("animationend",function(){
+			$("#question").removeClass( "flipOutRight" )
+			$("#question").addClass( "flipInLeft" )
+		});
+
+		$("#answer").removeClass( "flipInRight" )
+		$("#answer").addClass( "flipOutLeft" ).on("animationend",()=>{
+			this.user.isLastQuestionForCurrentQuiz = user.isLastQuestionForCurrentQuiz;
+			this.user.CurrentUserQuestion = user.CurrentUserQuestion;
+			$("#answer").addClass( "flipInRight" )
+			$("#answer").removeClass( "flipOutLeft" )
+		});
+	}
 
 	getNextQuestion() {
 		if(this.user.CurrentUserQuestion.selectedOptionIds && this.user.CurrentUserQuestion.selectedOptionIds.length > 0) {
@@ -59,9 +80,12 @@ export class UserQuizComponent implements OnInit {
 				CurrentUserQuestion: this.user.CurrentUserQuestion
 			})
 			.then(user => {
-				this.user.isLastQuestionForCurrentQuiz = user.isLastQuestionForCurrentQuiz;
-				this.user.CurrentUserQuestion = user.CurrentUserQuestion;
-				this.checkQuizCompleted(this.user);
+				this.showResult(user.CurrentUserQuestion.isCorrect);
+				setTimeout(()=>{
+					this.showingResult=false;
+					this.animateAndLoadNextQuestion(user);
+					this.checkQuizCompleted(this.user);
+				},1500);
 			})
 		}
 		else {
