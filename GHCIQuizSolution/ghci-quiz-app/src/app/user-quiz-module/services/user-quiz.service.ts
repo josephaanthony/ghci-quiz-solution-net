@@ -9,48 +9,29 @@ import _ from 'lodash'
 
 import { environment } from '../../../environments/environment'
 import { HttpUtil } from '../../shared/util/http.util';
+import { BaseService } from '../../shared/service/base.service';
 import { UserQuiz } from '../models/user-quiz';
 import { UserQuestion } from '../models/user-question';
 import { LocalStorageService } from './local-storage.service';
 import { LoaderService } from '../../shared/components/loader.service'
 
 @Injectable()
-export class UserQuizService {
+export class UserQuizService extends BaseService {
 	private quizUserUrl = environment.apiContextUrl +  '/api/quizuser';
 	private userQuestionUrl = environment.apiContextUrl +  '/api/userquestion';
 	private userQuizUrl = environment.apiContextUrl +  '/api/userquiz'
 
-	private quizErrorHandler = HttpUtil.handleErrorWithMessage(this.toasterService);
-	private dispayLoaderFn;
-	private hideLoaderFn;
-
-	constructor(private http: Http, private router: Router, private toasterService: ToasterService,
-		private localStorageService: LocalStorageService, private loaderService: LoaderService) {
-		this.dispayLoaderFn = () => { 
-			this.loaderService.display(true);
-		}
-		this.hideLoaderFn = () => {
-			this.loaderService.display(false);
-		} 
+	constructor(http: Http, private router: Router, toasterService: ToasterService,
+		private localStorageService: LocalStorageService, loaderService: LoaderService) {
+			super(http, toasterService, loaderService);
 	}
 
 	public getUserQuizs(user) {
-		this.dispayLoaderFn();
-		return this.http.get(this.userQuizUrl + '/' + user.id)
-			.finally(this.hideLoaderFn)
-			.toPromise()
-			.then(response => response.json())
-			.catch(this.quizErrorHandler);	
-
+		return this.getHttp(this.userQuizUrl + '/' + user.id);
 	}
 
 	public getUser(user) {
-		this.dispayLoaderFn();
-		return this.http.get(this.quizUserUrl + '/' + user.id)
-			.finally(this.hideLoaderFn)
-			.toPromise()
-			.then(response => response.json())
-			.catch(this.quizErrorHandler);	
+		return this.getHttp(this.quizUserUrl + '/' + user.id);
 	}
 
 	public getLocalUserOrRedirect() {
@@ -63,51 +44,31 @@ export class UserQuizService {
 					localUser = null;
 					this.router.navigateByUrl('/users/registration');
 				}
-
 				return user;
 			})
 		}
 		
 		if(!localUser) {
 			this.router.navigateByUrl('/users/registration');
-		}
-		
+		}		
 		return Promise.resolve(null);
 	}
 
 	public submitAndGetNextQuestion(user) {
-		this.dispayLoaderFn();
-		return this.http.post(this.userQuestionUrl, user)
-			.finally(this.hideLoaderFn)
-			.toPromise()
-			.then(response => response.json())
-			.catch(this.quizErrorHandler);	
+		return this.postHttp(this.userQuestionUrl, user, null, (response) => {
+			console.log("Check Response " + response);
+		});
 	}
 
 	public getUserByEmail(user) {
-		this.dispayLoaderFn();
-		return this.http.get(this.quizUserUrl + '/getbyemail?emailId=' + user.email)
-			.finally(this.hideLoaderFn)
-			.toPromise()
-			.then(response => response.json())
-			.catch(this.quizErrorHandler);		
+		return this.getHttp(this.quizUserUrl + '/getbyemail?emailId=' + user.email);
 	}
 
 	public registerUser(user) {
-		this.dispayLoaderFn();
-		return this.http.post(this.quizUserUrl, user)
-			.finally(this.hideLoaderFn)
-			.toPromise()
-			.then(response => response.json())
-			.catch(this.quizErrorHandler);
+		return this.postHttp(this.quizUserUrl, user)
 	}
 
 	public startQuiz(user) {
-		this.dispayLoaderFn();
-		return this.http.post(this.userQuizUrl, user)
-			.finally(this.hideLoaderFn)
-			.toPromise()
-			.then(response => response.json())
-			.catch(this.quizErrorHandler);		
+		return this.postHttp(this.userQuizUrl, user);
 	}
 }

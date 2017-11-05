@@ -11,6 +11,9 @@
 	<div *ngIf="user?.CurrentUserQuestion?.id" class="row-section" style="background:#ECEDF2; padding-top:60px;">
 		<div class="row-section" style="margin-bottom:10px; min-height:200px; padding-left:20px; padding-top:10px; padding-bottom: 10px; padding-right:10px">
 			<code style="background:transparent; color: black; word-wrap: break-word; white-space: pre-wrap; padding:0px;">{{user.CurrentUserQuestion.Question.description}}</code>
+			<div>
+				<img src="{{getImage(user.CurrentUserQuestion.Question.imageUrl)}}">
+			</div>
 		</div>
 		
 		<div class="row-section" style="padding-top:10px; background:white; padding-right:10px">

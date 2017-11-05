@@ -70,6 +70,7 @@ export class QuizComponent implements OnInit {
 
 		updateFn(quiz).then(quizResult => {
 			console.log(quizResult);
+			quiz.file = null;
 			_.extend(quiz, quizResult);
 			this.populateCompositionLevel(quiz);
 		});
@@ -85,6 +86,33 @@ export class QuizComponent implements OnInit {
 				const index = _.findIndex(this.quizs, { id: quiz.id });
 				this.quizs.splice(index, 1);
 			});
+		}
+	}
+
+	fileChange(quiz, event): void {
+        const fileList: FileList = event.target.files;
+        if (fileList.length > 0) {
+			const file = fileList[0];
+			this.quizService.updloadFile(file).then(fileResult => {
+				quiz.file = fileResult;
+			});
+        }
+	}
+	
+	deleteImage(quiz) {
+		if(!quiz.file) {
+			quiz.file = {};
+		}
+		quiz.file.isDeleted = true;
+	}
+
+	private imageCounter = 0;
+	private getImage(imageName) {
+		if(imageName) {
+			return this.quizService.getContextUrl() + "/Images/" + imageName + "?" + this.imageCounter++;
+		}
+		else {
+			return null;
 		}
 	}
 }

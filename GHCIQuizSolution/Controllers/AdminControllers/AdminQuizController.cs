@@ -21,7 +21,8 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         quiz.description,
         quiz.id,
         quiz.level,
-        quiz.passpoint
+        quiz.passpoint,
+        quiz.imageUrl,
       }).OrderBy(quiz => quiz.level);
     }
 
@@ -70,6 +71,18 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       }
     }
 
+    private Object GetQuiz(Quiz quiz) {
+      return new
+      {
+        quiz.complexityComposition,
+        quiz.description,
+        quiz.id,
+        quiz.level,
+        quiz.passpoint,
+        quiz.imageUrl,
+      };
+    }
+
     public Object Put([FromBody] Quiz quiz) {
       var quizDb = QuizDB.Quizs
         .Where(q => q.id == quiz.id)
@@ -79,34 +92,31 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         return NotFound();
       }
 
-      ValidateQuiz(quiz);
-
       quizDb.complexityComposition = quiz.complexityComposition;
       quizDb.description = quiz.description;
       quizDb.level = quiz.level;
       quizDb.passpoint = quiz.passpoint;
+      //quizDb.imageUrl = quiz.imageUrl;
+      this.SetImageUrl(quiz, quizDb);
 
+      ValidateQuiz(quizDb);
+      
       this.SaveQuizDBChanges();
 
-      return quiz;
+      return GetQuiz(quizDb);
     }
 
     public Object Post([FromBody] Quiz quiz)
     {
       quiz.id = null;
 
+      this.SetImageUrl(quiz, quiz);
       ValidateQuiz(quiz);
 
       QuizDB.Quizs.Add(quiz);
       this.SaveQuizDBChanges();
 
-      return new {
-        quiz.complexityComposition,
-        quiz.description,
-        quiz.id,
-        quiz.level,
-        quiz.passpoint
-      };
+      return GetQuiz(quiz);
     }
 
     public Object Delete(String id) {

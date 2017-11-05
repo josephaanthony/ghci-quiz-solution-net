@@ -15,6 +15,7 @@
           <Property Name="optionType" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="complexity" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="index" Type="int" Nullable="false" />
+          <Property Name="imageUrl" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Quiz">
           <Key>
@@ -26,6 +27,7 @@
           <Property Name="timeoutInterval" Type="int" />
           <Property Name="complexityComposition" Type="varchar" MaxLength="500" />
           <Property Name="passpoint" Type="int" />
+          <Property Name="imageUrl" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="QuizOption">
           <Key>
@@ -224,6 +226,7 @@
           <NavigationProperty Name="UserQuestions" Relationship="Self.FK_UserQuestion_Question" FromRole="Question" ToRole="UserQuestion" />
           <Property Name="complexity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="index" Type="Int32" Nullable="false" />
+          <Property Name="imageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Quiz">
           <Key>
@@ -237,6 +240,7 @@
           <NavigationProperty Name="UserQuizs" Relationship="Self.FK_UserQuiz_Quiz" FromRole="Quiz" ToRole="UserQuiz" />
           <Property Name="complexityComposition" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="passpoint" Type="Int32" />
+          <Property Name="imageUrl" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="QuizOption">
           <Key>
@@ -438,6 +442,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="GHCIQuizModel.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="index" ColumnName="index" />
                 <ScalarProperty Name="complexity" ColumnName="complexity" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -450,6 +455,7 @@
           <EntitySetMapping Name="Quizs">
             <EntityTypeMapping TypeName="GHCIQuizModel.Quiz">
               <MappingFragment StoreEntitySet="Quiz">
+                <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
                 <ScalarProperty Name="passpoint" ColumnName="passpoint" />
                 <ScalarProperty Name="complexityComposition" ColumnName="complexityComposition" />
                 <ScalarProperty Name="id" ColumnName="Id" />

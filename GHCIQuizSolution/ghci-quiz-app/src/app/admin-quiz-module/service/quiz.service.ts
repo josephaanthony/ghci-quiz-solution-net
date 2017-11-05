@@ -29,6 +29,12 @@ export class QuizService extends BaseService {
 		return this.getHttp<Quiz[]>(this.quizUrl);
 	}
 
+	public updloadFile(file) {
+		const formData = new FormData();
+		formData.append('file', file, file.name);
+		return this.postHttp(environment.apiContextUrl + '/api/fileupload', formData, null, () => {});
+	}
+
 	public createQuiz = (newQuiz: Quiz): Promise<Quiz> => this.createData<Quiz>(this.quizUrl, newQuiz);
 	public deleteQuiz = (delQuizId: String): Promise<String> => this.deleteData(this.quizUrl, delQuizId);
 	public updateQuiz = (putQuiz: Quiz): Promise<Quiz> => this.updateData<Quiz>(this.quizUrl, putQuiz);

@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 import { ToasterService } from 'angular2-toaster';
 import _ from 'lodash';
 
+import { environment } from '../../../environments/environment'
 import { HttpUtil } from '../../shared/util/http.util';
 import { LoaderService } from '../../shared/components/loader.service';
 
@@ -25,6 +26,12 @@ export class BaseService {
 		} 
     }
 
+    public getContextUrl() {
+        return environment.apiContextUrl;   
+	}
+
+
+
     private executHttp<T>(fn: Observable<Response>, doFn?: any) {
         this.dispayLoaderFn();
 
@@ -33,10 +40,11 @@ export class BaseService {
         }
 
         return fn
+                .map(response => response.json() as T)
                 .do(doFn)
                 .finally(this.hideLoaderFn)
 				.toPromise()
-				.then(response => response.json() as T)
+				//.then(response => response.json() as T)
 				.catch(this.quizErrorHandler);;        
     }
 
@@ -44,8 +52,8 @@ export class BaseService {
         return this.executHttp<T>(this.http.get(url, options), () => {});
     }
 
-    protected postHttp<T>(url, body, options?) {
-        return this.executHttp<T>(this.http.post(url, body, options));
+    protected postHttp<T>(url, body, options?, doFn?) {
+        return this.executHttp<T>(this.http.post(url, body, options), doFn);
     }
     
     protected putHttp<T>(url, body, options?) {

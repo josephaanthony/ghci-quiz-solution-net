@@ -1,6 +1,7 @@
 using GHCIQuizSolution.DBContext;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -26,6 +27,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
             question.optionType,
             question.quizId,
             question.index,
+            question.imageUrl,
             QuizOptions = question.QuizOptions.Select(option => new {
               option.description,
               option.id,
@@ -41,6 +43,8 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
     }
 
     public Object Put([FromBody] Question question) {
+      logger.Debug("Check this out " + question);
+
       var questionDb = QuizDB.Questions
         .Where(q => q.id == question.id)
         .FirstOrDefault();
@@ -49,12 +53,13 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         return NotFound();
       }
 
-      ValidateQuestion(question);
-
       questionDb.complexity = question.complexity;
       questionDb.description = question.description;
       questionDb.optionType = question.optionType;
       questionDb.index = question.index;
+      //questionDb.imageUrl = question.imageUrl;
+      this.SetImageUrl(question, questionDb);
+      ValidateQuestion(questionDb);
 
       var newlyAddedOptions = question.QuizOptions.Where(o => !questionDb.QuizOptions.Select(dbOp => dbOp.id).Contains(o.id)).ToList();
       var deletedOptions = questionDb.QuizOptions.Where(o => !question.QuizOptions.Select(op => op.id).Contains(o.id)).ToList();
@@ -91,6 +96,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         question.id,
         question.optionType,
         question.quizId,
+        question.imageUrl,
         QuizOptions = question.QuizOptions.Select(option => new
         {
           option.description,
@@ -107,7 +113,13 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       List<String> validationMessages = new List<string>();
 
       CheckInArray(question.complexity, QUESTION_COMPLEXITITES, "Complexity value not valid", validationMessages);
-      CheckLength(question.description, 3, "Description value not valid", validationMessages);
+
+      if(String.IsNullOrWhiteSpace(question.description) && String.IsNullOrWhiteSpace(question.imageUrl)) {
+        validationMessages.Add("Either Description or ImageUrl should be present");
+      }
+
+      //CheckLength(question.description, 3, "Description value not valid", validationMessages);
+
       CheckInArray(question.optionType, QUESTION_OPTION_TYPE, "Option Type value not valid", validationMessages);
       CheckLength(question.quizId, 3, "QuizId value not valid", validationMessages);
 
@@ -129,6 +141,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
 
     public Object Post([FromBody] Question question) {
       question.id = null;
+      this.SetImageUrl(question, question);
       ValidateQuestion(question);
 
       QuizDB.Questions.Add(question);

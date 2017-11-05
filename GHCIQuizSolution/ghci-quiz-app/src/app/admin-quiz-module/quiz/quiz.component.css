@@ -9,3 +9,12 @@
 select {
 	height: 27px;
 }
+
+.quiz-row > .row {
+   border-bottom: 1px solid;
+    padding-bottom: 10px;
+}
+
+.img-deleted {
+    opacity: .5;
+}

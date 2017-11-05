@@ -27,6 +27,7 @@ namespace GHCIQuizSolution.DBContext
         public string optionType { get; set; }
         public string complexity { get; set; }
         public int index { get; set; }
+        public string imageUrl { get; set; }
     
         public virtual Quiz Quiz { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
