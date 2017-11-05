@@ -28,10 +28,6 @@ export class UserQuizHomeComponent implements OnInit {
 						"/assets/images/Analytical.jpg"]
 	
 	constructor(private elementRef: ElementRef, private route: ActivatedRoute, private router: Router, private quizService: UserQuizService, private toasterService: ToasterService) {
-		// this.localUser = this.localStorageService.getItem('user');
-		// if(!this.localUser) {
-		// 	this.router.navigateByUrl('/users/registration');
-		// }
 	}
 
 	ngOnInit() {
@@ -51,6 +47,10 @@ export class UserQuizHomeComponent implements OnInit {
 						});
 				}
 			})
+	}
+
+	private getImage(imageName) {
+		return this.quizService.getContextUrl() + "/Images/" + imageName;
 	}
 
 	private setQuizActive(quizs, user) {

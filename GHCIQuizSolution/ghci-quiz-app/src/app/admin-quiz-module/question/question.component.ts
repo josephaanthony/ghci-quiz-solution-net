@@ -78,6 +78,7 @@ export class QuestionComponent implements OnInit {
 		}
 
 		updateFn(question).then(questionResult => {
+			question.file = null;
 			_.extend(question, questionResult);
 		});
 	}
@@ -92,6 +93,34 @@ export class QuestionComponent implements OnInit {
 				const index = _.findIndex(this.quiz.Questions, { id: question.id });
 				this.quiz.Questions.splice(index, 1);
 			});
+		}
+	}
+
+	fileChange(question, event): void {
+        const fileList: FileList = event.target.files;
+        if (fileList.length > 0) {
+			const file = fileList[0];
+			//question.file = file;
+			this.quizService.updloadFile(file).then(fileResult => {
+				question.file = fileResult;
+			});
+        }
+	}
+	
+	deleteImage(question) {
+		if(!question.file) {
+			question.file = {};
+		}
+		question.file.isDeleted = true;
+	}
+
+	private imageCounter = 0;
+	private getImage(imageName) {
+		if(imageName) {
+			return this.quizService.getContextUrl() + "/Images/" + imageName + "?" + this.imageCounter++;
+		}
+		else {
+			return null;
 		}
 	}
 }

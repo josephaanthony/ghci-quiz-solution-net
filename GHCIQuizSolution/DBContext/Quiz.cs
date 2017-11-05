@@ -27,6 +27,7 @@ namespace GHCIQuizSolution.DBContext
         public Nullable<int> timeoutInterval { get; set; }
         public string complexityComposition { get; set; }
         public Nullable<int> passpoint { get; set; }
+        public string imageUrl { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Question> Questions { get; set; }

@@ -10,7 +10,10 @@
 
 	<div *ngIf="user?.CurrentUserQuestion?.id" class="row-section" style=" padding-top:60px;perspective: 1200px;">
 		<div class="row-section" id="question" style="background:#ECEDF2;margin-bottom:10px; min-height:200px; padding-left:20px; padding-top:10px; padding-bottom: 10px; padding-right:10px">
-			<code style="background:transparent; color: black; word-wrap: break-word; white-space: pre-wrap; padding:0px;"><img *ngIf="user.CurrentUserQuestion.Question.isImage" style="display:block;margin-right:auto;margin-left:auto;max-height:200px;max-width:100%" [src]="user.CurrentUserQuestion.Question.imageUrl">{{user.CurrentUserQuestion.Question.description}}</code>
+			<code style="background:transparent; color: black; word-wrap: break-word; white-space: pre-wrap; padding:0px;">{{user.CurrentUserQuestion.Question.description}}</code>
+			<div>
+				<img src="{{getImage(user.CurrentUserQuestion.Question.imageUrl)}}">
+			</div>
 		</div>
 		
 		<div class="row-section" id="answer" style="padding-top:10px; padding-right:10px">

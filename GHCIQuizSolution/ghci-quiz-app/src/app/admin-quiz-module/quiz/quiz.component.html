@@ -21,6 +21,12 @@
 					</div>
 					<div class="col-md-2">
 						<input type="text" [(ngModel)]="quiz.description"/>
+						
+						<input type="file" (change)="fileChange(quiz, $event)" name="file" />
+						<button *ngIf="quiz.imageUrl" (click)="deleteImage(quiz)" 
+							[disabled]="quiz?.file?.isDeleted" >Delete Image</button> 
+						<img src="{{getImage(quiz.imageUrl)}}" style="height:50px" [ngClass]="{'img-deleted': quiz?.file?.isDeleted}">
+
 					</div>
 					<div class="col-md-1">
 						<input type="text" [(ngModel)]="quiz.level"/>

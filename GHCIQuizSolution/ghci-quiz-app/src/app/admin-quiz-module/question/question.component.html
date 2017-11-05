@@ -34,6 +34,10 @@
 					</div>
 					<div class="col-md-3">
 						<textarea style="height:200px" type="text" [(ngModel)]="question.description" autofocus></textarea>
+						<input type="file" (change)="fileChange(question, $event)" name="file" />
+						<button *ngIf="question.imageUrl" (click)="deleteImage(question)" 
+							[disabled]="question?.file?.isDeleted" >Delete Image</button> 
+						<img src="{{getImage(question.imageUrl)}}" style="height:50px" [ngClass]="{'img-deleted': question?.file?.isDeleted}">
 					</div>
 					<div class="col-md-1">
 						<select [(ngModel)]="question.optionType">

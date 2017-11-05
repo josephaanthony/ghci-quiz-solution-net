@@ -11,12 +11,15 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 
 namespace GHCIQuizSolution.Controllers
 {
   public class BaseAPIController : ApiController
   {
+    public static string FILE_TEMP_PATH = HttpContext.Current.Server.MapPath("~/App_Data/Temp");
+    public static string FILE_IMAGE_PATH = HttpContext.Current.Server.MapPath("~/Images");
     protected readonly GHCIQuizEntities QuizDB = new GHCIQuizEntities();
 
     public BaseAPIController()

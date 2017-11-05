@@ -1,16 +1,23 @@
 using GHCIQuizSolution.DBContext;
+using GHCIQuizSolution.Models.FromDBContext;
 using Newtonsoft.Json;
+using NLog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace GHCIQuizSolution.Controllers
 {
   public class BaseQuizController : BaseAPIController
   {
+    protected static Logger logger = LogManager.GetCurrentClassLogger();
+
     protected static class QUIZ_STATUS {
       public static String IN_PROGRESS = "IN_PROGRESS";
       public static String COMPLETED_SUCCESS = "COMPLETED_SUCCESS";
@@ -24,6 +31,35 @@ namespace GHCIQuizSolution.Controllers
     };
     protected String[] QUESTION_COMPLEXITITES = { "COMPLEX", "MEDIUM", "EASY" };
     protected String[] QUESTION_OPTION_TYPE = { "Radio", "Checkbox" };
+
+    protected void SetImageUrl(IFileBased sourceQuestion, IFileBased targetQuestion)
+    {
+      if (sourceQuestion.file != null)
+      {
+        if (!sourceQuestion.file.isDeleted)
+        {
+          if (String.IsNullOrWhiteSpace(targetQuestion.id))
+          {
+            targetQuestion.id = Guid.NewGuid().ToString();
+          }
+          File.Delete(FILE_IMAGE_PATH + "/" + targetQuestion.id + sourceQuestion.file.ext);
+          File.Move(FILE_TEMP_PATH + "/" + sourceQuestion.file.fileName, FILE_IMAGE_PATH + "/" + targetQuestion.id + sourceQuestion.file.ext);
+          targetQuestion.imageUrl = targetQuestion.id + sourceQuestion.file.ext;
+        }
+        else
+        {
+          if (targetQuestion.imageUrl != null)
+          {
+            File.Delete(FILE_IMAGE_PATH + "/" + targetQuestion.imageUrl);
+            targetQuestion.imageUrl = null;
+          }
+        }
+      }
+      else
+      {
+        targetQuestion.imageUrl = sourceQuestion.imageUrl;
+      }
+    }
 
 
     protected void SetNextQuestion(QuizUser quizUser)

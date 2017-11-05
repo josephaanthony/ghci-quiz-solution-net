@@ -8,4 +8,5 @@ export class Quiz {
 	public complexityComposition: string;
 	public ComplexityComposition: any;
 	public Questions: Question[];
+	public file: any;
 }

@@ -25,20 +25,20 @@ export class UserQuizComponent implements OnInit {
 	private quizs: any;
 	
 	constructor(private elementRef: ElementRef, private router: Router, private quizService: UserQuizService, private toasterService: ToasterService) {
-		// var localUser = this.localStorageService.getItem('user');
-		// if(!localUser) {
-		// 	this.router.navigateByUrl('/users/registration');
-		// }
 	}
 
 	ngOnInit() {
 		this.quizService.getLocalUserOrRedirect()
-		//this.quizService.getUser(this.localStorageService.getItem('user'))
 			.then(user => {
 				this.user = user;
 				this.checkQuizCompleted(this.user);
 			});
 	}
+
+	private getImage(imageName) {
+		return this.quizService.getContextUrl() + "/Images/" + imageName;
+	}
+
 
 	onOptionSelected(userQuestion, option) {
 		this.user.CurrentUserQuestion.selectedOptionIds =

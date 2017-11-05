@@ -144,6 +144,7 @@
     <Compile Include="Controllers\AdminControllers\AdminQuestionController.cs" />
     <Compile Include="Controllers\AdminControllers\AdminQuizController.cs" />
     <Compile Include="Controllers\AdminControllers\AdminUserController.cs" />
+    <Compile Include="Controllers\AdminControllers\FileUploadController.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\BaseQuizController.cs" />
     <Compile Include="Controllers\UserControllers\QuizUserController.cs" />
@@ -190,6 +191,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FileType.cs" />
+    <Compile Include="Models\FromDBContext\IFileBased.cs" />
+    <Compile Include="Models\FromDBContext\Quiz.cs" />
+    <Compile Include="Models\FromDBContext\Question.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -225,7 +230,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Images\" />
     <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>
