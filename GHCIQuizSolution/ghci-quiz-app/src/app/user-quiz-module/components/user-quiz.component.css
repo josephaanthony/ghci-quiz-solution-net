@@ -1,4 +1,6 @@
-
+#resultDiv {
+	display: none;
+}
 
 .slides {
 	list-style: none;

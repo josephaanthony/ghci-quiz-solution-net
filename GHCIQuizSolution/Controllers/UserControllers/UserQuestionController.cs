@@ -13,13 +13,19 @@ namespace GHCIQuizSolution.Controllers.UserControllers
     public Object Post([FromBody]QuizUser quizUser)
     {
       var dbQuizUser = QuizDB.QuizUsers.First(u => u.id == quizUser.id);
+      bool? lastQuestionIsCorrect = false;
+
+      if(!quizUser.CurrentUserQuestion.id.Equals(dbQuizUser.CurrentUserQuestion.id)) {
+        throw new ArgumentException("Invalid CurrentUserQuestion");
+      }
+
 
       var selectedOptions = quizUser.CurrentUserQuestion.selectedOptionIds?.Split(',').OrderBy(s => s);
       var correctOptions = dbQuizUser.CurrentUserQuestion.Question.QuizOptions.Where(o => o.isCorrect).Select(o => o.id).OrderBy(s => s);
 
       // first set the isCorrect
       dbQuizUser.CurrentUserQuestion.selectedOptionIds = quizUser.CurrentUserQuestion.selectedOptionIds;
-      dbQuizUser.CurrentUserQuestion.isCorrect = selectedOptions.SequenceEqual(correctOptions);
+      lastQuestionIsCorrect = dbQuizUser.CurrentUserQuestion.isCorrect = selectedOptions.SequenceEqual(correctOptions);
 
       this.SetNextQuestion(dbQuizUser);
 
@@ -32,7 +38,8 @@ namespace GHCIQuizSolution.Controllers.UserControllers
       {
         dbQuizUser.id,
         dbQuizUser.isLastQuestionForCurrentQuiz,
-        CurrentUserQuestion = this.GetCurrentUserQuestionForReturn(dbQuizUser)
+        CurrentUserQuestion = this.GetCurrentUserQuestionForReturn(dbQuizUser),
+        lastQuestionIsCorrect = lastQuestionIsCorrect.GetValueOrDefault()
       };
     }
   }

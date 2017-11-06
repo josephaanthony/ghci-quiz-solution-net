@@ -55,9 +55,7 @@ export class UserQuizService extends BaseService {
 	}
 
 	public submitAndGetNextQuestion(user) {
-		return this.postHttp(this.userQuestionUrl, user, null, (response) => {
-			console.log("Check Response " + response);
-		});
+		return this.postHttp(this.userQuestionUrl, user, null, () => {}, true);
 	}
 
 	public getUserByEmail(user) {
@@ -69,6 +67,6 @@ export class UserQuizService extends BaseService {
 	}
 
 	public startQuiz(user) {
-		return this.postHttp(this.userQuizUrl, user);
+		return this.postHttp(this.userQuizUrl, user, null, () => {});
 	}
 }

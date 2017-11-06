@@ -22,7 +22,7 @@ import { LocalStorageService } from './user-quiz-module/services/local-storage.s
 import { LoaderService } from './shared/components/loader.service'
 import { LoaderComponent } from './shared/components/loader.component'
 import { UsersService } from './admin-quiz-module/service/users.service';
-import { fakeBackendProvider } from './shared/service/fakeBackend.service';
+//import { fakeBackendProvider } from './shared/service/fakeBackend.service';
 
 const appRoutes: Routes = [
     { path: 'users/quizhome', component: UserQuizHomeComponent },
@@ -72,7 +72,9 @@ const appRoutes: Routes = [
           { enableTracing: false } // <-- debugging purposes only
       )
   ],
-  providers: [QuizService, UserQuizService, LocalStorageService, ToasterService, LoaderService, UsersService, fakeBackendProvider, MockBackend, BaseRequestOptions],
+  providers: [QuizService, UserQuizService, LocalStorageService, ToasterService, LoaderService, UsersService
+    //, fakeBackendProvider
+    , MockBackend, BaseRequestOptions],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

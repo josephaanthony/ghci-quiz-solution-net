@@ -4,11 +4,18 @@ delete from UserQuestion;
 delete from UserQuiz;
 
 select * from QuizUser;
-select * from UserQuiz uq, Quiz q where uq.quizId = q.id;
+select * from UserQuiz uq, Quiz q where uq.quizId = q.id order by level, attempt;
 select * from UserQuestion uq, Question q where uq.questionId = q.id;
+
+select * from UserQuestion where userQuizId = '73257cec-2f09-4f8c-9072-89ca5c33d690' order by [index]
+
+select * from Question where id = '5b9e4869-5aac-4bea-851f-aab6ed2a5d24';
+select * from QuizOption where questionId = '5b9e4869-5aac-4bea-851f-aab6ed2a5d24'
 
 select * from QuizOption where [index] = '';
 delete from Quiz where description = 'Test'
+
+select * from Question where id = '6a122b17-a3a5-403a-8a9c-79b84095d519'
 
 /*
 delete from QuizOption

@@ -203,6 +203,7 @@ namespace GHCIQuizSolution.Controllers
             user.CurrentUserQuestion.Question.description,
             user.CurrentUserQuestion.Question.id,
             user.CurrentUserQuestion.Question.optionType,
+            user.CurrentUserQuestion.Question.imageUrl,
             QuizOptions = user.CurrentUserQuestion.Question.QuizOptions.Select(quizOption => new
             {
               quizOption.description,

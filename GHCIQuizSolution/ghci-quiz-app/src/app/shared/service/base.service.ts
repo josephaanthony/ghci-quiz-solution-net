@@ -32,8 +32,10 @@ export class BaseService {
 
 
 
-    private executHttp<T>(fn: Observable<Response>, doFn?: any) {
-        this.dispayLoaderFn();
+    private executHttp<T>(fn: Observable<Response>, doFn?: any, doWait?: any) {
+        if(!doWait) {
+            this.dispayLoaderFn();
+        }
 
         if(!doFn) {
             doFn = this.quizSuccessHandler;
@@ -42,7 +44,11 @@ export class BaseService {
         return fn
                 .map(response => response.json() as T)
                 .do(doFn)
-                .finally(this.hideLoaderFn)
+                .finally( () => {
+                    if(!doWait) {
+                        this.hideLoaderFn();
+                    }
+                })
 				.toPromise()
 				//.then(response => response.json() as T)
 				.catch(this.quizErrorHandler);;        
@@ -52,8 +58,8 @@ export class BaseService {
         return this.executHttp<T>(this.http.get(url, options), () => {});
     }
 
-    protected postHttp<T>(url, body, options?, doFn?) {
-        return this.executHttp<T>(this.http.post(url, body, options), doFn);
+    protected postHttp<T>(url, body, options?, doFn?, doWait?: any) {
+        return this.executHttp<T>(this.http.post(url, body, options), doFn, doWait);
     }
     
     protected putHttp<T>(url, body, options?) {
