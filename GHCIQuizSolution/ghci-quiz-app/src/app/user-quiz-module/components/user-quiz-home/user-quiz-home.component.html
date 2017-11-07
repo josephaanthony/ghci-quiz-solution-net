@@ -3,7 +3,7 @@
 		<h2>Welcome</h2>
 	</div>
 
-	<div *ngFor="let quiz of quizs; let i = index" [attr.data-index]="i" style="height:30%; min-height: 150px" class="row-section">
+	<div [@quizeHomeAnim]="quizs" *ngFor="let quiz of quizs; let i = index" [attr.data-index]="i" style="height:30%; min-height: 150px" class="row-section">
 		<div class="row-section-cell section-{{i}}" [ngClass]="{active: quiz.isActive}" (click)="startQuiz(quiz)">
 			<span>
 				<label class="quiz-level">Level:{{ quiz.level }}

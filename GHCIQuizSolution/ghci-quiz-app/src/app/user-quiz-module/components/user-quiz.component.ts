@@ -79,6 +79,7 @@ const TEMP_QUIZ_ID = '*temp*';
 export class UserQuizComponent implements OnInit {
 	private user: any;
 	private quizs: any;
+	private questionSubmitted:boolean;
 	
 	constructor(private elementRef: ElementRef, private router: Router, private quizService: UserQuizService, private toasterService: ToasterService) {
 	}
@@ -92,7 +93,7 @@ export class UserQuizComponent implements OnInit {
 	}
 
 	private getImage(imageName) {
-		return this.quizService.getContextUrl() + "/Images/" + imageName;
+		return this.quizService.getContextUrl() + "/" + imageName;
 	}
 
 
@@ -132,6 +133,7 @@ export class UserQuizComponent implements OnInit {
 
 	getNextQuestion() {
 		if(this.user.CurrentUserQuestion.selectedOptionIds && this.user.CurrentUserQuestion.selectedOptionIds.length > 0) {
+			this.questionSubmitted = true;
 			this.quizService.submitAndGetNextQuestion({
 				id: this.user.id,
 				CurrentUserQuestion: this.user.CurrentUserQuestion
@@ -139,10 +141,13 @@ export class UserQuizComponent implements OnInit {
 			.then(user => {
 				this.showResult(user.lastQuestionIsCorrect);
 				jQuery(this.elementRef.nativeElement).find('#resultDiv').show(100);
+				jQuery(this.elementRef.nativeElement).find('#optionsDiv').hide(100);
 				setTimeout(() => {
 					jQuery(this.elementRef.nativeElement).find('#resultDiv').hide(10);
+					jQuery(this.elementRef.nativeElement).find('#optionsDiv').show(10);					
 					this.user.isLastQuestionForCurrentQuiz = user.isLastQuestionForCurrentQuiz;
 					this.user.CurrentUserQuestion = user.CurrentUserQuestion;
+					this.questionSubmitted = false;
 					this.checkQuizCompleted(user);
 				}, 1500);
 
