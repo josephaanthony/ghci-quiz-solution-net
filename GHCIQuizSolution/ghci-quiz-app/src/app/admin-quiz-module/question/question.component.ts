@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import _ from 'lodash';
 
+import { ToasterService } from 'angular2-toaster';
 import { Question } from '../models/question';
 import { QuizOption } from '../models/option'
 import { Quiz } from '../models/quiz'
@@ -21,9 +22,9 @@ export class QuestionComponent implements OnInit {
 	private questionIndexCounter = 0;
 	private OPTION_FLAG =  [ "true", "false" ]
 	private OPTION_TYPE =  [ "Radio", "Checkbox" ] 
-	private QUESTION_COMPLEXITITES = [ "COMPLEX", "MEDIUM", "EASY" ];
+	private QUESTION_COMPLEXITITES = QuizService.QUESTION_COMPLEXITITES;
 
-	constructor(private route: ActivatedRoute, private quizService: QuizService) {
+	constructor(private route: ActivatedRoute, private quizService: QuizService, private toasterService: ToasterService) {
 
 	}
 
@@ -31,6 +32,11 @@ export class QuestionComponent implements OnInit {
 		this.quizService.getQuestions(this.route.snapshot.params['quizId'])
 			.then((quiz: Quiz) => {
 				this.quiz = quiz;
+				
+				if(this.quiz.complexityComposition && this.quiz.complexityComposition.indexOf("GROUP") >= 0) {
+					this.QUESTION_COMPLEXITITES = ["GROUP"];
+				}
+				
 				let maxIndexQuestion = _.maxBy(this.quiz.Questions, 'index');
 				if(maxIndexQuestion) {
 					this.questionIndexCounter = maxIndexQuestion.index + 1;
@@ -60,12 +66,25 @@ export class QuestionComponent implements OnInit {
 		newQuestion.quizId = this.quiz.id;
 		newQuestion.QuizOptions = [{ id: null, description: null, isCorrect: null, index: 0 }];
 
+		if(this.QUESTION_COMPLEXITITES.length === 1) {
+			newQuestion.complexity = this.QUESTION_COMPLEXITITES[0];
+		}
+
 		if(_.isEmpty(this.quiz.Questions)) {
 			this.quiz.Questions = [];
 		}
 		this.quiz.Questions.push(newQuestion);
 
 		window.scrollTo(0, (document.body.scrollHeight || document.documentElement.scrollHeight) + 100);
+	}
+
+	private validateQuestion(question: Question) {
+		if(this.QUESTION_COMPLEXITITES.indexOf(question.complexity) < 0) {
+			this.toasterService.pop("error", "Validation", "Complexity value not valid");	
+			return false;
+		}
+
+		return true;
 	}
 
 	private updateQuestion(question: Question) {
@@ -75,6 +94,10 @@ export class QuestionComponent implements OnInit {
 		}
 		else {
 			updateFn = this.quizService.updateQuestion;
+		}
+
+		if(!this.validateQuestion(question)) {
+			return;
 		}
 
 		updateFn(question).then(questionResult => {

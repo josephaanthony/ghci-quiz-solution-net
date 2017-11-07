@@ -6,6 +6,7 @@ export class Question {
 	public desc: String;
 	public optionType: String;
 	public index: number;
+	public complexity: string;
 	public QuizOptions: QuizOption[];
 	public file: any;
 }

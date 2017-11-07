@@ -29,7 +29,7 @@ namespace GHCIQuizSolution.Controllers
       { "MEDIUM", 2 },
       { "COMPLEX", 3 }
     };
-    protected String[] QUESTION_COMPLEXITITES = { "COMPLEX", "MEDIUM", "EASY" };
+    protected String[] QUESTION_COMPLEXITITES = { "COMPLEX", "MEDIUM", "EASY", "GROUP" };
     protected String[] QUESTION_OPTION_TYPE = { "Radio", "Checkbox" };
 
     protected void SetImageUrl(IFileBased sourceQuestion, IFileBased targetQuestion)
@@ -160,24 +160,32 @@ namespace GHCIQuizSolution.Controllers
 
 
     private void GenerateQuizQuestions(UserQuiz userQuiz) {
+      Random random = new Random();
       var complexityCompArr = JsonConvert.DeserializeObject<ComplexityComposition[]>(userQuiz.Quiz.complexityComposition);
       List<Question> questionList = new List<Question>();
       List<Question> randomList = new List<Question>();
 
-      foreach (var comp in complexityCompArr)
-      {
-        questionList.AddRange(userQuiz.Quiz.Questions
-          .Where(q => q.complexity == comp.level)
-          .Take(comp.nos));
+      // Apply Group logic
+      if(complexityCompArr.Any(c => "GROUP".Equals(c.level))) {
+        var questionGroup = userQuiz.Quiz.Questions.GroupBy(q => q.groupName);
+        var index = random.Next(0, questionGroup.Count());
+        randomList = questionGroup.ElementAt(index).OrderBy(q => q.index).ToList();
       }
+      else {
+        foreach (var comp in complexityCompArr)
+        {
+          questionList.AddRange(userQuiz.Quiz.Questions
+            .Where(q => q.complexity == comp.level)
+            .Take(comp.nos));
+        }
 
-      Random random = new Random();
-      while(questionList.Count != 0) {
-        var index = random.Next(0, questionList.Count);
-        randomList.Add(questionList[index]);
-        questionList.RemoveAt(index);
+        while (questionList.Count != 0)
+        {
+          var index = random.Next(0, questionList.Count);
+          randomList.Add(questionList[index]);
+          questionList.RemoveAt(index);
+        }
       }
-
 
       int indexCounter = 0;
       foreach (var item in randomList)

@@ -28,6 +28,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
             question.quizId,
             question.index,
             question.imageUrl,
+            question.groupName,
             QuizOptions = question.QuizOptions.Select(option => new {
               option.description,
               option.id,
@@ -57,6 +58,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       questionDb.description = question.description;
       questionDb.optionType = question.optionType;
       questionDb.index = question.index;
+      questionDb.groupName = question.groupName;
       //questionDb.imageUrl = question.imageUrl;
       this.SetImageUrl(question, questionDb);
       ValidateQuestion(questionDb);
@@ -113,6 +115,10 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       List<String> validationMessages = new List<string>();
 
       CheckInArray(question.complexity, QUESTION_COMPLEXITITES, "Complexity value not valid", validationMessages);
+
+      if("GROUP".Equals(question.complexity)) {
+        CheckLength(question.groupName, 2, "GroupName required for Group type questions", validationMessages);
+      }
 
       if(String.IsNullOrWhiteSpace(question.description) && String.IsNullOrWhiteSpace(question.imageUrl)) {
         validationMessages.Add("Either Description or ImageUrl should be present");

@@ -17,7 +17,7 @@ const TEMP_QUIZid = '*temp*';
 export class QuizComponent implements OnInit {
 	private quizs: Quiz[];
 	private idCounter = 1;
-	private QUESTION_COMPLEXITITES = [ "COMPLEX", "MEDIUM", "EASY" ];
+	private QUESTION_COMPLEXITITES =  QuizService.QUESTION_COMPLEXITITES;
 
 	constructor(private quizService: QuizService, private toasterService: ToasterService) {
 	}

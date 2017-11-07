@@ -14,7 +14,7 @@
 					<div *ngIf="quiz.UserQuizs.length === 0 && i > 0" style="color:red" class="glyphicon quiz-glyphicon glyphicon-ban-circle"></div>
 					<div *ngIf="quiz.UserQuizs.length === 0 && i === 0" class="glyphicon quiz-glyphicon"></div>
 				</label>
-				<img class="quiz-image" src="{{imageSrc[i]}}" />				
+				<img class="quiz-image" src="{{getImage(quiz.imageUrl)}}" />				
 			</span>
 			
 			<div class="quiz-text">				

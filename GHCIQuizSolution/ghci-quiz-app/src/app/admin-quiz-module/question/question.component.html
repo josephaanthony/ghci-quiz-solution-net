@@ -48,6 +48,13 @@
 						<select [(ngModel)]="question.complexity">
 							<option *ngFor="let op of QUESTION_COMPLEXITITES">{{op}}</option>
 						</select>
+						<div *ngIf="question.complexity === 'GROUP'">
+							<label style="margin-top:10px; margin-bottom:1px">Group Name</label>
+							<input type="text" [(ngModel)]="question.groupName"/>
+
+							<label style="margin-top:10px; margin-bottom:1px">Index</label>
+							<input type="text" [(ngModel)]="question.index"/>
+						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="option-row">

@@ -24,6 +24,7 @@ namespace GHCIQuizSolution.Controllers.UserControllers
           quiz.id,
           quiz.level,
           quiz.passpoint,
+          quiz.imageUrl,
           UserQuizs =
             quiz.UserQuizs
             .Where(userQuiz => userQuiz.userId == id)
