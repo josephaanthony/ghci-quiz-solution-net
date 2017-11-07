@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, trigger, state, style, transition, animate, group, keyframes } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 import _ from 'lodash';
@@ -17,7 +17,15 @@ const TEMP_QUIZ_ID = '*temp*';
 @Component({
 	selector: 'app-user-quiz-home',
 	templateUrl: './user-quiz-home.component.html',
-	styleUrls: ['./user-quiz-home.component.css']
+	styleUrls: ['./user-quiz-home.component.css'],
+	animations:[
+		trigger('quizeHomeAnim',[
+			transition('void => *', [
+			  style({transform: 'translateX(-100%)'}),
+			  animate('1s ease')
+			])
+		])
+	]
 })
 export class UserQuizHomeComponent implements OnInit {
 	private user: any;
