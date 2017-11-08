@@ -21,7 +21,7 @@ export class QuestionComponent implements OnInit {
 	private idCounter = 1;
 	private questionIndexCounter = 0;
 	private OPTION_FLAG =  [ "true", "false" ]
-	private OPTION_TYPE =  [ "Radio", "Checkbox" ] 
+	private OPTION_TYPE =  [ "Radio", "Checkbox", "Text" ] 
 	private QUESTION_COMPLEXITITES = QuizService.QUESTION_COMPLEXITITES;
 
 	constructor(private route: ActivatedRoute, private quizService: QuizService, private toasterService: ToasterService) {

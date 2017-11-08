@@ -28,6 +28,8 @@ namespace GHCIQuizSolution.DBContext
         public string complexityComposition { get; set; }
         public Nullable<int> passpoint { get; set; }
         public string imageUrl { get; set; }
+        public string successMessage { get; set; }
+        public string failedMessage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Question> Questions { get; set; }

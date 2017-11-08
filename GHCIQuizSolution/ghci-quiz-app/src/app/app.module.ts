@@ -40,13 +40,14 @@ const appRoutes: Routes = [
     // },
     {
         path: '',
-        redirectTo: '/users/registration',
+        redirectTo: '/users/quizhome',
         pathMatch: 'full'
     },
     { 
         path: '**', 
-        redirectTo: '/users/registration',
-        pathMatch: 'full' }
+        redirectTo: '/users/quizhome',
+        pathMatch: 'full' 
+    }
 ];
 
 

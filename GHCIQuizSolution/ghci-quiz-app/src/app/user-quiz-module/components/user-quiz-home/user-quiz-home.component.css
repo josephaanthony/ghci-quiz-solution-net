@@ -16,17 +16,18 @@
 }
 
 .quiz-text {
-    font-size: 1em;
-    width: 165px;
+    font-size: 1.25em;
+     width: 189px; 
     display: inline-block;
     text-align: left;
     margin-left: 10px;
+    vertical-align: middle;
 }
 
 .quiz-glyphicon {
     width: 15px;
     display: inline-block;
-    margin-left:15px;
+    /* margin-left:15px; */
     margin-right: 10px;
     top: 3px;
     font-size: 20px;
@@ -57,5 +58,5 @@
 }
 
 .quiz-active {
-    margin-left: 26px;
+    /* margin-left: 26px; */
 }

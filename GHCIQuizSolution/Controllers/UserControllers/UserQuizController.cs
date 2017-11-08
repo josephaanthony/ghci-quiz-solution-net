@@ -25,6 +25,8 @@ namespace GHCIQuizSolution.Controllers.UserControllers
           quiz.level,
           quiz.passpoint,
           quiz.imageUrl,
+          quiz.successMessage,
+          quiz.failedMessage,
           UserQuizs =
             quiz.UserQuizs
             .Where(userQuiz => userQuiz.userId == id)
@@ -73,7 +75,8 @@ namespace GHCIQuizSolution.Controllers.UserControllers
         return Ok(quizUser);
       }
       else {
-        return NotFound();
+        //return NotFound();
+        throw new NotImplementedException();
       }
     }
   }

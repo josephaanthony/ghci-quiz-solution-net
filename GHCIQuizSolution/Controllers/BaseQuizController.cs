@@ -27,13 +27,16 @@ namespace GHCIQuizSolution.Controllers
     private Dictionary<String, int> COMPLEXITY_POINT = new  Dictionary<string, int> {
       { "EASY", 1 },
       { "MEDIUM", 2 },
-      { "COMPLEX", 3 }
+      { "COMPLEX", 3 },
+      { "GROUP", 1 }
     };
     protected String[] QUESTION_COMPLEXITITES = { "COMPLEX", "MEDIUM", "EASY", "GROUP" };
-    protected String[] QUESTION_OPTION_TYPE = { "Radio", "Checkbox" };
+    protected String[] QUESTION_OPTION_TYPE = { "Radio", "Checkbox", "Text" };
 
-    protected void SetImageUrl(IFileBased sourceQuestion, IFileBased targetQuestion)
+    protected List<Action> SetImageUrl(IFileBased sourceQuestion, IFileBased targetQuestion)
     {
+      List<Action> fileListToDelete = new List<Action>();
+
       if (sourceQuestion.file != null)
       {
         if (!sourceQuestion.file.isDeleted)
@@ -42,15 +45,16 @@ namespace GHCIQuizSolution.Controllers
           {
             targetQuestion.id = Guid.NewGuid().ToString();
           }
-          File.Delete(FILE_IMAGE_PATH + "/" + targetQuestion.id + sourceQuestion.file.ext);
-          File.Move(FILE_TEMP_PATH + "/" + sourceQuestion.file.fileName, FILE_IMAGE_PATH + "/" + targetQuestion.id + sourceQuestion.file.ext);
+
+          fileListToDelete.Add(() => File.Delete(FILE_IMAGE_PATH + "/" + targetQuestion.id + sourceQuestion.file.ext));
+          fileListToDelete.Add(() => File.Move(FILE_TEMP_PATH + "/" + sourceQuestion.file.fileName, FILE_IMAGE_PATH + "/" + targetQuestion.id + sourceQuestion.file.ext));
           targetQuestion.imageUrl = targetQuestion.id + sourceQuestion.file.ext;
         }
         else
         {
           if (targetQuestion.imageUrl != null)
           {
-            File.Delete(FILE_IMAGE_PATH + "/" + targetQuestion.imageUrl);
+            fileListToDelete.Add(() => File.Delete(FILE_IMAGE_PATH + "/" + targetQuestion.imageUrl));
             targetQuestion.imageUrl = null;
           }
         }
@@ -59,6 +63,8 @@ namespace GHCIQuizSolution.Controllers
       {
         targetQuestion.imageUrl = sourceQuestion.imageUrl;
       }
+
+      return fileListToDelete;
     }
 
 

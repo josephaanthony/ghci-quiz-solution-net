@@ -78,6 +78,8 @@ namespace GHCIQuizSolution.Controllers.UserControllers
             user.CurrentUserQuiz.Quiz.id,
             user.CurrentUserQuiz.Quiz.level,
             user.CurrentUserQuiz.Quiz.passpoint,
+            user.CurrentUserQuiz.Quiz.successMessage,
+            user.CurrentUserQuiz.Quiz.failedMessage
           },
         }
       })

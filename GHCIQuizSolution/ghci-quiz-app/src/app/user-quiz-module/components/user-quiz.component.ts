@@ -93,20 +93,35 @@ export class UserQuizComponent implements OnInit {
 	}
 
 	private getImage(imageName) {
-		return this.quizService.getContextUrl() + "/" + imageName;
+		return this.quizService.getContextUrl() + "/Images/" + imageName;
 	}
 
 
-	onOptionSelected(userQuestion, option) {
-		this.user.CurrentUserQuestion.selectedOptionIds =
-			_.reduce(
-				$(this.elementRef.nativeElement).find('[name="optionSelection"]:checked'),
-				(strObj, e) =>
-					{ 
-						strObj.val = strObj.val + (strObj.index++ ? "," : "") + $(e).val(); return strObj; 
-					}, 
-				{ index: 0, val: "" }
-			).val
+	onOptionSelected(userQuestion, option, optionTextValue) {
+		if(userQuestion.Question.optionType === 'Text') {
+			if(optionTextValue) {
+				if(option.description.toLowerCase() === optionTextValue.toLowerCase()) {
+					this.user.CurrentUserQuestion.selectedOptionIds = option.id;
+				}
+				else {
+					this.user.CurrentUserQuestion.selectedOptionIds = '*text*';
+				}
+			}
+			else {
+				this.user.CurrentUserQuestion.selectedOptionIds = null;
+			}
+		}
+		else {
+			this.user.CurrentUserQuestion.selectedOptionIds =
+				_.reduce(
+					$(this.elementRef.nativeElement).find('[name="optionSelection"]:checked'),
+					(strObj, e) =>
+						{ 
+							strObj.val = strObj.val + (strObj.index++ ? "," : "") + $(e).val(); return strObj; 
+						}, 
+					{ index: 0, val: "" }
+				).val
+		}
 	}
 	showingResult = 0; result;
 	showResult(result:boolean) {
@@ -140,27 +155,22 @@ export class UserQuizComponent implements OnInit {
 			})
 			.then(user => {
 				this.showResult(user.lastQuestionIsCorrect);
+				this.user.quizStatus = user.quizStatus;
+
 				jQuery(this.elementRef.nativeElement).find('#resultDiv').show(100);
 				jQuery(this.elementRef.nativeElement).find('#optionsDiv').hide(100);
 				setTimeout(() => {
-					jQuery(this.elementRef.nativeElement).find('#resultDiv').hide(10);
-					jQuery(this.elementRef.nativeElement).find('#optionsDiv').show(10);					
-					this.user.isLastQuestionForCurrentQuiz = user.isLastQuestionForCurrentQuiz;
-					this.user.CurrentUserQuestion = user.CurrentUserQuestion;
-					this.questionSubmitted = false;
-					this.checkQuizCompleted(user);
+					if(!this.checkQuizCompleted(user)) {
+						jQuery(this.elementRef.nativeElement).find('#resultDiv').hide(10);
+						jQuery(this.elementRef.nativeElement).find('#optionsDiv').show(10);					
+						this.user.isLastQuestionForCurrentQuiz = user.isLastQuestionForCurrentQuiz;
+						this.user.CurrentUserQuestion = user.CurrentUserQuestion;
+						this.questionSubmitted = false;
+					}
 				}, 1500);
-
-
-				// setTimeout(()=>{
-				// 	//this.showingResult=false;
-				// 	//this.animateAndLoadNextQuestion(user);
-				// 	this.user.isLastQuestionForCurrentQuiz = user.isLastQuestionForCurrentQuiz;
-				// 	this.user.CurrentUserQuestion = user.CurrentUserQuestion;
-				// 	this.checkQuizCompleted(user);
-				// },1500);
-				// // if(!this.checkQuizCompleted(this.user)) {
-				// // }
+			})
+			.catch(err => {
+				this.questionSubmitted = false;				
 			})
 		}
 		else {
@@ -170,7 +180,13 @@ export class UserQuizComponent implements OnInit {
 
 	private checkQuizCompleted(user) {
 		if(user && (user.CurrentUserQuestion == null || user.CurrentUserQuestion.id == null)) {
-			this.router.navigateByUrl('/users/quizhome');
+			jQuery(this.elementRef.nativeElement).find('#qaSection').css({ opacity: .2 });
+			jQuery(this.elementRef.nativeElement).find('#endQuizDiv').show(10);
+			jQuery(this.elementRef.nativeElement).find('#resultDiv').hide(10);
+
+			setTimeout(() => {
+				this.router.navigateByUrl('/users/quizhome');
+			}, 2000);
 			return true;
 		}
 
