@@ -31,8 +31,67 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                 
                     connection.mockRespond(new Response(new ResponseOptions({
                         status: 200,
-                        body: {"email":"josephaanthony@gmail.com","id":"2c09640c-8447-4be5-a692-9139441715d2","name":"Joseph Anthony","isLastQuestionForCurrentQuiz":null,"isLastQuiz":null,"currentUserQuestionId":"8bd3f208-db7a-4a84-ab32-2d861c91fc8e","CurrentUserQuestion":{"id":"8bd3f208-db7a-4a84-ab32-2d861c91fc8e","index":1,"isCorrect":null,"Question":{"description":"Question No 1 for Quiz 2","id":"6a122b17-a3a5-403a-8a9c-79b84095d518","optionType":"Radio","QuizOptions":[{"description":"Option 1 for Question 1 Quiz 2","id":"6a122b17-a3a5-403a-8a9c-79b84095a523","isCorrect":true,"index":0},{"description":"Option 2 for Question 1 Quiz 2","id":"6a122b17-a3a5-403a-8a9c-79b84095a524","isCorrect":false,"index":0},{"description":"Option 3 for Question 1 Quiz 2","id":"6a122b17-a3a5-403a-8a9c-79b84095a525","isCorrect":false,"index":0},{"description":"Option 4 for Question 1 Quiz 2","id":"6a122b17-a3a5-403a-8a9c-79b84095a526","isCorrect":false,"index":0}]},"questionId":"6a122b17-a3a5-403a-8a9c-79b84095d518","selectedOptionIds":null},"currentUserQuizId":"e36ec36d-2345-4782-ac2c-2556724af839","CurrentUserQuiz":{"id":"e36ec36d-2345-4782-ac2c-2556724af839","quizId":"5a122b17-a3a5-403a-8a9c-79b84095d516","timeTakenInterval":null,"status":"IN_PROGRESS","Quiz":{"description":"Quiz No 2 Updated","id":"5a122b17-a3a5-403a-8a9c-79b84095d516","level":2,"passpoint":22}}}
-                    })));
+                        body:{
+                            "email": "josephaanthony@gmail.com",
+                            "id": "2c09640c-8447-4be5-a692-9139441715d2",
+                            "name": "Joseph Anthony",
+                            "isLastQuestionForCurrentQuiz": null,
+                            "isLastQuiz": null,
+                            "currentUserQuestionId": "8bd3f208-db7a-4a84-ab32-2d861c91fc8e",
+                            "CurrentUserQuestion": {
+                              "id": "8bd3f208-db7a-4a84-ab32-2d861c91fc8e",
+                              "index": 1,
+                              "isCorrect": null,
+                              "Question": {
+                                "description": "Question No 1 for Quiz 2",
+                                "id": "6a122b17-a3a5-403a-8a9c-79b84095d518",
+                                "optionType": "Radio",
+                                "QuizOptions": [
+                                  {
+                                    "description": "Option 1 for Question 1 Quiz 2",
+                                    "id": "6a122b17-a3a5-403a-8a9c-79b84095a523",
+                                    "isCorrect": true,
+                                    "index": 0
+                                  },
+                                  {
+                                    "description": "Option 2 for Question 1 Quiz 2",
+                                    "id": "6a122b17-a3a5-403a-8a9c-79b84095a524",
+                                    "isCorrect": false,
+                                    "index": 0
+                                  },
+                                  {
+                                    "description": "Option 3 for Question 1 Quiz 2",
+                                    "id": "6a122b17-a3a5-403a-8a9c-79b84095a525",
+                                    "isCorrect": false,
+                                    "index": 0
+                                  },
+                                  {
+                                    "description": "Option 4 for Question 1 Quiz 2",
+                                    "id": "6a122b17-a3a5-403a-8a9c-79b84095a526",
+                                    "isCorrect": false,
+                                    "index": 0
+                                  }
+                                ]
+                              },
+                              "questionId": "6a122b17-a3a5-403a-8a9c-79b84095d518",
+                              "selectedOptionIds": null
+                            },
+                            "currentUserQuizId": "e36ec36d-2345-4782-ac2c-2556724af839",
+                            "CurrentUserQuiz": {
+                              "id": "e36ec36d-2345-4782-ac2c-2556724af839",
+                              "quizId": "5a122b17-a3a5-403a-8a9c-79b84095d516",
+                              "timeTakenInterval": null,
+                              "status": "IN_PROGRESS",
+                              "Quiz": {
+                                "description": "Quiz No 2 Updated",
+                                "id": "5a122b17-a3a5-403a-8a9c-79b84095d516",
+                                "level": 2,
+                                "passpoint": 22,
+                                "totalQuestions":10
+                              }
+                            }
+                          }
+                  })));
                     
                     
  
