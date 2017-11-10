@@ -21,6 +21,8 @@ export class QuizService extends BaseService {
 	private questionUrl = environment.apiContextUrl +  '/api/adminquestion';
 	private optionUrl = environment.apiContextUrl +  '/api/adminoption';
 
+	public static QUESTION_COMPLEXITITES = [ "COMPLEX", "MEDIUM", "EASY", "GROUP" ];
+
 	constructor(http: Http, toasterService: ToasterService, loaderService: LoaderService) {
 		super(http, toasterService, loaderService);
 	}

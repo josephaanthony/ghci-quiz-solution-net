@@ -31,9 +31,9 @@ export class UserQuizHomeComponent implements OnInit {
 	private user: any;
 	private quizs: any;
 
-	private imageSrc = ["/assets/images/Business.jpg", 
-						"/assets/images/Logic.jpg", 
-						"/assets/images/Analytical.jpg"]
+	// private imageSrc = ["Business.jpg", 
+	// 					"Logic.jpg", 
+	// 					"Analytical.jpg"]
 	
 	constructor(private elementRef: ElementRef, private route: ActivatedRoute, private router: Router, private quizService: UserQuizService, private toasterService: ToasterService) {
 	}

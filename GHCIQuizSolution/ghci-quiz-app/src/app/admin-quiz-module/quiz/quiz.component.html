@@ -8,10 +8,11 @@
 				<div>
 					<div class="col-md-2">Id</div>
 					<div class="col-md-2">Desc</div>
+					<div class="col-md-1">Message</div>
 					<div class="col-md-1">Level</div>
 					<div class="col-md-1">PassPoint</div>
 					<div class="col-md-2">Complexity</div>				
-					<div class="col-md-4"><button class="btn btn-primary btn-sm" (click)="addNewQuiz()">Add New Quiz</button></div>
+					<div class="col-md-3"><button class="btn btn-primary btn-sm" (click)="addNewQuiz()">Add New Quiz</button></div>
 				</div>
 			</div>
 			<div class="quiz-row">
@@ -29,6 +30,13 @@
 
 					</div>
 					<div class="col-md-1">
+						<label style="margin-bottom:1px">Success</label>
+						<input type="text" [(ngModel)]="quiz.successMessage"/>
+						
+						<label style="margin-top:10px; margin-bottom:1px">Fail</label>
+						<input type="text" [(ngModel)]="quiz.failedMessage"/>
+					</div>				
+					<div class="col-md-1">
 						<input type="text" [(ngModel)]="quiz.level"/>
 					</div>				
 					<div class="col-md-1">
@@ -41,12 +49,12 @@
 
 								<div class="col-md-6">
 									<!-- <input type="text" [(ngModel)]="comp.level"/> -->
-									<select [(ngModel)]="comp.level">
+									<select [(ngModel)]="comp.level" (change)="comp.level === 'GROUP'? comp.nos = 1: false; ">
 										<option *ngFor="let compLevel of QUESTION_COMPLEXITITES">{{compLevel}}</option>
 									</select>
 								</div>
 								<div class="col-md-2" style="padding:0px">
-									<input type="text" [(ngModel)]="comp.nos"/>
+									<input type="text" [(ngModel)]="comp.nos" [disabled]="comp.level === 'GROUP'"/>
 								</div>
 								<div class="col-md-4" style="color:#df691a">
 									<span style="cursor: pointer" class="glyphicon glyphicon-minus" 
@@ -57,7 +65,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<button class="btn btn-default btn-sm" (click)="updateQuiz(quiz)">Update Quiz</button>
 						<button class="btn btn-default btn-sm" (click)="deleteQuiz(quiz)">Delete Quiz</button>
 						<a [routerLink]="['/admin/questionshome', quiz.id]" class="btn btn-default btn-sm">Show Questions ({{quiz.questions?.length}})</a>

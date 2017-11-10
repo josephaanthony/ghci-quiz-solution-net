@@ -28,6 +28,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
             question.quizId,
             question.index,
             question.imageUrl,
+            question.groupName,
             QuizOptions = question.QuizOptions.Select(option => new {
               option.description,
               option.id,
@@ -57,9 +58,8 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       questionDb.description = question.description;
       questionDb.optionType = question.optionType;
       questionDb.index = question.index;
+      questionDb.groupName = question.groupName;
       //questionDb.imageUrl = question.imageUrl;
-      this.SetImageUrl(question, questionDb);
-      ValidateQuestion(questionDb);
 
       var newlyAddedOptions = question.QuizOptions.Where(o => !questionDb.QuizOptions.Select(dbOp => dbOp.id).Contains(o.id)).ToList();
       var deletedOptions = questionDb.QuizOptions.Where(o => !question.QuizOptions.Select(op => op.id).Contains(o.id)).ToList();
@@ -83,7 +83,11 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         item.isCorrect = optionRequest.isCorrect;
       }
 
+      var fnList = this.SetImageUrl(question, questionDb);
+      ValidateQuestion(questionDb);
+
       this.SaveQuizDBChanges();
+      fnList.ForEach(f => f.Invoke());
 
       return GetQuestion(questionDb);
     }
@@ -114,6 +118,10 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
 
       CheckInArray(question.complexity, QUESTION_COMPLEXITITES, "Complexity value not valid", validationMessages);
 
+      if("GROUP".Equals(question.complexity)) {
+        CheckLength(question.groupName, 2, "GroupName required for Group type questions", validationMessages);
+      }
+
       if(String.IsNullOrWhiteSpace(question.description) && String.IsNullOrWhiteSpace(question.imageUrl)) {
         validationMessages.Add("Either Description or ImageUrl should be present");
       }
@@ -133,6 +141,12 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         }
       }
 
+      if("Text".Equals(question.optionType)) {
+        if(question.QuizOptions.Count() > 1) {
+          validationMessages.Add("Only one option allowed for text type");
+        }
+      }
+
       if (validationMessages.Count() > 0)
       {
         throw new InvalidOperationException(String.Join("\n", validationMessages));
@@ -141,11 +155,13 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
 
     public Object Post([FromBody] Question question) {
       question.id = null;
-      this.SetImageUrl(question, question);
+      var fnList = this.SetImageUrl(question, question);
       ValidateQuestion(question);
-
       QuizDB.Questions.Add(question);
+
       this.SaveQuizDBChanges();
+      fnList.ForEach(f => f.Invoke());
+
       return GetQuestion(question);
     }
 

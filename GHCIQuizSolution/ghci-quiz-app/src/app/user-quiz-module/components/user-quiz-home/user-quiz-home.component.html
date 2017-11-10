@@ -6,19 +6,29 @@
 	<div [@quizeHomeAnim]="quizs" *ngFor="let quiz of quizs; let i = index" [attr.data-index]="i" style="height:30%; min-height: 150px" class="row-section">
 		<div class="row-section-cell section-{{i}}" [ngClass]="{active: quiz.isActive}" (click)="startQuiz(quiz)">
 			<span>
-				<label class="quiz-level">Level:{{ quiz.level }}
+				<!-- <label class="quiz-level">Level:{{ quiz.level }}
 					<div *ngIf="quiz.UserQuizs.length > 0" class="glyphicon quiz-glyphicon" [ngClass]="{'glyphicon-ok': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'COMPLETED_SUCCESS', 
 										'glyphicon-remove': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'COMPLETED_FAIL',
 										'glyphicon-pencil': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'IN_PROGRESS'}">
 					</div>
 					<div *ngIf="quiz.UserQuizs.length === 0 && i > 0" style="color:red" class="glyphicon quiz-glyphicon glyphicon-ban-circle"></div>
 					<div *ngIf="quiz.UserQuizs.length === 0 && i === 0" class="glyphicon quiz-glyphicon"></div>
-				</label>
-				<img class="quiz-image" src="{{imageSrc[i]}}" />				
+				</label> -->
+				<img class="quiz-image" src="{{getImage(quiz.imageUrl)}}" />				
 			</span>
 			
 			<div class="quiz-text">				
-				{{ quiz.description }}
+				<div>
+					{{ quiz.description }}
+					<span>
+						<div *ngIf="quiz.UserQuizs.length > 0" class="glyphicon quiz-glyphicon" [ngClass]="{'glyphicon-ok': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'COMPLETED_SUCCESS', 
+							'glyphicon-remove': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'COMPLETED_FAIL',
+							'glyphicon-pencil': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'IN_PROGRESS'}">
+						</div>
+						<div *ngIf="quiz.UserQuizs.length === 0 && i > 0" style="color:red" class="glyphicon quiz-glyphicon glyphicon-ban-circle"></div>
+						<div *ngIf="quiz.UserQuizs.length === 0 && i === 0" class="glyphicon quiz-glyphicon"></div>
+					</span>				
+				</div>
 				<div *ngIf="quiz.isActive" class="quiz-active">
 					<div style="color:#9cc35e; font-size: 40px;" class="glyphicon quiz-glyphicon glyphicon-play"></div>
 				</div>	

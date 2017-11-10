@@ -39,7 +39,8 @@ namespace GHCIQuizSolution.Controllers.UserControllers
         dbQuizUser.id,
         dbQuizUser.isLastQuestionForCurrentQuiz,
         CurrentUserQuestion = this.GetCurrentUserQuestionForReturn(dbQuizUser),
-        lastQuestionIsCorrect = lastQuestionIsCorrect.GetValueOrDefault()
+        lastQuestionIsCorrect = lastQuestionIsCorrect.GetValueOrDefault(),
+        quizStatus = dbQuizUser.CurrentUserQuiz.status
       };
     }
   }

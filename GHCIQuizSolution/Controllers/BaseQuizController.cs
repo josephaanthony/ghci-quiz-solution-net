@@ -27,13 +27,16 @@ namespace GHCIQuizSolution.Controllers
     private Dictionary<String, int> COMPLEXITY_POINT = new  Dictionary<string, int> {
       { "EASY", 1 },
       { "MEDIUM", 2 },
-      { "COMPLEX", 3 }
+      { "COMPLEX", 3 },
+      { "GROUP", 1 }
     };
-    protected String[] QUESTION_COMPLEXITITES = { "COMPLEX", "MEDIUM", "EASY" };
-    protected String[] QUESTION_OPTION_TYPE = { "Radio", "Checkbox" };
+    protected String[] QUESTION_COMPLEXITITES = { "COMPLEX", "MEDIUM", "EASY", "GROUP" };
+    protected String[] QUESTION_OPTION_TYPE = { "Radio", "Checkbox", "Text" };
 
-    protected void SetImageUrl(IFileBased sourceQuestion, IFileBased targetQuestion)
+    protected List<Action> SetImageUrl(IFileBased sourceQuestion, IFileBased targetQuestion)
     {
+      List<Action> fileListToDelete = new List<Action>();
+
       if (sourceQuestion.file != null)
       {
         if (!sourceQuestion.file.isDeleted)
@@ -42,15 +45,16 @@ namespace GHCIQuizSolution.Controllers
           {
             targetQuestion.id = Guid.NewGuid().ToString();
           }
-          File.Delete(FILE_IMAGE_PATH + "/" + targetQuestion.id + sourceQuestion.file.ext);
-          File.Move(FILE_TEMP_PATH + "/" + sourceQuestion.file.fileName, FILE_IMAGE_PATH + "/" + targetQuestion.id + sourceQuestion.file.ext);
+
+          fileListToDelete.Add(() => File.Delete(FILE_IMAGE_PATH + "/" + targetQuestion.id + sourceQuestion.file.ext));
+          fileListToDelete.Add(() => File.Move(FILE_TEMP_PATH + "/" + sourceQuestion.file.fileName, FILE_IMAGE_PATH + "/" + targetQuestion.id + sourceQuestion.file.ext));
           targetQuestion.imageUrl = targetQuestion.id + sourceQuestion.file.ext;
         }
         else
         {
           if (targetQuestion.imageUrl != null)
           {
-            File.Delete(FILE_IMAGE_PATH + "/" + targetQuestion.imageUrl);
+            fileListToDelete.Add(() => File.Delete(FILE_IMAGE_PATH + "/" + targetQuestion.imageUrl));
             targetQuestion.imageUrl = null;
           }
         }
@@ -59,6 +63,8 @@ namespace GHCIQuizSolution.Controllers
       {
         targetQuestion.imageUrl = sourceQuestion.imageUrl;
       }
+
+      return fileListToDelete;
     }
 
 
@@ -160,24 +166,32 @@ namespace GHCIQuizSolution.Controllers
 
 
     private void GenerateQuizQuestions(UserQuiz userQuiz) {
+      Random random = new Random();
       var complexityCompArr = JsonConvert.DeserializeObject<ComplexityComposition[]>(userQuiz.Quiz.complexityComposition);
       List<Question> questionList = new List<Question>();
       List<Question> randomList = new List<Question>();
 
-      foreach (var comp in complexityCompArr)
-      {
-        questionList.AddRange(userQuiz.Quiz.Questions
-          .Where(q => q.complexity == comp.level)
-          .Take(comp.nos));
+      // Apply Group logic
+      if(complexityCompArr.Any(c => "GROUP".Equals(c.level))) {
+        var questionGroup = userQuiz.Quiz.Questions.GroupBy(q => q.groupName);
+        var index = random.Next(0, questionGroup.Count());
+        randomList = questionGroup.ElementAt(index).OrderBy(q => q.index).ToList();
       }
+      else {
+        foreach (var comp in complexityCompArr)
+        {
+          questionList.AddRange(userQuiz.Quiz.Questions
+            .Where(q => q.complexity == comp.level)
+            .Take(comp.nos));
+        }
 
-      Random random = new Random();
-      while(questionList.Count != 0) {
-        var index = random.Next(0, questionList.Count);
-        randomList.Add(questionList[index]);
-        questionList.RemoveAt(index);
+        while (questionList.Count != 0)
+        {
+          var index = random.Next(0, questionList.Count);
+          randomList.Add(questionList[index]);
+          questionList.RemoveAt(index);
+        }
       }
-
 
       int indexCounter = 0;
       foreach (var item in randomList)

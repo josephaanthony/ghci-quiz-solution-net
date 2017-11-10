@@ -5,11 +5,14 @@ delete from UserQuiz;
 
 select * from QuizUser;
 select * from UserQuiz uq, Quiz q where uq.quizId = q.id order by level, attempt;
-select * from UserQuestion uq, Question q where uq.questionId = q.id;
+
+select * from UserQuestion uq, Question q, UserQuiz uqz, Quiz qz
+where uq.questionId = q.id and uq.userQuizId = uqz.id and q.quizId = qz.Id
+order by  qz.level, uqz.attempt, q.[index];
 
 select * from UserQuestion where userQuizId = '73257cec-2f09-4f8c-9072-89ca5c33d690' order by [index]
 
-select * from Question where id = '5b9e4869-5aac-4bea-851f-aab6ed2a5d24';
+select * from Question order by [index] where id = '5b9e4869-5aac-4bea-851f-aab6ed2a5d24';
 select * from QuizOption where questionId = '5b9e4869-5aac-4bea-851f-aab6ed2a5d24'
 
 select * from QuizOption where [index] = '';

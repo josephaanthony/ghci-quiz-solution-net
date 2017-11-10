@@ -23,6 +23,8 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         quiz.level,
         quiz.passpoint,
         quiz.imageUrl,
+        quiz.successMessage,
+        quiz.failedMessage
       }).OrderBy(quiz => quiz.level);
     }
 
@@ -62,7 +64,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
 
       if (quiz.passpoint.GetValueOrDefault() <= 0)
       {
-        validationMessages.Add("Level value not valid");
+        validationMessages.Add("PassPoint value not valid");
       }
 
       if (validationMessages.Count() > 0)
@@ -96,12 +98,16 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       quizDb.description = quiz.description;
       quizDb.level = quiz.level;
       quizDb.passpoint = quiz.passpoint;
+      quizDb.successMessage = quiz.successMessage;
+      quizDb.failedMessage = quiz.failedMessage;
       //quizDb.imageUrl = quiz.imageUrl;
-      this.SetImageUrl(quiz, quizDb);
+
+      var fnList = this.SetImageUrl(quiz, quizDb);
 
       ValidateQuiz(quizDb);
       
       this.SaveQuizDBChanges();
+      fnList.ForEach(f => f.Invoke());
 
       return GetQuiz(quizDb);
     }
@@ -110,11 +116,12 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
     {
       quiz.id = null;
 
-      this.SetImageUrl(quiz, quiz);
+      var fnList = this.SetImageUrl(quiz, quiz);
       ValidateQuiz(quiz);
-
       QuizDB.Quizs.Add(quiz);
+
       this.SaveQuizDBChanges();
+      fnList.ForEach(f => f.Invoke());
 
       return GetQuiz(quiz);
     }
