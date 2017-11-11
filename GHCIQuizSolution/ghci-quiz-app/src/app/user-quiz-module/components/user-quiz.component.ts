@@ -25,6 +25,7 @@ const TEMP_QUIZ_ID = '*temp*';
 			transition('* => *', [
 				style({
 					"transform": "translateZ(-1000px) rotateY(90deg)",
+					"-webkit-transform":"translateZ(-1000px) rotateY(90deg)"
 				}),
 				animate("1.5s ease")
 			])
