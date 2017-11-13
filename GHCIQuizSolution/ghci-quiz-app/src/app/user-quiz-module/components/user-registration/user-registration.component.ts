@@ -14,6 +14,7 @@ import { User } from '../../models/user';
 })
 export class UserRegistrationComponent {
 	private user: User;
+	private showErrMsg = false;
 
 	constructor(private route: ActivatedRoute, private router: Router, private quizService: UserQuizService, 
 		private toasterService: ToasterService, private localStorageService: LocalStorageService) {
@@ -44,7 +45,12 @@ export class UserRegistrationComponent {
 
 	private registerUser(user) {
 		this.quizService.registerUser(user).then(userResult => {
-			this.signInSuccess(userResult);
+			if(userResult.registeredNew) {
+				this.signInSuccess(userResult);
+			}
+			else {
+				this.showErrMsg = true;
+			}
 		});
 	}
 

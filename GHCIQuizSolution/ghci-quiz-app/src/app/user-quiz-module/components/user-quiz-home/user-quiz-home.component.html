@@ -1,23 +1,15 @@
 <div class="container-wrapper" style="text-align: center; background:white">
-	<div style="height:5%; min-height:40px">
-		<h2>Welcome</h2>
+	<div style="min-height:30px">
+		<h2 style="font-size:1.5em; margin-top:10px">Welcome {{user?.name}}</h2>
 	</div>
 
 	<div [@quizeHomeAnim]="quizs" *ngFor="let quiz of quizs; let i = index" [attr.data-index]="i" style="height:30%; min-height: 150px" class="row-section">
 		<div class="row-section-cell section-{{i}}" [ngClass]="{active: quiz.isActive}" (click)="startQuiz(quiz)">
 			<span>
-				<!-- <label class="quiz-level">Level:{{ quiz.level }}
-					<div *ngIf="quiz.UserQuizs.length > 0" class="glyphicon quiz-glyphicon" [ngClass]="{'glyphicon-ok': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'COMPLETED_SUCCESS', 
-										'glyphicon-remove': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'COMPLETED_FAIL',
-										'glyphicon-pencil': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'IN_PROGRESS'}">
-					</div>
-					<div *ngIf="quiz.UserQuizs.length === 0 && i > 0" style="color:red" class="glyphicon quiz-glyphicon glyphicon-ban-circle"></div>
-					<div *ngIf="quiz.UserQuizs.length === 0 && i === 0" class="glyphicon quiz-glyphicon"></div>
-				</label> -->
 				<img class="quiz-image" src="{{getImage(quiz.imageUrl)}}" />				
 			</span>
 			
-			<div class="quiz-text">				
+			<span class="quiz-text">				
 				<div>
 					{{ quiz.description }}
 					<span>
@@ -25,14 +17,18 @@
 							'glyphicon-remove': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'COMPLETED_FAIL',
 							'glyphicon-pencil': quiz.UserQuizs[quiz.UserQuizs.length-1].status === 'IN_PROGRESS'}">
 						</div>
-						<div *ngIf="quiz.UserQuizs.length === 0 && i > 0" style="color:red" class="glyphicon quiz-glyphicon glyphicon-ban-circle"></div>
+						<div *ngIf="quiz.UserQuizs.length === 0 && !quiz.isActive" style="color:red" class="glyphicon quiz-glyphicon glyphicon-ban-circle"></div>
 						<div *ngIf="quiz.UserQuizs.length === 0 && i === 0" class="glyphicon quiz-glyphicon"></div>
 					</span>				
 				</div>
+				<div style="font-size:0.8em; color:#8c1e0d">
+					({{ quiz.instruction }})
+				</div>
 				<div *ngIf="quiz.isActive" class="quiz-active">
-					<div style="color:#9cc35e; font-size: 40px;" class="glyphicon quiz-glyphicon glyphicon-play"></div>
+					<img style="height: 65px;" 
+							src="./assets/images/play.png">
 				</div>	
-			</div>
+			</span>
 		</div>						
 	</div>
 </div>

@@ -31,6 +31,7 @@
           <Property Name="imageUrl" Type="varchar" MaxLength="50" />
           <Property Name="successMessage" Type="varchar(max)" />
           <Property Name="failedMessage" Type="varchar(max)" />
+          <Property Name="instruction" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="QuizOption">
           <Key>
@@ -48,7 +49,7 @@
           </Key>
           <Property Name="id" Type="varchar" MaxLength="36" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="36" Nullable="false" />
-          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
           <Property Name="currentUserQuizId" Type="varchar" MaxLength="36" />
           <Property Name="currentUserQuestionId" Type="varchar" MaxLength="36" />
           <Property Name="isLastQuestionForCurrentQuiz" Type="bit" />
@@ -247,6 +248,7 @@
           <Property Name="imageUrl" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="successMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="failedMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="instruction" Type="String" />
         </EntityType>
         <EntityType Name="QuizOption">
           <Key>
@@ -265,7 +267,7 @@
           </Key>
           <Property Name="id" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="36" Unicode="false" FixedLength="false" />
           <Property Name="name" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="currentUserQuizId" Type="String" MaxLength="36" Unicode="false" FixedLength="false" />
           <Property Name="currentUserQuestionId" Type="String" MaxLength="36" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="CurrentUserQuestion" Relationship="Self.FK_QuizUser_UserQuestion" FromRole="QuizUser" ToRole="UserQuestion" />
@@ -462,6 +464,7 @@
           <EntitySetMapping Name="Quizs">
             <EntityTypeMapping TypeName="GHCIQuizModel.Quiz">
               <MappingFragment StoreEntitySet="Quiz">
+                <ScalarProperty Name="instruction" ColumnName="instruction" />
                 <ScalarProperty Name="failedMessage" ColumnName="failedMessage" />
                 <ScalarProperty Name="successMessage" ColumnName="successMessage" />
                 <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />

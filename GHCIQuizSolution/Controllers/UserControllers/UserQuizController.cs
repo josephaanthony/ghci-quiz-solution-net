@@ -27,6 +27,7 @@ namespace GHCIQuizSolution.Controllers.UserControllers
           quiz.imageUrl,
           quiz.successMessage,
           quiz.failedMessage,
+          quiz.instruction,
           UserQuizs =
             quiz.UserQuizs
             .Where(userQuiz => userQuiz.userId == id)

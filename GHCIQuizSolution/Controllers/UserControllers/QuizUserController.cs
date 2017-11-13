@@ -26,14 +26,20 @@ namespace GHCIQuizSolution.Controllers.UserControllers
     }
 
 
-    public Object Get(String id, String emailId = null)
+    public Object Get(String id, String name = null)
     {
-      logger.Info("The Id is:" + id + " The emailId is: " + emailId);
+      logger.Info("The Id is:" + id + " The name is: " + name);
 
+      //String regId = null;
+
+      if(name != null && name.StartsWith("reg:")) {
+        id = name.Remove(0, 4);
+        name = null;
+      }
 
       //return ToJson(
       return QuizDB.QuizUsers
-      .Where(user => (user.id == id && id != null) || (user.email == emailId && emailId != null))
+      .Where(user => (user.id == id && id != null) || (name != null && user.name.Trim().ToLower() == name.Trim().ToLower()))
       .Select(user => new
       {
         user.email,
@@ -79,7 +85,8 @@ namespace GHCIQuizSolution.Controllers.UserControllers
             user.CurrentUserQuiz.Quiz.level,
             user.CurrentUserQuiz.Quiz.passpoint,
             user.CurrentUserQuiz.Quiz.successMessage,
-            user.CurrentUserQuiz.Quiz.failedMessage
+            user.CurrentUserQuiz.Quiz.failedMessage,
+            user.CurrentUserQuiz.Quiz.instruction
           },
         }
       })
@@ -94,13 +101,29 @@ namespace GHCIQuizSolution.Controllers.UserControllers
 
     public Object Post([FromBody]QuizUser quizUser)
     {
-      logger.Info("Logging user " + quizUser.email);
+      if(String.IsNullOrWhiteSpace(quizUser.name)) {
+        throw new ArgumentException("Name not valid");
+      }
 
-      dynamic getUser = this.GetByEmail(quizUser.email);
+      quizUser.name = quizUser.name.Trim();
+      
+      logger.Info("Logging user " + quizUser.name);
+
+      dynamic getUser = this.GetByEmail(quizUser.name);
 
       logger.Info("User by email: " + getUser);
 
-      if(getUser != null) {
+      if(getUser != null && quizUser.name.StartsWith("reg:")) {
+        logger.Info("User Found with Id: " + getUser.email + " id: " + getUser.id);
+        return new
+        {
+          id = getUser.id,
+          email = getUser.email,
+          name = getUser.name,
+          registeredNew = true
+        };
+      }
+      else if(getUser != null) {
         logger.Info("User Found: " + getUser.email + " id: " + getUser.id);
         return getUser;
       }
@@ -113,7 +136,8 @@ namespace GHCIQuizSolution.Controllers.UserControllers
       {
         id = quizUser.id,
         email = quizUser.email,
-        name = quizUser.name
+        name = quizUser.name,
+        registeredNew = true
       };
     }
   }

@@ -1,23 +1,37 @@
-<div class="container-fluid">
-	<div class="panel panel-info">
-		<div class="panel-heading">
+	<!-- background: url(https://image.freepik.com/free-photo/man-working-with-the-laptop_385-19323865.jpg) no-repeat center center fixed; -->
+<div class="container-fluid" style="
+	background: url(./assets/images/Background.jpg) no-repeat center center fixed;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+    height: 100%;">
+	<div style="top: 30%;
+    position: absolute;
+    width: 100%;
+    padding-right: 30px;">
+		<!-- <div class="panel-heading">
 			<h3 class="panel-title">User Registration</h3>			
-		</div>
+		</div> -->
 
 		<div *ngIf="user" class="panel-body">
-			<h2>Please register to begin</h2>
+			<!-- <h2>Please register to begin</h2> -->
 
 			<form class="form-horizontal">
 				<fieldset>
-					<legend>Welcome</legend>
+					<!-- <legend>Welcome</legend> -->
 					
 					<div class="form-group">
-						<div class="col-md-5">
-							<input type="text" class="form-control" [(ngModel)]="user.name" name="name" placeholder="Name" required>
+						<div class="col-md-12" style="color: #ff4949; height: 24px;">
+							<label *ngIf="showErrMsg">
+								This Avatar is already taken.</label>							
+						</div>
+						<div class="col-md-12">
+							<input type="text" class="form-control" #nameValue (keyup)="showErrMsg = false;" [(ngModel)]="user.name" name="name" placeholder="Avatar Name" required>
 						</div>
 					</div>
 
-					<div class="form-group">
+					<!-- <div class="form-group">
 					<div class="col-md-5">
 						<input type="text" class="form-control" [(ngModel)]="user.email" name="email" placeholder="Email" required>
 					</div>
@@ -28,14 +42,17 @@
 						<input type="text" class="form-control" [(ngModel)]="user.college" name="college" placeholder="College Name" required>
 					</div>
 					</div>
-
+ -->
 					<div class="form-group">
 					<div class="col-md-5">
-						<button type="submit" class="btn btn-default" (click)="registerUser(user)">Submit</button>
+						<a class="btn" style="padding:0px; width: 100%; box-shadow:3px 3px 3px 6px #33333373" (click)="registerUser(user)"><img style="height: 65px;" 
+							src="./assets/images/play.png"></a>
+						<!-- <button type="submit" class="btn btn-default" (click)="registerUser(user)">Submit</button> -->
+						<!-- <div style="color:#9cc35e; font-size: 40px;" class="glyphicon quiz-glyphicon glyphicon-play"></div> -->
 					</div>
-					<div class="col-md-5">
+					<!-- <div class="col-md-5">
 						<button type="submit" class="btn btn-default" (click)="singInUser()">SignIn</button>
-					</div>
+					</div> -->
 					</div>
 				</fieldset>
 			</form>

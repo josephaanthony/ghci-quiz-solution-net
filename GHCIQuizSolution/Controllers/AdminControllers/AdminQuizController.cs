@@ -24,7 +24,8 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
         quiz.passpoint,
         quiz.imageUrl,
         quiz.successMessage,
-        quiz.failedMessage
+        quiz.failedMessage,
+        quiz.instruction
       }).OrderBy(quiz => quiz.level);
     }
 
@@ -100,6 +101,7 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
       quizDb.passpoint = quiz.passpoint;
       quizDb.successMessage = quiz.successMessage;
       quizDb.failedMessage = quiz.failedMessage;
+      quizDb.instruction = quiz.instruction;
       //quizDb.imageUrl = quiz.imageUrl;
 
       var fnList = this.SetImageUrl(quiz, quizDb);

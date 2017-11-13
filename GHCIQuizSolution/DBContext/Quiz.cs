@@ -30,6 +30,7 @@ namespace GHCIQuizSolution.DBContext
         public string imageUrl { get; set; }
         public string successMessage { get; set; }
         public string failedMessage { get; set; }
+        public string instruction { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Question> Questions { get; set; }

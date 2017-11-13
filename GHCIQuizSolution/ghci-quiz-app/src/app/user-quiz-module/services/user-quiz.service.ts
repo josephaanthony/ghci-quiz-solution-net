@@ -63,7 +63,7 @@ export class UserQuizService extends BaseService {
 	}
 
 	public registerUser(user) {
-		return this.postHttp(this.quizUserUrl, user)
+		return this.postHttp(this.quizUserUrl, user, null, () => {});
 	}
 
 	public startQuiz(user) {

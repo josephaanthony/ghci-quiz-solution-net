@@ -182,6 +182,7 @@ namespace GHCIQuizSolution.Controllers
         {
           questionList.AddRange(userQuiz.Quiz.Questions
             .Where(q => q.complexity == comp.level)
+            .OrderBy(x => Guid.NewGuid())
             .Take(comp.nos));
         }
 

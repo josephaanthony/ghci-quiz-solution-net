@@ -2,22 +2,17 @@
     cursor: pointer;
 }
 
-.section-0 {
-    background: #1C252C;
-    color: white;
-}
-
 .section-1 {
     background: transparent;
 }
 
-.section-2 {
+.section-0, .section-2 {
     background: #ECEDF2;
 }
 
 .quiz-text {
     font-size: 1.25em;
-     width: 189px; 
+     width: 175px; 
     display: inline-block;
     text-align: left;
     margin-left: 10px;
@@ -43,8 +38,8 @@
 
 .quiz-image {
     border-radius: 50%;
-    height: 125px;
-    width: 125px;
+    height: 120px;
+    width: 120px;
     margin-left: 10px;
 }
 

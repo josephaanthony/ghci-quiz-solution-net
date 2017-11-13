@@ -1,0 +1,226 @@
+20171110072626 Prod Environment is false
+20171110072629 The Id is:d7befc9b-d0c6-455a-9903-750477a45e86 The emailId is: 
+20171110075722 Logging user 
+20171110075722 The Id is: The emailId is: 
+20171110075723 User by email: 
+20171110075753 Logging user 
+20171110075753 The Id is: The emailId is: 
+20171110075753 User by email: 
+20171110080542 Prod Environment is false
+20171110080545 Logging user test
+20171110080545 The Id is: The emailId is: test
+20171110080547 User by email: 
+20171110081507 Prod Environment is false
+20171110081509 Logging user test
+20171110081509 The Id is: The emailId is: test
+20171110081511 User by email: 
+20171110082259 Prod Environment is false
+20171110082313 Logging user josephaanthony@gmail.com
+20171110082313 The Id is: The name is: josephaanthony@gmail.com
+20171110082314 User by email: 
+20171110083356 Prod Environment is false
+20171110083403 Logging user josephaanthony@gmail.com
+20171110083403 The Id is: The name is: josephaanthony@gmail.com
+20171110083404 User by email: 
+20171110083545 Prod Environment is false
+20171110083550 Logging user 
+20171110083550 The Id is: The name is: 
+20171110083550 User by email: 
+20171110083551 The Id is:18e172cb-9a54-41c6-b5a9-b5dec0b06a8a The name is: 
+20171110083551 The Id is:18e172cb-9a54-41c6-b5a9-b5dec0b06a8a
+20171110083638 The Id is:18e172cb-9a54-41c6-b5a9-b5dec0b06a8a The name is: 
+20171110083638 The Id is:18e172cb-9a54-41c6-b5a9-b5dec0b06a8a
+20171110084836 The Id is:18e172cb-9a54-41c6-b5a9-b5dec0b06a8a The name is: 
+20171110084841 Logging user 
+20171110084841 The Id is: The name is: 
+20171110084841 User by email: 
+20171110084841 The Id is:c64ad4b6-51dc-45b6-afa4-c63a65c1b810 The name is: 
+20171110084841 The Id is:c64ad4b6-51dc-45b6-afa4-c63a65c1b810
+20171110084848 The Id is:c64ad4b6-51dc-45b6-afa4-c63a65c1b810 The name is: 
+20171110084901 The Id is:c64ad4b6-51dc-45b6-afa4-c63a65c1b810 The name is: 
+20171110084948 Logging user 
+20171110084948 The Id is: The name is: 
+20171110084948 User by email: 
+20171110085044 The Id is:6f70fe39-4b65-4952-b8bf-00c759c52047 The name is: 
+20171110085044 The Id is:6f70fe39-4b65-4952-b8bf-00c759c52047
+20171110085106 The Id is:6f70fe39-4b65-4952-b8bf-00c759c52047 The name is: 
+20171110085113 Logging user 
+20171110085113 The Id is: The name is: 
+20171110085113 User by email: 
+20171110085119 The Id is:b8c4417b-90af-41a5-9f11-b4fe78ac7cbf The name is: 
+20171110085119 The Id is:b8c4417b-90af-41a5-9f11-b4fe78ac7cbf
+20171110085754 The Id is:b8c4417b-90af-41a5-9f11-b4fe78ac7cbf The name is: 
+20171110085757 Logging user 
+20171110085757 The Id is: The name is: 
+20171110085757 User by email: 
+20171110090002 Prod Environment is false
+20171110090004 Logging user 
+20171110090004 The Id is: The name is: 
+20171110090007 User by email: 
+20171110090031 Logging user test
+20171110090031 The Id is: The name is: test
+20171110090031 User by email: 
+20171110090036 The Id is:f725a4f9-be68-4e2b-8fac-6ef328ae3aa2 The name is: 
+20171110090037 The Id is:f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090120 Logging user test
+20171110090120 The Id is: The name is: test
+20171110090120 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090120 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090212 Logging user test
+20171110090212 The Id is: The name is: test
+20171110090212 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090212 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090247 Logging user test
+20171110090247 The Id is: The name is: test
+20171110090247 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090247 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090259 Logging user test
+20171110090259 The Id is: The name is: test
+20171110090259 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090259 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090411 Logging user test
+20171110090411 The Id is: The name is: test
+20171110090411 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090411 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090419 Logging user test
+20171110090419 The Id is: The name is: test
+20171110090419 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090419 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090425 Logging user tes
+20171110090425 The Id is: The name is: tes
+20171110090425 User by email: 
+20171110090425 The Id is:25aff61f-36ec-43b4-9037-ffa3eba9f6fd The name is: 
+20171110090425 The Id is:25aff61f-36ec-43b4-9037-ffa3eba9f6fd
+20171110090439 The Id is:25aff61f-36ec-43b4-9037-ffa3eba9f6fd The name is: 
+20171110090440 The Id is:25aff61f-36ec-43b4-9037-ffa3eba9f6fd
+20171110090459 The Id is:25aff61f-36ec-43b4-9037-ffa3eba9f6fd The name is: 
+20171110090504 Logging user test
+20171110090504 The Id is: The name is: test
+20171110090504 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090504 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090523 Logging user test
+20171110090523 The Id is: The name is: test
+20171110090523 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090523 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090553 Logging user test
+20171110090553 The Id is: The name is: test
+20171110090553 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090553 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090601 Logging user test
+20171110090601 The Id is: The name is: test
+20171110090601 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090601 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110090623 Logging user test
+20171110090623 The Id is: The name is: test
+20171110090623 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110090623 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110091040 Prod Environment is false
+20171110091042 Logging user test
+20171110091042 The Id is: The name is: test
+20171110091044 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110091044 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110091611 Logging user Test
+20171110091611 The Id is: The name is: Test
+20171110091611 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110091611 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110092358 Prod Environment is false
+20171110092359 Logging user Test
+20171110092359 The Id is: The name is: Test
+20171110092402 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110092402 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110092410 Logging user Test
+20171110092410 The Id is: The name is: Test
+20171110092410 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110092410 User Found:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110092434 Logging user reg:f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110092434 The Id is: The name is: reg:f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110092434 User by email: { email = , id = f725a4f9-be68-4e2b-8fac-6ef328ae3aa2, name = test, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = , CurrentUserQuiz = { id = , quizId = , timeTakenInterval = , status = , Quiz = { description = , id = , level = , passpoint = , successMessage = , failedMessage =  } } }
+20171110092434 User Found with Id:  id: f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110092434 The Id is:f725a4f9-be68-4e2b-8fac-6ef328ae3aa2 The name is: 
+20171110092434 The Id is:f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110092449 The Id is:f725a4f9-be68-4e2b-8fac-6ef328ae3aa2 The name is: 
+20171110092513 The Id is:f725a4f9-be68-4e2b-8fac-6ef328ae3aa2 The name is: 
+20171110092513 The Id is:f725a4f9-be68-4e2b-8fac-6ef328ae3aa2
+20171110092523 The Id is:f725a4f9-be68-4e2b-8fac-6ef328ae3aa2 The name is: 
+20171110093818 Logging user Test
+20171110093818 The Id is: The name is: Test
+20171110093818 User by email: 
+20171110093818 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110093818 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e
+20171110093820 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110093838 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110093838 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e
+20171110093840 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110093854 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110093854 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e
+20171110093855 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110093910 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110093910 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e
+20171110093941 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110093956 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110093956 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e
+20171110093957 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110094014 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110094014 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e
+20171110094015 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110094159 Check this out GHCIQuizSolution.DBContext.Question
+20171110094201 Check this out GHCIQuizSolution.DBContext.Question
+20171110094202 Check this out GHCIQuizSolution.DBContext.Question
+20171110094206 Check this out GHCIQuizSolution.DBContext.Question
+20171110094208 Check this out GHCIQuizSolution.DBContext.Question
+20171110094227 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110094237 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110094238 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e
+20171110094239 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110094312 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110094312 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e
+20171110094313 The Id is:c91a737d-da2c-44db-b00c-a3dcff89984e The name is: 
+20171110101214 Prod Environment is false
+20171110101223 Logging user Joseph Anthony
+20171110101223 The Id is: The name is: Joseph Anthony
+20171110101227 User by email: { email = josephaanthony@gmail.com, id = c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1, name = Joseph Anthony, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = 32ca0c44-4068-4c37-b5d3-c3a8ee5025b9, CurrentUserQuiz = { id = 32ca0c44-4068-4c37-b5d3-c3a8ee5025b9, quizId = 5a122b17-a3a5-403a-8a9c-79b84095d516, timeTakenInterval = , status = COMPLETED_SUCCESS, Quiz = { description = Quiz No 2 Updated, id = 5a122b17-a3a5-403a-8a9c-79b84095d516, level = 2, passpoint = 1, successMessage = This is Good, failedMessage = Try Again Buddy } } }
+20171110101227 User Found: josephaanthony@gmail.com id: c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1
+20171110101232 Logging user Joseph Anthony1
+20171110101232 The Id is: The name is: Joseph Anthony1
+20171110101232 User by email: 
+20171110101233 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e The name is: 
+20171110101233 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e
+20171110101238 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e The name is: 
+20171110101238 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e
+20171110101420 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e The name is: 
+20171110101420 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e
+20171110101444 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e The name is: 
+20171110101540 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e The name is: 
+20171110101540 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e
+20171110101658 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e The name is: 
+20171110101658 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e
+20171110101759 The Id is:6d173b2b-8d60-4aab-a02b-2a9052f1528e The name is: 
+20171110101806 Logging user Joseph Anthony
+20171110101806 The Id is: The name is: Joseph Anthony
+20171110101806 User by email: { email = josephaanthony@gmail.com, id = c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1, name = Joseph Anthony, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = 32ca0c44-4068-4c37-b5d3-c3a8ee5025b9, CurrentUserQuiz = { id = 32ca0c44-4068-4c37-b5d3-c3a8ee5025b9, quizId = 5a122b17-a3a5-403a-8a9c-79b84095d516, timeTakenInterval = , status = COMPLETED_SUCCESS, Quiz = { description = Quiz No 2 Updated, id = 5a122b17-a3a5-403a-8a9c-79b84095d516, level = 2, passpoint = 1, successMessage = This is Good, failedMessage = Try Again Buddy } } }
+20171110101806 User Found: josephaanthony@gmail.com id: c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1
+20171110101809 Logging user Joseph Anthony1
+20171110101809 The Id is: The name is: Joseph Anthony1
+20171110101809 User by email: 
+20171110101809 The Id is:267a3aba-9b5b-4ebf-800f-fc3a931214ac The name is: 
+20171110101809 The Id is:267a3aba-9b5b-4ebf-800f-fc3a931214ac
+20171110162744 Prod Environment is false
+20171110162854 Prod Environment is false
+20171110162917 The Id is:267a3aba-9b5b-4ebf-800f-fc3a931214ac The name is: 
+20171110162924 Logging user Joseph Anthony
+20171110162924 The Id is: The name is: Joseph Anthony
+20171110162924 User by email: { email = , id = cbf079c8-faf6-4d41-a5e0-aa8b8c572deb, name = Joseph Anthony, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = bd4155ce-7842-4b59-bcea-e2925e363d22, CurrentUserQuestion = { id = bd4155ce-7842-4b59-bcea-e2925e363d22, index = 0, isCorrect = , Question = { description = Nurse Kemp has worked more night shifts in a row than Nurse Rogers, who has worked five. Nurse Miller has worked 15 night shifts in a row, more than Nurses Kemp and Rogers combined. Nurse Calvin has worked 8 night shifts in a row, less than Nurse Kemp. How many night shifts in a row has Nurse Kemp worked?, id = 32bd5ca7-23d7-42e5-bf19-3af569c1b950, optionType = Radio, imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = 32bd5ca7-23d7-42e5-bf19-3af569c1b950, selectedOptionIds =  }, currentUserQuizId = 3ce3c85d-51ae-43b6-ad64-c5bf7ad4fe9a, CurrentUserQuiz = { id = 3ce3c85d-51ae-43b6-ad64-c5bf7ad4fe9a, quizId = 5a122b17-a3a5-403a-8a9c-79b84095d516, timeTakenInterval = , status = IN_PROGRESS, Quiz = { description = Expert Mode, id = 5a122b17-a3a5-403a-8a9c-79b84095d516, level = 2, passpoint = 3, successMessage = You are awesome! Get a goodie and go to the next level., failedMessage = Oops! You didn't clear this level. Please try again. } } }
+20171110162924 User Found:  id: cbf079c8-faf6-4d41-a5e0-aa8b8c572deb
+20171110162928 Logging user Joseph Anthony1
+20171110162928 The Id is: The name is: Joseph Anthony1
+20171110162928 User by email: { email = , id = 05ae8bf8-fdf6-40fa-a978-401e607d09ee, name = Joseph Anthony1, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = 8c617b4d-5753-4dd5-b4d2-98993b2dae2d, CurrentUserQuestion = { id = 8c617b4d-5753-4dd5-b4d2-98993b2dae2d, index = 0, isCorrect = , Question = { description = This woman was the Prime Minister of the UK for more than 11 years., id = 2b164e96-4f1f-4d0e-8210-db2e656bb0a9, optionType = Radio, imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = 2b164e96-4f1f-4d0e-8210-db2e656bb0a9, selectedOptionIds =  }, currentUserQuizId = 9b607b19-cb97-4c94-b4a8-2a8eb8127fa7, CurrentUserQuiz = { id = 9b607b19-cb97-4c94-b4a8-2a8eb8127fa7, quizId = d4f9ea59-96ce-4df8-b9fb-c576f0f6ca02, timeTakenInterval = , status = IN_PROGRESS, Quiz = { description = Beginner Mode, id = d4f9ea59-96ce-4df8-b9fb-c576f0f6ca02, level = 1, passpoint = 3, successMessage = You rock! Get a goodie and go to the next level., failedMessage = Oops! You didn't clear this level. Please try again. } } }
+20171110162928 User Found:  id: 05ae8bf8-fdf6-40fa-a978-401e607d09ee
+20171110162932 Logging user Joseph Anthony2
+20171110162932 The Id is: The name is: Joseph Anthony2
+20171110162932 User by email: 
+20171110162933 The Id is:891f53b1-e881-4b67-a207-ee36e138a474 The name is: 
+20171110162933 The Id is:891f53b1-e881-4b67-a207-ee36e138a474
+20171110163740 Prod Environment is false
+20171110163746 The Id is:891f53b1-e881-4b67-a207-ee36e138a474 The name is: 
+20171110185859 Prod Environment is false
+20171110185901 The Id is:891f53b1-e881-4b67-a207-ee36e138a474 The name is: 
