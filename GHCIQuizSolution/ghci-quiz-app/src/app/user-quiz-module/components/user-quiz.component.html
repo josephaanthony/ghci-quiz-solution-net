@@ -15,7 +15,7 @@
 		</span>
 	</div>
 	<mat-progress-bar
-	style="top: 50px;"
+	style="top: 48px;"
 	[color]="progress.color"
 	[mode]="progress.mode"
 	[value]="progress.value"
@@ -23,7 +23,7 @@
 </mat-progress-bar>
 
 	<div id="qaSection" [@questionAnim]="user?.CurrentUserQuestion?.id" *ngIf="user?.CurrentUserQuestion?.id" class="row-section" 
-		 style="background:#ECEDF2; margin-top:50px;perspective: 1200px;">
+		 style="background:#ECEDF2; margin-top:48px;perspective: 1200px;">
 		<div class="row-section" id="question" style="min-height:200px; padding-left:20px; padding-top:10px; padding-bottom: 10px; padding-right:10px">
 			<code style="background:transparent; color: black; word-wrap: break-word; white-space: pre-wrap; padding:0px;">{{user.CurrentUserQuestion.Question.description}}</code>
 			<div *ngIf="user.CurrentUserQuestion.Question.imageUrl">
@@ -51,14 +51,15 @@
 			</ul>
 			<div class="scaleUp" id="resultDiv" style="position: absolute; width:100%; margin-right:-10px;text-align: center;font-size: 20px;">
 				<div *ngIf="!result" style="min-height:200px;background: #ff5d4c;color:white;padding-top: 80px;">Oops! You got it wrong!</div>
-				<div *ngIf="result" style="min-height:200px;background: #2282b1;color:white;padding-top: 80px;">Correct!</div>				
+				<div *ngIf="result" style="min-height:200px;background: #22b17c;color:white;padding-top: 80px;">Correct!</div>				
 			</div>
 		</div>			  
 	</div>
 
 	<div class="rotateCarouselTopIn" id="endQuizDiv" style="display:none; position: absolute; top: 150px; width:100%; margin-right:-10px;text-align: center;font-size: 20px;">
-		<div *ngIf="user?.quizStatus === 'COMPLETED_FAIL'" style="min-height:200px;background: #ff5d4c;color:white;padding-top: 80px;"><i class="fa fa-thumbs-o-down resultIcon" aria-hidden="true" style="color:greenyellow"></i>{{user?.CurrentUserQuiz?.Quiz?.failedMessage}}</div>
-		<div *ngIf="user?.quizStatus === 'COMPLETED_SUCCESS'" style="min-height:200px;background: #2282b1;color:white;padding-top: 80px;"><i class="fa fa-thumbs-o-up resultIcon" aria-hidden="true" style="color:#f3d53f"></i>{{user?.CurrentUserQuiz?.Quiz?.successMessage}}</div>				
+		<div class="cp-spinner cp-skeleton cp-skeleton-quiz"></div>
+		<div *ngIf="user?.quizStatus === 'COMPLETED_FAIL'" style="min-height:200px;background: #ff5d4c;color:white;padding-top: 80px;"><i class="fa fa-thumbs-o-down resultIcon" aria-hidden="true" style="color:#ffea80"></i>{{user?.CurrentUserQuiz?.Quiz?.failedMessage}}</div>
+		<div *ngIf="user?.quizStatus === 'COMPLETED_SUCCESS'" style="min-height:200px;background: #22b17c;color:white;padding-top: 80px;"><i class="fa fa-thumbs-o-up resultIcon" aria-hidden="true" style="color:#f3d53f"></i>{{user?.CurrentUserQuiz?.Quiz?.successMessage}}</div>				
 	</div>
 
 </div>

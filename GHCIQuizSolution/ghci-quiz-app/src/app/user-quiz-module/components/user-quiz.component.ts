@@ -51,7 +51,7 @@ export class UserQuizComponent implements OnInit {
 		this.quizService.getLocalUserOrRedirect()
 			.then(user => {
 				this.user = user;
-				this.totalQuestions = user.CurrentUserQuiz.Quiz.totalQuestions;
+				this.totalQuestions = user.CurrentUserQuiz.totalQuestions;
 				this.progress.value = (parseInt(user.CurrentUserQuestion.index)+1)/parseInt(this.totalQuestions)*100;
 				this.checkQuizCompleted(this.user);
 			});
@@ -135,7 +135,7 @@ export class UserQuizComponent implements OnInit {
 
 			setTimeout(() => {
 				this.router.navigateByUrl('/users/quizhome');
-			}, 2000);
+			}, 4000);
 			return true;
 		}
 

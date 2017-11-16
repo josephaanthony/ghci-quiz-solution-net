@@ -1,28 +1,17 @@
-20171113073913 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113073913 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113074438 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113074439 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113074926 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113074927 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113075608 Prod Environment is false
-20171113075610 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113075614 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113075833 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113075833 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113121247 Prod Environment is false
-20171113121248 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113121251 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113122111 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113122111 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113122131 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113122131 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113122158 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113122158 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113122848 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113122848 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113122928 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113122928 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113123152 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113123152 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
-20171113123432 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
-20171113123432 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
+20171116183833 Prod Environment is false
+20171116184113 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
+20171116184135 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
+20171116184135 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
+20171116184252 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
+20171116184252 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
+20171116191042 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
+20171116191042 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
+20171116191804 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1 The name is: 
+20171116191805 The Id is:87daa9cf-e696-4f7f-aace-ce90dcd29ab1
+20171116192033 Logging user reg:c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1
+20171116192033 The Id is: The name is: reg:c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1
+20171116192034 User by email: { email = josephaanthony@gmail.com, id = c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1, name = Joseph Anthony, isLastQuestionForCurrentQuiz = , isLastQuiz = , currentUserQuestionId = , CurrentUserQuestion = { id = , index = , isCorrect = , Question = { description = , id = , optionType = , imageUrl = , QuizOptions = System.Data.Entity.Core.Common.Internal.Materialization.CompensatingCollection`1[<>f__AnonymousType13`4[System.String,System.String,System.Boolean,System.Int32]] }, questionId = , selectedOptionIds =  }, currentUserQuizId = 32ca0c44-4068-4c37-b5d3-c3a8ee5025b9, CurrentUserQuiz = { id = 32ca0c44-4068-4c37-b5d3-c3a8ee5025b9, quizId = 5a122b17-a3a5-403a-8a9c-79b84095d516, timeTakenInterval = , status = COMPLETED_SUCCESS, totalQuestions = 2, Quiz = { description = Quiz No 2 Updated, id = 5a122b17-a3a5-403a-8a9c-79b84095d516, level = 2, passpoint = 1, successMessage = This is Good, failedMessage = Try Again Buddy, instruction = Another Instruction } } }
+20171116192034 User Found with Id: josephaanthony@gmail.com id: c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1
+20171116192034 The Id is:c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1 The name is: 
+20171116192034 The Id is:c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1
+20171116192044 The Id is:c7053bc7-5f03-4b55-a8e7-1186c4c8e3e1 The name is: 

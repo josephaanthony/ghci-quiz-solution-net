@@ -1,3 +1,16 @@
+.cp-skeleton-quiz {
+	border-top-color: #ffd916;
+}
+
+.cp-skeleton-quiz:before {
+	border-left-color: #ffd916;
+}
+
+.cp-skeleton-quiz:after {
+	border-right-color: #ffd916;
+}
+
+
 #resultDiv {
 	display: none;
 }
@@ -1309,4 +1322,13 @@
 .delay1000 {
 	-webkit-animation-delay: 1s;
 	animation-delay: 1s;
+}
+
+/deep/ .mat-progress-bar-buffer {
+	background-color: #39393a
+}
+
+/deep/ .mat-progress-bar-fill::after {
+	/* background-color: #72d1ff !important; */
+	background: linear-gradient(to right, #96e8fb 71%, #fff8e7 100%) !important
 }

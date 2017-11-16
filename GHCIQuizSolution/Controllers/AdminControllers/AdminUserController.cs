@@ -43,8 +43,9 @@ namespace GHCIQuizSolution.Controllers.AdminControllers
           QuizDB.Database.ExecuteSqlCommand("DELETE from QuizUser where id = @P0", new[] { id });
           dbTran.Commit();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+          logger.Info("Exception Deleting User: " + ex.ToString());
           dbTran.Rollback();
           throw;
         }

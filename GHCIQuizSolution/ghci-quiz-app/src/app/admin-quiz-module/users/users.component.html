@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<h3 class="panel-title">Users</h3>			
+			<h3 class="panel-title">Users  ({{ users.length }})</h3>			
 		</div>
 
 		<div class="panel-body">
@@ -32,10 +32,10 @@
 								*ngFor="let quiz of user.UserQuizs; let i = index" [attr.data-index]="i">
 
 								<div class="col-md-12" style="width: 100%;margin-bottom: 10px;">
-									 Level:{{ quiz.Quiz.level }} ({{quiz.attempt}}) - {{ quiz.Quiz.description }}
-								<span style="margin-left:10px" class="glyphicon" [ngClass]="{'glyphicon-ok': quiz.status === 'COMPLETED_SUCCESS', 
+									<span style="margin-right:10px" class="glyphicon" [ngClass]="{'glyphicon-ok': quiz.status === 'COMPLETED_SUCCESS', 
 											'glyphicon-remove': quiz.status === 'COMPLETED_FAIL',
 											'glyphicon-pencil': quiz.status === 'IN_PROGRESS'}"></span>
+									 Level:{{ quiz.Quiz.level }} ({{quiz.attempt}}) - {{ quiz.Quiz.description }}
 								</div>						
 
 							</div>

@@ -15,7 +15,12 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers().then(users => {
-      this.users = users;
+      this.users = users.map(u => {
+                                      u.UserQuizs = _(u.UserQuizs).groupBy('Quiz.level')
+                                                              .flatMap(g => {console.log(g); return _.maxBy(g, 'attempt'); })
+                                                              .value();
+                                      return u;
+                                  });
     })
   }
 
